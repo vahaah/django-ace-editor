@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from setuptools import setup, find_packages
+from setuptools import setup
 
 
 setup(
@@ -13,9 +13,9 @@ setup(
     license="Simplified BSD",
     url='https://github.com/smidth/django-ace-editor',
 
-    packages=find_packages(exclude=["example", "example.*"]),
+    packages=['djace_editor'],
     include_package_data=True,
-    install_requires=['Django'],
+    install_requires=['Django', 'setuptools'],
 
     classifiers=[
         'Development Status :: 4 - Beta',
