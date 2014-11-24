@@ -1,17 +1,8 @@
-A lightweight wysiwyg editor for Django
-=======================================
-
-.. image:: https://pypip.in/download/django-wysiwyg-redactor/badge.png
-:target: https://pypi.python.org/pypi/django-wysiwyg-redactor/
-    :alt: Downloads
-
-Screenshot
-----------
-
-.. image:: https://raw.githubusercontent.com/douglasmiranda/django-wysiwyg-redactor/master/screenshots/redactor.jpg
+Ace editor for Django
+=====================
 
 What's that
------------------
+-----------
 
 *django-ace-editor* is a reusable application for Django, using `Ace editor <http://ace.c9.io/>`_
 
