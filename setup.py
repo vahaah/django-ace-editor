@@ -1,18 +1,10 @@
 # -*- coding: utf-8 -*-
-from os.path import join
-import re
-
 from setuptools import setup, find_packages
 
 
-
-# dynamically pull the version from djace_editor/__init__.py
-version = re.search('^__version__ = "(.+?)"$',
-                    open(join('djace_editor', '__init__.py')).read(), re.MULTILINE).group(1)
-
 setup(
     name='djace_editor',
-    version=version,
+    version='0.9.1',
     description='djace_editor provides integration for ajax.org ACE with Django',
     long_description=open('README.rst').read(),
 
