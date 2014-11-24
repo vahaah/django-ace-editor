@@ -4,7 +4,7 @@ Ace editor for Django
 What's that
 -----------
 
-*django-ace-editor* is a reusable application for Django, using `Ace editor <http://ace.c9.io/>`_
+*djace_editor* is a reusable application for Django, using `Ace editor <http://ace.c9.io/>`_
 
 Forked on `Bradley Ayers <https://github.com/bradleyayers/django-ace/>`_.
 
@@ -16,9 +16,9 @@ Dependence
 Getting started
 ---------------
 
-- Install *django-ace-editor*:
+- Install *djace_editor*:
 
-```pip install django-ace-editor```
+```pip install djace_editor```
 
 - Add `'djace_editor'` to INSTALLED_APPS.
 

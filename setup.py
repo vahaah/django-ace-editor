@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup
 
-
 setup(
     name='djace_editor',
     version='0.9.1',
