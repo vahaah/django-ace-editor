@@ -132,7 +132,7 @@ define("ace/mode/textile", ["require", "exports", "module", "ace/lib/oop", "ace/
 
         this.autoOutdent = function (state, doc, row) {
             this.$outdent.autoOutdent(doc, row);
-        };
+    };
 
         this.$id = "ace/mode/textile";
     }).call(Mode.prototype);

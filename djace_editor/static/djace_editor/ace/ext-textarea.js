@@ -238,7 +238,7 @@ define("ace/ext/textarea", ["require", "exports", "module", "ace/lib/event", "ac
     function setupContainer(element, getValue) {
         if (element.type != 'textarea') {
             throw new Error("Textarea required!");
-        }
+    }
 
         var parentNode = element.parentNode;
         var container = document.createElement('div');

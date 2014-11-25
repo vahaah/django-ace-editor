@@ -263,7 +263,7 @@ define("ace/mode/behaviour/xml", ["require", "exports", "module", "ace/lib/oop",
                         text: quote + quote,
                         selection: [1, 1]
                     };
-                }
+            }
             }
         });
 
@@ -514,7 +514,7 @@ define("ace/mode/folding/xml", ["require", "exports", "module", "ace/lib/oop", "
                     tag.selfClosing = token.value == "/>";
                     tag.end.row = iterator.getCurrentTokenRow();
                     tag.end.column = iterator.getCurrentTokenColumn() + token.value.length;
-                }
+            }
             } while (token = iterator.stepBackward());
 
             return null;
@@ -534,7 +534,7 @@ define("ace/mode/folding/xml", ["require", "exports", "module", "ace/lib/oop", "
                     stack.pop();
                     continue;
                 } else {
-                    return null;
+                return null;
                 }
             }
         };

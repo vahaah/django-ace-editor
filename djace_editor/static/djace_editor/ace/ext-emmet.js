@@ -317,7 +317,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                         p = copy[j] || {tabstopId: p.tabstopId};
                 }
                     copy[i] = p;
-                }
+            }
                 return copy;
             }
 
@@ -399,7 +399,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                         scope = "css";
                     else if (state.substring(0, 4) == "php-")
                         scope = "php";
-                }
+            }
             }
 
             return scope;
@@ -522,7 +522,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                     if (old)
                         self.unregister(old);
                     map[s.name] = s;
-                }
+            }
                 snippetMap[scope].push(s);
 
                 if (s.tabTrigger && !s.trigger) {
@@ -557,7 +557,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                     var i = map && map.indexOf(s);
                     if (i >= 0)
                         map.splice(i, 1);
-                }
+            }
             }
 
             if (snippets.content)
@@ -702,7 +702,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                     this.removeRange(r);
             }
             if (!ranges.length)
-                this.detach();
+            this.detach();
         };
         this.updateLinkedFields = function () {
             var ts = this.selectedTabstop;
@@ -1023,7 +1023,7 @@ define("ace/ext/emmet", ["require", "exports", "module", "ace/keyboard/hash_hand
                         syntax = state[0];
                     else if (syntax == "php")
                         syntax = "html";
-                }
+            }
             }
             return syntax;
         },
@@ -1156,7 +1156,7 @@ define("ace/ext/emmet", ["require", "exports", "module", "ace/keyboard/hash_hand
             editor._signal("changeStatus", typeof e == "string" ? e : e.message);
             console.log(e);
             result = false;
-    }
+        }
         return result;
     };
 
@@ -1175,7 +1175,7 @@ define("ace/ext/emmet", ["require", "exports", "module", "ace/keyboard/hash_hand
             editor.keyBinding.addKeyboardHandler(exports.commands);
         } else {
             editor.keyBinding.removeKeyboardHandler(exports.commands);
-        }
+    }
     };
 
     exports.isSupportedMode = function (modeId) {

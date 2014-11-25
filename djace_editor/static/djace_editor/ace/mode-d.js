@@ -146,7 +146,7 @@ define("ace/mode/d_highlight_rules", ["require", "exports", "module", "ace/lib/o
                     onMatch: function (value, currentState, state) {
                         state.unshift(this.next, value.substr(2));
                         return "string";
-                    },
+                },
                     regex: 'q"(?:[a-zA-Z_]+)$',
                     next: 'identifier-heredoc-string'
                 }, {
@@ -430,7 +430,7 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
                     } else if (subRange.isMultiLine()) {
                         row = subRange.end.row;
                     } else if (startIndent == indent) {
-                        break;
+                    break;
                 }
             }
                 endRow = row;

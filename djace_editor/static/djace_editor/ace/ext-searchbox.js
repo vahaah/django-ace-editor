@@ -197,7 +197,7 @@ user-select: none;\
             this.wholeWordOption = sb.querySelector("[action=toggleWholeWords]");
             this.searchInput = this.searchBox.querySelector(".ace_search_field");
             this.replaceInput = this.replaceBox.querySelector(".ace_search_field");
-        };
+    };
 
         this.$init = function () {
             var sb = this.element;
@@ -236,7 +236,7 @@ user-select: none;\
 
             event.addListener(this.searchInput, "input", function () {
                 _this.$onChange.schedule(20);
-            });
+        });
             event.addListener(this.searchInput, "focus", function () {
                 _this.activeInput = _this.searchInput;
                 _this.searchInput.value && _this.highlight();

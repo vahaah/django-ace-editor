@@ -921,7 +921,7 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
                 editor.pushEmacsMark();
         }
             command = this.commands[command] || editor.commands.commands[command];
-            if (!command) return undefined;
+        if (!command) return undefined;
         }
 
         if (!command.readOnly && !command.isYank)
@@ -1053,7 +1053,7 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
                     else moveToMark();
                     moveToMark();
                     return;
-            }
+                }
 
                 var mark = editor.emacsMark(),
                     ranges = editor.selection.getAllRanges(),
@@ -1077,12 +1077,12 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
                     });
                     editor.setEmacsMark(rangePositions[rangePositions.length - 1]);
                     return;
-                }
+            }
 
                 function moveToMark() {
                     var mark = editor.popEmacsMark();
                     mark && editor.moveCursorToPosition(mark);
-                }
+            }
 
         },
             readOnly: true,
@@ -1132,7 +1132,7 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
                 editor.session.doc.getLine(pos.row).length === 0) {
                 editor.selection.selectLine();
             } else {
-                editor.clearSelection();
+            editor.clearSelection();
                 editor.selection.selectLineEnd();
             }
             var range = editor.getSelectionRange();

@@ -68,7 +68,7 @@ define("ace/split", ["require", "exports", "module", "ace/lib/oop", "ace/lib/lan
                 while (this.$splits < splits) {
                     this.$createEditor();
                     this.$splits++;
-                }
+            }
             } else {
                 while (this.$splits > splits) {
                     editor = this.$editors[this.$splits - 1];

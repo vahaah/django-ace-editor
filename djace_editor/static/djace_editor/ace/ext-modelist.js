@@ -26,7 +26,7 @@ define("ace/ext/modelist", ["require", "exports", "module"], function (require, 
                 }) + "$";
         } else {
             var re = "^.*\\.(" + extensions + ")$";
-        }
+    }
 
         this.extRe = new RegExp(re, "gi");
     };

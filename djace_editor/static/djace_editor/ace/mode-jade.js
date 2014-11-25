@@ -374,7 +374,7 @@ define("ace/mode/javascript_highlight_rules", ["require", "exports", "module", "
                     token: "paren.quasi.start",
                     regex: /\${/,
                     push: "start"
-                }, {
+            }, {
                     token: "string.quasi.end",
                     regex: /`/,
                     next: "pop"
@@ -1460,7 +1460,7 @@ define("ace/mode/less_highlight_rules", ["require", "exports", "module", "ace/li
                             return "variable.language";
                         else
                             return "text";
-                    },
+                },
                     regex: "\\-?[@a-z_][@a-z0-9_\\-]*"
                 }, {
                     token: "variable.language",
@@ -1656,7 +1656,7 @@ define("ace/mode/coffee_highlight_rules", ["require", "exports", "module", "ace/
                 }, {
                     token: ["entity.name.function", "text", "keyword.operator", "text"].concat(functionRule.token),
                     regex: "(" + identifier + ")(\\s*)([=:])(\\s*)" + functionRule.regex
-                },
+                }, 
                 functionRule, 
                 {
                     token: "variable",
@@ -1862,7 +1862,7 @@ define("ace/mode/jade_highlight_rules", ["require", "exports", "module", "ace/li
                 {
                     token: "punctuation",
                     regex: "\\)",
-                    next: "start"
+            next: "start"
                 }
             ],
             "attribute_strings": [
@@ -1989,7 +1989,7 @@ define("ace/mode/folding/coffee", ["require", "exports", "module", "ace/lib/oop"
                     session.foldWidgets[row - 1] = "";
                     session.foldWidgets[row + 1] = "";
                     return "start";
-                }
+            }
             } else if (prevIndent == indent && line[indent] == "#" && prev[indent] == "#") {
                 if (session.getLine(row - 2).search(/\S/) == -1) {
                     session.foldWidgets[row - 1] = "start";

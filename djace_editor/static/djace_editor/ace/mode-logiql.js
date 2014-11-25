@@ -147,7 +147,7 @@ define("ace/mode/folding/coffee", ["require", "exports", "module", "ace/lib/oop"
                     session.foldWidgets[row - 1] = "";
                     session.foldWidgets[row + 1] = "";
                     return "start";
-                }
+            }
             } else if (prevIndent == indent && line[indent] == "#" && prev[indent] == "#") {
                 if (session.getLine(row - 2).search(/\S/) == -1) {
                     session.foldWidgets[row - 1] = "start";
@@ -245,15 +245,15 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                             text: '',
                             selection: [1, 1]
                         };
-                    }
+                }
                 }
             } else if (text == "\n" || text == "\r\n") {
                 initContext(editor);
                 var closing = "";
                 if (CstyleBehaviour.isMaybeInsertedClosing(cursor, line)) {
                     closing = lang.stringRepeat("}", context.maybeInsertedBrackets);
-                    CstyleBehaviour.clearMaybeInsertedClosing();
-                }
+                CstyleBehaviour.clearMaybeInsertedClosing();
+            }
                 var rightChar = line.substring(cursor.column, cursor.column + 1);
                 if (rightChar === '}') {
                     var openBracePos = session.findMatchingBracket({row: cursor.row, column: cursor.column + 1}, '}');
@@ -371,7 +371,7 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                         selection: [1, 1]
                     };
                 }
-                }
+            }
             }
         });
 
@@ -384,7 +384,7 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                 if (rightChar == ']') {
                     range.end.column++;
                     return range;
-                }
+            }
             }
         });
 
@@ -602,7 +602,7 @@ define("ace/mode/logiql", ["require", "exports", "module", "ace/lib/oop", "ace/m
             if (/comment|string/.test(endState))
             return indent;
             if (tokens.length && tokens[tokens.length - 1].type == "comment.single")
-                return indent;
+            return indent;
 
             var match = line.match();
             if (/(-->|<--|<-|->|{)\s*$/.test(line))

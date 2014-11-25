@@ -82,7 +82,7 @@ define("ace/ext/modelist", ["require", "exports", "module"], function (require, 
                 }) + "$";
         } else {
             var re = "^.*\\.(" + extensions + ")$";
-        }
+    }
 
         this.extRe = new RegExp(re, "gi");
     };
@@ -340,7 +340,7 @@ define("ace/ext/menu_tools/add_editor_menu_options", ["require", "exports", "mod
             return {
                 textContent: mode.name,
                 value: mode.mode
-            };
+        };
         });
     };
 
@@ -454,7 +454,7 @@ define("ace/ext/menu_tools/generate_settings_menu", ["require", "exports", "modu
                     } catch (err) {
                         throw new Error(err);
                     }
-                });
+            });
             } else {
                 el = egen.createInput(item, val, clss);
                 el.addEventListener('change', function (e) {

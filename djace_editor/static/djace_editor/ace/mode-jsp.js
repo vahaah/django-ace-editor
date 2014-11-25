@@ -518,7 +518,7 @@ define("ace/mode/javascript_highlight_rules", ["require", "exports", "module", "
                     token: "paren.quasi.start",
                     regex: /\${/,
                     push: "start"
-                }, {
+            }, {
                     token: "string.quasi.end",
                     regex: /`/,
                     next: "pop"
@@ -1132,15 +1132,15 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                             text: '',
                             selection: [1, 1]
                         };
-                    }
+                }
                 }
             } else if (text == "\n" || text == "\r\n") {
                 initContext(editor);
                 var closing = "";
                 if (CstyleBehaviour.isMaybeInsertedClosing(cursor, line)) {
                     closing = lang.stringRepeat("}", context.maybeInsertedBrackets);
-                    CstyleBehaviour.clearMaybeInsertedClosing();
-                }
+                CstyleBehaviour.clearMaybeInsertedClosing();
+            }
                 var rightChar = line.substring(cursor.column, cursor.column + 1);
                 if (rightChar === '}') {
                     var openBracePos = session.findMatchingBracket({row: cursor.row, column: cursor.column + 1}, '}');
@@ -1258,7 +1258,7 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                         selection: [1, 1]
                     };
                 }
-                }
+            }
             }
         });
 
@@ -1271,7 +1271,7 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                 if (rightChar == ']') {
                     range.end.column++;
                     return range;
-                }
+            }
             }
         });
 
@@ -1497,7 +1497,7 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
                     } else if (subRange.isMultiLine()) {
                         row = subRange.end.row;
                     } else if (startIndent == indent) {
-                        break;
+                    break;
                 }
             }
                 endRow = row;

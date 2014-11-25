@@ -53,7 +53,6 @@ define("ace/mode/livescript", ["require", "exports", "module", "ace/tokenizer", 
       }
       this.$id = "ace/mode/livescript";
     }
-
     indenter = RegExp('(?:[({[=:]|[-~]>|\\b(?:e(?:lse|xport)|d(?:o|efault)|t(?:ry|hen)|finally|import(?:\\s*all)?|const|var|let|new|catch(?:\\s*' + identifier + ')?))\\s*$');
     prototype.getNextLineIndent = function (state, line, tab) {
       var indent, tokens;

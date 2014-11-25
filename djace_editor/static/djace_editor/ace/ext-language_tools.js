@@ -317,7 +317,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                         p = copy[j] || {tabstopId: p.tabstopId};
                 }
                     copy[i] = p;
-                }
+            }
                 return copy;
             }
 
@@ -399,7 +399,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                         scope = "css";
                     else if (state.substring(0, 4) == "php-")
                         scope = "php";
-                }
+            }
             }
 
             return scope;
@@ -522,7 +522,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                     if (old)
                         self.unregister(old);
                     map[s.name] = s;
-                }
+            }
                 snippetMap[scope].push(s);
 
                 if (s.tabTrigger && !s.trigger) {
@@ -557,7 +557,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                     var i = map && map.indexOf(s);
                     if (i >= 0)
                         map.splice(i, 1);
-                }
+            }
             }
 
             if (snippets.content)
@@ -702,7 +702,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                     this.removeRange(r);
             }
             if (!ranges.length)
-                this.detach();
+            this.detach();
         };
         this.updateLinkedFields = function () {
             var ts = this.selectedTabstop;
@@ -1389,7 +1389,7 @@ define("ace/autocomplete", ["require", "exports", "module", "ace/keyboard/hash_h
             if (this.activated)
                 this.changeTimer.schedule();
             else
-                this.detach();
+            this.detach();
         };
 
         this.blurListener = function (e) {
@@ -1580,7 +1580,7 @@ define("ace/autocomplete", ["require", "exports", "module", "ace/keyboard/hash_h
                 if (!matches || !matches.length)
                     return detachIfFinished();
                 if (prefix.indexOf(results.prefix) !== 0 || _id != this.gatherCompletionsId)
-                    return;
+                return;
 
                 this.completions = new FilteredList(matches);
                 this.completions.setFilter(prefix);
@@ -1894,7 +1894,7 @@ define("ace/ext/language_tools", ["require", "exports", "module", "ace/snippets"
                         loadSnippetFile("ace/mode/" + x);
                 });
             }
-            }
+        }
         });
     };
 
@@ -1970,7 +1970,7 @@ define("ace/ext/language_tools", ["require", "exports", "module", "ace/snippets"
                     this.commands.removeCommand(expandSnippet);
                     this.off("changeMode", onChangeMode);
                 }
-            },
+        },
             value: false
         }
 });

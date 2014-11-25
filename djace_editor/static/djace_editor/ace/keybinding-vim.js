@@ -231,7 +231,7 @@ define("ace/keyboard/vim/maps/motions", ["require", "exports", "module", "ace/ke
     };
         this.debug = function () {
             console.log(line.substring(0, this.col) + '|' + this.ch + '\'' + this.col + '\'' + line.substr(this.col + 1));
-        };
+    };
     };
 
     var Search = require("../../../search").Search;
@@ -287,7 +287,7 @@ define("ace/keyboard/vim/maps/motions", ["require", "exports", "module", "ace/ke
                 str.prev();
             } else {
                 while (str.ch && !nonWordRe.test(str.ch))
-                    str.prev();
+                str.prev();
             }
             str.ch && str.next();
             return {column: str.col, row: str.row};
@@ -315,7 +315,7 @@ define("ace/keyboard/vim/maps/motions", ["require", "exports", "module", "ace/ke
                 str.next();
             } else {
                 while (str.ch && !nonWordRe.test(str.ch))
-                    str.next();
+                str.next();
             }
             str.ch && str.prev();
             return {column: str.col, row: str.row};
@@ -614,7 +614,7 @@ define("ace/keyboard/vim/maps/motions", ["require", "exports", "module", "ace/ke
             nav: function (editor, range, count, param) {
                 if (!count && count !== 0) { // Stupid JS
                     count = editor.session.getLength();
-                }
+            }
                 editor.gotoLine(count);
         },
             sel: function (editor, range, count, param) {
@@ -640,7 +640,7 @@ define("ace/keyboard/vim/maps/motions", ["require", "exports", "module", "ace/ke
                         editor.gotoLine(count || 0);
                     case "U":
                         editor.gotoLine(count || 0);
-                }
+            }
         },
             sel: function (editor, range, count, param) {
                 switch (param) {
@@ -652,7 +652,7 @@ define("ace/keyboard/vim/maps/motions", ["require", "exports", "module", "ace/ke
                         break;
                     case "g":
                         editor.selection.selectTo(count || 0, 0);
-                }
+            }
             }
         },
         "o": {
@@ -666,7 +666,7 @@ define("ace/keyboard/vim/maps/motions", ["require", "exports", "module", "ace/ke
                     editor.navigateLineEnd();
                     editor.insert(content);
                     util.insertMode(editor);
-                }
+            }
             }
         },
         "O": {
@@ -905,7 +905,7 @@ define("ace/keyboard/vim/maps/operators", ["require", "exports", "module", "ace/
                 count = count || 1;
                 for (var i = 0; i < count; i++) {
                     editor.indent();
-                }
+            }
                 util.normalMode(editor);
         },
             fn: function (editor, range, count, param) {
@@ -931,7 +931,7 @@ define("ace/keyboard/vim/maps/operators", ["require", "exports", "module", "ace/
                 count = count || 1;
                 for (var i = 0; i < count; i++) {
                     editor.blockOutdent();
-                }
+            }
                 util.normalMode(editor);
         },
             fn: function (editor, range, count, param) {
@@ -997,7 +997,7 @@ define("ace/keyboard/vim/maps/aliases", ["require", "exports", "module"], functi
             motion: {
                 ch: "$",
                 count: 1
-            }
+        }
         },
         "s": {
             operator: {
@@ -1225,7 +1225,7 @@ define("ace/keyboard/vim/commands", ["require", "exports", "module", "ace/lib/la
                     editor.navigateRight();
                     editor.insert(lang.stringRepeat(defaultReg.text, count || 1));
                     editor.navigateLeft();
-                }
+            }
                 editor.setOverwrite(true);
                 editor.selection.clearSelection();
             }
@@ -1244,7 +1244,7 @@ define("ace/keyboard/vim/commands", ["require", "exports", "module", "ace/lib/la
             }
                 else {
                     editor.insert(lang.stringRepeat(defaultReg.text, count || 1));
-                }
+            }
                 editor.setOverwrite(true);
                 editor.selection.clearSelection();
             }
@@ -1278,7 +1278,7 @@ define("ace/keyboard/vim/commands", ["require", "exports", "module", "ace/lib/la
                     editor.undo();
             }
                 editor.selection.clearSelection();
-            }
+        }
         },
         "ctrl-r": {
             fn: function (editor, range, count, param) {
@@ -1391,7 +1391,7 @@ define("ace/keyboard/vim/commands", ["require", "exports", "module", "ace/lib/la
                 var actionObj = {
                     action: {
                         fn: actions[ch].fn,
-                        count: this.getCount()
+                    count: this.getCount()
                 }
                 };
 
@@ -1481,7 +1481,7 @@ define("ace/keyboard/vim/commands", ["require", "exports", "module", "ace/lib/la
                         run(motionObj.sel);
                     else
                         run(motionObj.nav);
-                }
+            }
                 else if (selectable) {
                     repeat(function () {
                         run(motionObj.sel);
@@ -1490,7 +1490,7 @@ define("ace/keyboard/vim/commands", ["require", "exports", "module", "ace/lib/la
                     }, o.count || 1);
                 }
                 this.reset();
-        }
+            }
             else if (a) {
                 a.fn(editor, editor.getSelectionRange(), a.count, param);
                 this.reset();
@@ -1548,7 +1548,7 @@ define("ace/keyboard/vim/commands", ["require", "exports", "module", "ace/lib/la
                     editor.navigateRight();
                 util.insertMode(editor);
                 setPreviousCommand(append);
-            }
+        }
         },
         appendEnd: {
             exec: function appendEnd(editor) {
@@ -1584,7 +1584,7 @@ define("ace/keyboard/vim/commands", ["require", "exports", "module", "ace/lib/la
             if (e && (util.onVisualLineMode || util.onVisualMode)) {
                 editor.selection.clearSelection();
                 util.normalMode(editor);
-            }
+        }
 
             handleCursorMove.running = true;
             var pos = editor.getCursorPosition();
@@ -1658,7 +1658,7 @@ define("ace/keyboard/vim", ["require", "exports", "module", "ace/keyboard/vim/co
             var onCompositionStartOverride = function (text) {
                 if (util.currentMode === "insert") {
                     this.onCompositionStartOrig(text);
-                }
+            }
             };
             if (enable) {
                 if (!editor.onCompositionUpdateOrig) {
@@ -1666,7 +1666,7 @@ define("ace/keyboard/vim", ["require", "exports", "module", "ace/keyboard/vim/co
                     editor.onCompositionUpdate = onCompositionUpdateOverride;
                     editor.onCompositionStartOrig = editor.onCompositionStart;
                     editor.onCompositionStart = onCompositionStartOverride;
-                }
+            }
             } else {
                 if (editor.onCompositionUpdateOrig) {
                     editor.onCompositionUpdate = editor.onCompositionUpdateOrig;
@@ -1721,7 +1721,7 @@ define("ace/keyboard/vim", ["require", "exports", "module", "ace/keyboard/vim/co
             } else {
                 if (key == "ctrl-w") {
                     return {command: "removewordleft"};
-                }
+            }
             }
         },
 

@@ -74,7 +74,7 @@ define("ace/mode/vbscript_highlight_rules", ["require", "exports", "module", "ac
                 {
                     token: [
                         "punctuation.definition.variable.asp"
-                    ],
+            ],
                     regex: "(\\$)[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b\\s*"
                 },
                 {
@@ -104,7 +104,7 @@ define("ace/mode/vbscript_highlight_rules", ["require", "exports", "module", "ac
                 {
                     token: [
                         "constant.numeric.asp"
-                    ],
+            ],
                     regex: "-?\\b(?:(?:0(?:x|X)[0-9a-fA-F]*)|(?:(?:[0-9]+\\.?[0-9]*)|(?:\\.[0-9]+))(?:(?:e|E)(?:\\+|-)?[0-9]+)?)(?:L|l|UL|ul|u|U|F|f)?\\b"
                 },
                 {
@@ -114,13 +114,13 @@ define("ace/mode/vbscript_highlight_rules", ["require", "exports", "module", "ac
                 {
                     token: [
                         "entity.name.function.asp"
-                    ],
+            ],
                     regex: "(?:(\\b[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b)(?=\\(\\)?))"
                 },
                 {
                     token: [
                         "keyword.operator.asp"
-                    ],
+            ],
                     regex: "\\-|\\+|\\*\\\/|\\>|\\<|\\=|\\&"
         }
             ],

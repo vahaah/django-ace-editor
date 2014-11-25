@@ -361,7 +361,7 @@ define("ace/mode/haml_highlight_rules", ["require", "exports", "module", "ace/li
                     token: "empty",
                     regex: "$|(?!\\.|#|\\{|\\[|=|-|~|\\/)",
                     next: "start"
-                }
+        }
             ],
             "section": [
                 RubyExports.constantOtherSymbol,
@@ -478,7 +478,7 @@ define("ace/mode/folding/coffee", ["require", "exports", "module", "ace/lib/oop"
                     session.foldWidgets[row - 1] = "";
                     session.foldWidgets[row + 1] = "";
                     return "start";
-                }
+            }
             } else if (prevIndent == indent && line[indent] == "#" && prev[indent] == "#") {
                 if (session.getLine(row - 2).search(/\S/) == -1) {
                     session.foldWidgets[row - 1] = "start";

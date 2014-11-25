@@ -169,7 +169,7 @@
                     name: name,
                     data: data
                 });
-            };
+        };
 
         }).call(Sender.prototype);
 
@@ -338,7 +338,7 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
             matches.push({
                 offset: arguments[arguments.length - 2],
                 length: str.length
-            });
+        });
         });
 
         return matches;
@@ -361,7 +361,7 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
         deferred.call = function () {
             this.cancel();
             fcn();
-            return deferred;
+        return deferred;
     };
 
         deferred.cancel = function () {
@@ -393,13 +393,13 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
         _self.delay = function (timeout) {
             timer && clearTimeout(timer);
             timer = setTimeout(callback, timeout || defaultTimeout);
-        };
+    };
         _self.schedule = _self;
 
         _self.call = function () {
             this.cancel();
             fcn();
-        };
+    };
 
         _self.cancel = function () {
             timer && clearTimeout(timer);
@@ -567,11 +567,11 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                 this.end.row === range.end.row &&
                 this.start.column === range.start.column &&
                 this.end.column === range.end.column;
-        };
+    };
         this.toString = function () {
             return ("Range: [" + this.start.row + "/" + this.start.column +
             "] -> [" + this.end.row + "/" + this.end.column + "]");
-        };
+    };
 
         this.contains = function (row, column) {
             return this.compare(row, column) == 0;
@@ -652,7 +652,7 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
             if (this.compare(row, column) == 0) {
                 if (this.isEnd(row, column)) {
                     return false;
-                } else {
+            } else {
                     return true;
             }
             }
@@ -662,7 +662,7 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
             if (this.compare(row, column) == 0) {
                 if (this.isStart(row, column)) {
                     return false;
-                } else {
+            } else {
                     return true;
             }
             }
@@ -737,14 +737,14 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                 var end = {row: row, column: column};
 
             return Range.fromPoints(start || this.start, end || this.end);
-        };
+    };
 
         this.isEmpty = function () {
             return (this.start.row === this.end.row && this.start.column === this.end.column);
     };
         this.isMultiLine = function () {
             return (this.start.row !== this.end.row);
-        };
+    };
         this.clone = function () {
             return Range.fromPoints(this.start, this.end);
         };
@@ -864,7 +864,7 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
             } else if (delta.action == "removeLines") {
                 if (start.row <= row) {
                     if (end.row <= row)
-                        row -= end.row - start.row;
+                    row -= end.row - start.row;
                     else {
                         row = start.row;
                         column = 0;
@@ -1098,7 +1098,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
             var end = {
                 row: position.row + 1,
                 column: 0
-            };
+        };
 
             var delta = {
                 action: "insertText",
@@ -1214,7 +1214,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 action: "removeText",
                 range: range,
                 text: this.getNewLineCharacter()
-            };
+        };
             this._signal("change", {data: delta});
         };
         this.replace = function (range, text) {
@@ -1319,7 +1319,7 @@ define("ace/worker/mirror", ["require", "exports", "module", "ace/document", "ac
 
         this.setTimeout = function (timeout) {
             this.$timeout = timeout;
-        };
+    };
 
         this.setValue = function (value) {
             this.doc.setValue(value);
@@ -1367,7 +1367,7 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
 
                 if (typeof event.type == "undefined") {
                     throw new Error("Event object missing 'type' property.");
-                }
+        }
 
                 if (this._listeners[event.type]) {
                     var listeners = this._listeners[event.type].concat();
@@ -1387,7 +1387,7 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
                     }
 
 
-                }
+        }
             }
         };
         function StringReader(text) {
@@ -1487,7 +1487,7 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
                 } else if (matcher instanceof RegExp) {
                     if (matcher.test(source)) {
                         value = this.readCount(RegExp.lastMatch.length);
-                    }
+            }
                 }
 
                 return value;
@@ -1497,7 +1497,7 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
 
                 while (count--) {
                     buffer += this.read();
-                }
+        }
 
                 return buffer;
             }
@@ -3162,7 +3162,7 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
                                 if (unary === null) {
                                     line = tokenStream.LT(1).startLine;
                                     col = tokenStream.LT(1).startCol;
-                                }
+                        }
                                 if (value === null) {
                                     if (tokenStream.LA(3) == Tokens.EQUALS && this.options.ieFilters) {
                                         value = this._ie_function();
@@ -3219,7 +3219,7 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
                                         tokenStream.get();
                                 functionText += tokenStream.token().value;
                                 lt = tokenStream.peek();
-                                    }
+                            }
                                 } while (tokenStream.match([Tokens.COMMA, Tokens.S]));
                             }
 
@@ -3532,8 +3532,8 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
                         input += "}"; // for error recovery in _readDeclarations()
                         this._tokenStream = new TokenStream(input, Tokens);
                         this._readDeclarations();
-                    }
-        };
+            }
+                };
             for (prop in additions) {
                 if (additions.hasOwnProperty(prop)) {
                     proto[prop] = additions[prop];
@@ -3771,7 +3771,7 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
                         part = expression.next();
                         throw new ValidationError("Expected end of value but found '" + part + "'.", part.line, part.col);
                     }
-                }
+        }
             },
             "box-sizing": "content-box | border-box | inherit",
             "break-after": "auto | always | avoid | left | right | page | column | avoid-page | avoid-column",
@@ -4152,7 +4152,7 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
                     this.red = parseInt(temp.substring(0, 2), 16);
                     this.green = parseInt(temp.substring(2, 4), 16);
                     this.blue = parseInt(temp.substring(4, 6), 16);
-                }
+        }
             } else if (/^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/i.test(text)) { //rgb() color with absolute numbers
                 this.type = "color";
                 this.red = +RegExp.$1;
@@ -4278,8 +4278,8 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
                         return -1;
                     } else if (this[comps[i]] > other[comps[i]]) {
                         return 1;
-                    }
-        }
+            }
+                }
 
                 return 0;
             },
@@ -4330,8 +4330,8 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
                         case "not":
                             for (j = 0, num = modifier.args.length; j < num; j++) {
                                 updateValues(modifier.args[j]);
-                            }
                     }
+            }
                 }
             }
 
@@ -4434,8 +4434,8 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
                                 token = this.hashToken(c, startLine, startCol);
                             } else {
                                 token = this.charToken(c, startLine, startCol);
-                            }
-                            break;
+                    }
+                    break;
                         case ".":
                             if (isDigit(reader.peek())) {
                                 token = this.numberToken(c, startLine, startCol);
@@ -5573,7 +5573,7 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
 
                             if (expression.hasNext() && ValidationTypes.isLiteral(expression.peek(), values)) {
                                 expression.next();
-                            }
+                    }
                         }
                     }
 
@@ -5772,7 +5772,7 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
 
             for (var i in parent) {
                 child[i] = _clone(parent[i], depth - 1);
-            }
+    }
 
             return child;
         }
@@ -6142,7 +6142,7 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
                         properties[name] = 1;
                     } else if (name === "box-sizing") {
                         boxSizing = true;
-                    }
+                }
                 }
 
             });
@@ -7588,8 +7588,8 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
                 for (prop in properties) {
                     if (propertiesToCheck[prop]) {
                         needsStandard.push({actual: prop, needed: propertiesToCheck[prop]});
-                }
-                }
+                    }
+            }
 
                 for (i = 0, len = needsStandard.length; i < len; i++) {
                     needed = needsStandard[i].needed;
@@ -7699,6 +7699,7 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
             };
 
 
+
             if (messages.length > 0) {
                 output.push("<file name=\"" + filename + "\">");
                 CSSLint.Util.forEach(messages, function (message) {
@@ -7743,7 +7744,7 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
                 } else {
                     output += filename + ": " + "line " + message.line +
                     ", col " + message.col + ", " + capitalize(message.type) + " - " + message.message + " (" + message.rule.id + ")\n";
-                }
+            }
             });
 
             return output;
@@ -7771,16 +7772,16 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
 
             if (messages.length > 0) {
                 output.push("<file name=\"" + filename + "\">");
-                CSSLint.Util.forEach(messages, function (message) {
-                    if (message.rollup) {
-                        output.push("<issue severity=\"" + message.type + "\" reason=\"" + escapeSpecialCharacters(message.message) + "\" evidence=\"" + escapeSpecialCharacters(message.evidence) + "\"/>");
-                    } else {
-                        output.push("<issue line=\"" + message.line + "\" char=\"" + message.col + "\" severity=\"" + message.type + "\"" +
-                        " reason=\"" + escapeSpecialCharacters(message.message) + "\" evidence=\"" + escapeSpecialCharacters(message.evidence) + "\"/>");
-                    }
-                });
+            CSSLint.Util.forEach(messages, function (message) {
+                if (message.rollup) {
+                    output.push("<issue severity=\"" + message.type + "\" reason=\"" + escapeSpecialCharacters(message.message) + "\" evidence=\"" + escapeSpecialCharacters(message.evidence) + "\"/>");
+                } else {
+                    output.push("<issue line=\"" + message.line + "\" char=\"" + message.col + "\" severity=\"" + message.type + "\"" +
+                    " reason=\"" + escapeSpecialCharacters(message.message) + "\" evidence=\"" + escapeSpecialCharacters(message.evidence) + "\"/>");
+                }
+            });
                 output.push("</file>");
-            }
+        }
 
             return output.join("");
         }
@@ -7802,7 +7803,7 @@ define("ace/mode/css/csslint", ["require", "exports", "module"], function (requi
                 tests = {
                     "error": 0,
                     "failure": 0
-                };
+            };
             var generateSource = function (rule) {
                 if (!rule || !("name" in rule)) {
                     return "";
@@ -7970,8 +7971,8 @@ define("ace/mode/css_worker", ["require", "exports", "module", "ace/lib/oop", "a
             if (!ruleNames) {
                 this.ruleset = null;
             } else {
-                if (typeof ruleNames == "string")
-                    ruleNames = ruleNames.split("|");
+            if (typeof ruleNames == "string")
+                ruleNames = ruleNames.split("|");
                 var all = {};
 
                 CSSLint.getRules().forEach(function (x) {
@@ -8385,7 +8386,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             for (; i >= 0; i--) {
                 if (i in self && sought === self[i]) {
                     return i;
-                }
+            }
             }
             return -1;
         };
@@ -8560,7 +8561,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             return function freeze(object) {
                 if (typeof object == "function") {
                     return object;
-                } else {
+            } else {
                     return freezeObject(object);
             }
         };
@@ -8683,7 +8684,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
         var val, valueOf, toString;
         if (isPrimitive(input)) {
             return input;
-        }
+    }
         valueOf = input.valueOf;
         if (typeof valueOf === "function") {
             val = valueOf.call(input);

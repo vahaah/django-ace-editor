@@ -13,7 +13,7 @@ define("ace/ext/elastic_tabstops_lite", ["require", "exports", "module", "ace/ed
     };
         this.onExec = function () {
             recordChanges = true;
-        };
+    };
         this.onChange = function (e) {
             var range = e.data.range
             if (recordChanges) {

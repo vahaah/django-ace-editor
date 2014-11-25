@@ -169,7 +169,7 @@
                     name: name,
                     data: data
                 });
-            };
+        };
 
         }).call(Sender.prototype);
 
@@ -338,7 +338,7 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
             matches.push({
                 offset: arguments[arguments.length - 2],
                 length: str.length
-            });
+        });
         });
 
         return matches;
@@ -361,7 +361,7 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
         deferred.call = function () {
             this.cancel();
             fcn();
-            return deferred;
+        return deferred;
     };
 
         deferred.cancel = function () {
@@ -393,13 +393,13 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
         _self.delay = function (timeout) {
             timer && clearTimeout(timer);
             timer = setTimeout(callback, timeout || defaultTimeout);
-        };
+    };
         _self.schedule = _self;
 
         _self.call = function () {
             this.cancel();
             fcn();
-        };
+    };
 
         _self.cancel = function () {
             timer && clearTimeout(timer);
@@ -567,11 +567,11 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                 this.end.row === range.end.row &&
                 this.start.column === range.start.column &&
                 this.end.column === range.end.column;
-        };
+    };
         this.toString = function () {
             return ("Range: [" + this.start.row + "/" + this.start.column +
             "] -> [" + this.end.row + "/" + this.end.column + "]");
-        };
+    };
 
         this.contains = function (row, column) {
             return this.compare(row, column) == 0;
@@ -652,7 +652,7 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
             if (this.compare(row, column) == 0) {
                 if (this.isEnd(row, column)) {
                     return false;
-                } else {
+            } else {
                     return true;
             }
             }
@@ -662,7 +662,7 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
             if (this.compare(row, column) == 0) {
                 if (this.isStart(row, column)) {
                     return false;
-                } else {
+            } else {
                     return true;
             }
             }
@@ -737,14 +737,14 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                 var end = {row: row, column: column};
 
             return Range.fromPoints(start || this.start, end || this.end);
-        };
+    };
 
         this.isEmpty = function () {
             return (this.start.row === this.end.row && this.start.column === this.end.column);
     };
         this.isMultiLine = function () {
             return (this.start.row !== this.end.row);
-        };
+    };
         this.clone = function () {
             return Range.fromPoints(this.start, this.end);
         };
@@ -864,7 +864,7 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
             } else if (delta.action == "removeLines") {
                 if (start.row <= row) {
                     if (end.row <= row)
-                        row -= end.row - start.row;
+                    row -= end.row - start.row;
                     else {
                         row = start.row;
                         column = 0;
@@ -1098,7 +1098,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
             var end = {
                 row: position.row + 1,
                 column: 0
-            };
+        };
 
             var delta = {
                 action: "insertText",
@@ -1214,7 +1214,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 action: "removeText",
                 range: range,
                 text: this.getNewLineCharacter()
-            };
+        };
             this._signal("change", {data: delta});
         };
         this.replace = function (range, text) {
@@ -1319,7 +1319,7 @@ define("ace/worker/mirror", ["require", "exports", "module", "ace/document", "ac
 
         this.setTimeout = function (timeout) {
             this.$timeout = timeout;
-        };
+    };
 
         this.setValue = function (value) {
             this.doc.setValue(value);
@@ -11121,7 +11121,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     if (tailNewPos < tailOldPos) { // case A
                         for (var i = 0; i < tailCount; ++i) {
                             this[tailNewPos + i] = this[tailOldPos + i];
-                    }
+                        }
                     } else if (tailNewPos > tailOldPos) { // case B
                         for (i = tailCount; i--;) {
                             this[tailNewPos + i] = this[tailOldPos + i];
@@ -11131,7 +11131,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     if (add && pos === lengthAfterRemove) {
                         this.length = lengthAfterRemove; // truncate array
                         this.push.apply(this, insert);
-                    } else {
+                } else {
                         this.length = lengthAfterRemove + add; // reserves space
                         for (i = 0; i < add; ++i) {
                             this[pos + i] = insert[i];
@@ -11374,7 +11374,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             for (; i >= 0; i--) {
                 if (i in self && sought === self[i]) {
                     return i;
-                }
+            }
             }
             return -1;
         };
@@ -11549,7 +11549,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             return function freeze(object) {
                 if (typeof object == "function") {
                     return object;
-                } else {
+            } else {
                     return freezeObject(object);
             }
         };
@@ -11672,7 +11672,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
         var val, valueOf, toString;
         if (isPrimitive(input)) {
             return input;
-        }
+    }
         valueOf = input.valueOf;
         if (typeof valueOf === "function") {
             val = valueOf.call(input);

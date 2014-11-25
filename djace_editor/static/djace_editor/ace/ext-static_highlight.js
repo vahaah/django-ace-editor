@@ -82,7 +82,7 @@ counter-reset: ace_line;\
             config.loadModule(['theme', theme], function (m) {
                 theme = m;
                 --waiting || done();
-            });
+        });
         }
         var modeOptions;
         if (mode && typeof mode === "object" && !mode.getTokenizer) {

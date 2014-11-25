@@ -280,7 +280,7 @@ define("ace/mode/folding/asciidoc", ["require", "exports", "module", "ace/lib/oo
                     var level = getLevel();
                     if (level <= startHeadingLevel)
                         break;
-                }
+            }
 
                 var isSingleLineHeading = token && token.value.match(this.singleLineHeadingRe);
                 endRow = isSingleLineHeading ? row - 1 : row - 2;

@@ -132,7 +132,7 @@ define("ace/mode/forth_highlight_rules", ["require", "exports", "module", "ace/l
                 push: [{
                     token: 'keyword.other.compile-only.forth',
                     regex: ';(?:CODE)?',
-                    caseInsensitive: true,
+                caseInsensitive: true,
                     next: 'pop'
                 },
                     {include: '#constant'},
@@ -245,7 +245,7 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
                     } else if (subRange.isMultiLine()) {
                         row = subRange.end.row;
                     } else if (startIndent == indent) {
-                        break;
+                    break;
                 }
             }
                 endRow = row;

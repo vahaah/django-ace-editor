@@ -65,7 +65,7 @@ define("ace/mode/sh_highlight_rules", ["require", "exports", "module", "ace/lib/
                     token: "string",
                     regex: '"',
                     next: "pop"
-                }, {
+            }, {
                     defaultToken: "string"
                 }]
             }, {
@@ -218,7 +218,7 @@ define("ace/mode/makefile_highlight_rules", ["require", "exports", "module", "ac
                     token: "punctuation.definition.comment.makefile",
                     regex: ".+",
                     next: "start"
-                }
+        }
             ],
             "shell-start": [
                 {
@@ -308,7 +308,7 @@ define("ace/mode/folding/coffee", ["require", "exports", "module", "ace/lib/oop"
                     session.foldWidgets[row - 1] = "";
                     session.foldWidgets[row + 1] = "";
                     return "start";
-                }
+            }
             } else if (prevIndent == indent && line[indent] == "#" && prev[indent] == "#") {
                 if (session.getLine(row - 2).search(/\S/) == -1) {
                     session.foldWidgets[row - 1] = "start";

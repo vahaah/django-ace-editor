@@ -73,7 +73,7 @@ define("ace/mode/scheme_highlight_rules", ["require", "exports", "module", "ace/
                     "regex": '"|$',
                     "next": "start",
                     "merge": true
-                }
+        }
             ]
         }
 

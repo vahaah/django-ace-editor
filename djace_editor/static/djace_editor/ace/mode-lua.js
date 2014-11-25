@@ -194,7 +194,7 @@ define("ace/mode/folding/lua", ["require", "exports", "module", "ace/lib/oop", "
                 } else if (match[2]) {
                     var type = session.bgTokenizer.getState(row) || "";
                     if (type[0] == "bracketedComment" || type[0] == "bracketedString")
-                        return "start";
+                    return "start";
                 } else {
                     return "start";
             }
@@ -209,7 +209,7 @@ define("ace/mode/folding/lua", ["require", "exports", "module", "ace/lib/oop", "
             } else if (match[0][0] === "]") {
                 var type = session.bgTokenizer.getState(row - 1) || "";
                 if (type[0] == "bracketedComment" || type[0] == "bracketedString")
-                    return "end";
+                return "end";
             } else
                 return "end";
         };
@@ -354,7 +354,7 @@ define("ace/mode/lua", ["require", "exports", "module", "ace/lib/oop", "ace/mode
                 return 1;
             } else {
                 return 0;
-            }
+        }
         }
 
         this.getNextLineIndent = function (state, line, tab) {

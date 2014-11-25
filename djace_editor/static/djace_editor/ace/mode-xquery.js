@@ -1412,10 +1412,10 @@ define("ace/mode/xquery/xquery_lexer", ["require", "exports", "module"], functio
               if (c0 < 0xdc00) {
                 var c1 = current < size ? input.charCodeAt(current) : 0;
                 if (c1 >= 0xdc00 && c1 < 0xe000) {
-                  ++current;
+            ++current;
                   c0 = ((c0 & 0x3ff) << 10) + (c1 & 0x3ff) + 0x10000;
                   nonbmp = true;
-                }
+          }
               }
               var lo = 0, hi = 5;
               for (var m = 3; ; m = (hi + lo) >> 1) {
@@ -1440,7 +1440,7 @@ define("ace/mode/xquery/xquery_lexer", ["require", "exports", "module"], functio
               result = code;
               code &= 4095;
               end = current;
-            }
+      }
           }
 
           result >>= 12;
@@ -1856,7 +1856,7 @@ define("ace/mode/xquery/xquery_lexer", ["require", "exports", "module"], functio
                   info = rule;
                   break;
                     }
-              }
+                }
 
               if (token.name === 'EOF') {
                 break;
@@ -1894,7 +1894,7 @@ define("ace/mode/xquery/xquery_lexer", ["require", "exports", "module"], functio
           return {
             tokens: tokens,
             state: JSON.stringify(stack)
-          };
+        };
         };
       };
     },
@@ -2413,7 +2413,7 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                     };
                 }
         }
-      }
+        }
     });
 
     this.add("brackets", "deletion", function (state, action, editor, session, range) {
@@ -2426,7 +2426,7 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
           range.end.column++;
           return range;
         }
-      }
+        }
     });
 
     this.add("string_dquotes", "insertion", function (state, action, editor, session, text) {
@@ -2623,7 +2623,7 @@ define("ace/mode/behaviour/xml", ["require", "exports", "module", "ace/lib/oop",
             selection: [1, 1]
           };
         }
-      }
+        }
     });
 
     this.add("string_dquotes", "deletion", function (state, action, editor, session, range) {
@@ -2751,7 +2751,7 @@ define("ace/mode/behaviour/xquery", ["require", "exports", "module", "ace/lib/oo
     });
     return hasType;
   }
-
+ 
   var XQueryBehaviour = function () {
 
     this.inherit(CstyleBehaviour, ["braces", "parens", "string_dquotes"]); // Get string behaviour
@@ -2911,7 +2911,7 @@ define("ace/mode/xquery", ["require", "exports", "module", "ace/worker/worker_cl
   oop.inherits(Mode, TextMode);
 
   (function () {
-
+    
     this.completer = {
       getCompletions: function (editor, session, pos, prefix, callback) {
         if (!session.$worker)
@@ -2977,7 +2977,7 @@ define("ace/mode/xquery", ["require", "exports", "module", "ace/worker/worker_cl
     };
 
     this.createWorker = function (session) {
-
+        
       var worker = new WorkerClient(["ace"], "ace/mode/xquery_worker", "XQueryWorker");
       var that = this;
 
@@ -3057,8 +3057,8 @@ define("ace/mode/xquery", ["require", "exports", "module", "ace/worker/worker_cl
         if (anno.message) mySession.languageAnnos.push(gutterAnno);
       });
       mySession.setAnnotations(mySession.languageAnnos);
-    };
-
+    };    
+        
     this.$id = "ace/mode/xquery";
   }).call(Mode.prototype);
 

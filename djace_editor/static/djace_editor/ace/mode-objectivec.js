@@ -444,7 +444,7 @@ define("ace/mode/objectivec_highlight_rules", ["require", "exports", "module", "
                 {
                     token: "support.other.protocol.objc",
                     regex: "\bNS(?:GlyphStorage|M(?:utableCopying|enuItem)|C(?:hangeSpelling|o(?:ding|pying|lorPicking(?:Custom|Default)))|T(?:oolbarItemValidations|ext(?:Input|AttachmentCell))|I(?:nputServ(?:iceProvider|erMouseTracker)|gnoreMisspelledWords)|Obj(?:CTypeSerializationCallBack|ect)|D(?:ecimalNumberBehaviors|raggingInfo)|U(?:serInterfaceValidations|RL(?:HandleClient|DownloadDelegate|ProtocolClient|AuthenticationChallengeSender))|Validated(?:ToobarItem|UserInterfaceItem)|Locking)\b"
-                }
+        }
             ],
             "selectors": [
                 {
@@ -455,7 +455,7 @@ define("ace/mode/objectivec_highlight_rules", ["require", "exports", "module", "
                     token: "punctuation",
                     regex: "\\)",
                     next: "start"
-                }
+        }
             ],
             "bracketed_content": [
                 {
@@ -648,7 +648,7 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
                     } else if (subRange.isMultiLine()) {
                         row = subRange.end.row;
                     } else if (startIndent == indent) {
-                        break;
+                    break;
                 }
             }
                 endRow = row;

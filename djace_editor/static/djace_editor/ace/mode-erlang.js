@@ -325,7 +325,7 @@ define("ace/mode/erlang_highlight_rules", ["require", "exports", "module", "ace/
                     },
                     {
                         token: 'text',
-                        regex: '(?=\\()',
+                regex: '(?=\\()',
                         push: [{
                             token: 'punctuation.separator.clauses.erlang',
                             regex: ';|(?=\\.)',
@@ -1051,7 +1051,7 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
                     } else if (subRange.isMultiLine()) {
                         row = subRange.end.row;
                     } else if (startIndent == indent) {
-                        break;
+                    break;
                 }
             }
                 endRow = row;

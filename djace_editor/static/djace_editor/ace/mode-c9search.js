@@ -99,13 +99,13 @@ define("ace/mode/c9search_highlight_rules", ["require", "exports", "module", "ac
                             i += 1;
                         } else {
                             i -= 1;
-                    }
+                        }
                         while (i++ < parts.length) {
                             parts[i] && tokens.push({
                                 value: parts[i],
-                                type: "text"
-                            });
-                        }
+                            type: "text"
+                        });
+                    }
 
                         if (replace) {
                             search = replace;
@@ -268,7 +268,7 @@ define("ace/mode/c9search", ["require", "exports", "module", "ace/lib/oop", "ace
 
         this.autoOutdent = function (state, doc, row) {
             this.$outdent.autoOutdent(doc, row);
-        };
+    };
 
         this.$id = "ace/mode/c9search";
     }).call(Mode.prototype);

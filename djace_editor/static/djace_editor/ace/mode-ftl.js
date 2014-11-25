@@ -518,7 +518,7 @@ define("ace/mode/javascript_highlight_rules", ["require", "exports", "module", "
                     token: "paren.quasi.start",
                     regex: /\${/,
                     push: "start"
-                }, {
+            }, {
                     token: "string.quasi.end",
                     regex: /`/,
                     next: "pop"

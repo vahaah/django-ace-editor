@@ -86,7 +86,7 @@
             factory = deps;
             if (typeof id != "string") {
                 deps = id;
-                id = window.require.id;
+            id = window.require.id;
         }
         } else if (arguments.length == 1) {
             factory = id;
@@ -135,7 +135,7 @@
                     module.exports = returnExports;
                 return module;
         }
-        };
+    };
     };
     window.define.amd = {};
 
@@ -211,7 +211,7 @@ define("ace/lib/oop", ["require", "exports", "module"], function (require, expor
                 enumerable: false,
                 writable: true,
                 configurable: true
-            }
+        }
         });
     };
 
@@ -296,7 +296,7 @@ define("ace/lib/event_emitter", ["require", "exports", "module"], function (requ
 
         if (handlers[eventName]) {
             var old = handlers[eventName];
-            var disabled = handlers._disabled_[eventName];
+        var disabled = handlers._disabled_[eventName];
             if (!disabled)
                 handlers._disabled_[eventName] = disabled = [];
             disabled.push(old);
@@ -381,11 +381,11 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                 this.end.row === range.end.row &&
                 this.start.column === range.start.column &&
                 this.end.column === range.end.column;
-        };
+    };
         this.toString = function () {
             return ("Range: [" + this.start.row + "/" + this.start.column +
             "] -> [" + this.end.row + "/" + this.end.column + "]");
-        };
+    };
 
         this.contains = function (row, column) {
             return this.compare(row, column) == 0;
@@ -398,13 +398,13 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
             cmp = this.compare(end.row, end.column);
             if (cmp == 1) {
                 cmp = this.compare(start.row, start.column);
-                if (cmp == 1) {
-                    return 2;
-                } else if (cmp == 0) {
-                    return 1;
-                } else {
-                    return 0;
-                }
+            if (cmp == 1) {
+                return 2;
+            } else if (cmp == 0) {
+                return 1;
+            } else {
+                return 0;
+            }
             } else if (cmp == -1) {
                 return -2;
             } else {
@@ -441,8 +441,8 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
             } else {
                 this.start.row = row;
                 this.start.column = column;
-        }
-    };
+            }
+        };
         this.setEnd = function (row, column) {
             if (typeof row == "object") {
                 this.end.column = row.column;
@@ -456,19 +456,19 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
             if (this.compare(row, column) == 0) {
                 if (this.isEnd(row, column) || this.isStart(row, column)) {
                     return false;
-                } else {
+            } else {
                     return true;
                 }
-            }
+        }
             return false;
-        };
+    };
         this.insideStart = function (row, column) {
             if (this.compare(row, column) == 0) {
                 if (this.isEnd(row, column)) {
                     return false;
-                } else {
+            } else {
                     return true;
-                }
+            }
             }
             return false;
         };
@@ -478,7 +478,7 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                     return false;
                 } else {
                     return true;
-                }
+            }
             }
             return false;
         };
@@ -551,14 +551,14 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                 var end = {row: row, column: column};
 
             return Range.fromPoints(start || this.start, end || this.end);
-        };
+    };
 
         this.isEmpty = function () {
             return (this.start.row === this.end.row && this.start.column === this.end.column);
     };
         this.isMultiLine = function () {
             return (this.start.row !== this.end.row);
-        };
+    };
         this.clone = function () {
             return Range.fromPoints(this.start, this.end);
         };
@@ -649,8 +649,8 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
                         column += end.column - start.column;
                 } else {
                         column -= start.column;
-                        row += end.row - start.row;
-                }
+                    row += end.row - start.row;
+                    }
                 } else if (start.row !== end.row && start.row < row) {
                     row += end.row - start.row;
             }
@@ -669,7 +669,7 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
 
                 } else if (start.row !== end.row && start.row < row) {
                     if (end.row === row)
-                        column = Math.max(0, column - end.column) + start.column;
+                    column = Math.max(0, column - end.column) + start.column;
                     row -= (end.row - start.row);
                 } else if (end.row === row) {
                     row -= end.row - start.row;
@@ -857,7 +857,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
         };
         this.insert = function (position, text) {
             if (!text || text.length === 0)
-                return position;
+            return position;
 
             position = this.$clipPosition(position);
             if (this.getLength() <= 1)
@@ -918,7 +918,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 action: "insertText",
                 range: Range.fromPoints(position, end),
                 text: this.getNewLineCharacter()
-            };
+        };
             this._signal("change", {data: delta});
 
             return end;
@@ -945,7 +945,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
             this._signal("change", {data: delta});
 
             return end;
-        };
+    };
         this.remove = function (range) {
             if (!(range instanceof Range))
                 range = Range.fromPoints(range.start, range.end);
@@ -953,7 +953,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
             range.end = this.$clipPosition(range.end);
 
             if (range.isEmpty())
-                return range.start;
+            return range.start;
 
             var firstRow = range.start.row;
             var lastRow = range.end.row;
@@ -971,13 +971,13 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 if (firstFullRow != firstRow) {
                     this.removeInLine(firstRow, range.start.column, this.getLine(firstRow).length);
                     this.removeNewLine(range.start.row);
-                }
-        }
+            }
+            }
             else {
                 this.removeInLine(firstRow, range.start.column, range.end.column);
             }
             return range.start;
-    };
+        };
         this.removeInLine = function (row, startColumn, endColumn) {
             if (startColumn == endColumn)
                 return;
@@ -1028,7 +1028,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 action: "removeText",
                 range: range,
                 text: this.getNewLineCharacter()
-        };
+            };
             this._signal("change", {data: delta});
         };
         this.replace = function (range, text) {
@@ -1048,7 +1048,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
             }
 
             return end;
-        };
+    };
         this.applyDeltas = function (deltas) {
             for (var i = 0; i < deltas.length; i++) {
                 var delta = deltas[i];
@@ -1063,7 +1063,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 else if (delta.action == "removeText")
                     this.remove(range);
             }
-        };
+    };
         this.revertDeltas = function (deltas) {
             for (var i = deltas.length - 1; i >= 0; i--) {
                 var delta = deltas[i];
@@ -1078,8 +1078,8 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                     this._insertLines(range.start.row, delta.lines);
                 else if (delta.action == "removeText")
                     this.insert(range.start, delta.text);
-            }
-        };
+        }
+    };
         this.indexToPosition = function (index, startRow) {
             var lines = this.$lines || this.getAllLines();
             var newlineLength = this.getNewLineCharacter().length;
@@ -1087,9 +1087,9 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 index -= lines[i].length + newlineLength;
                 if (index < 0)
                     return {row: i, column: index + lines[i].length + newlineLength};
-            }
+        }
             return {row: l - 1, column: lines[l - 1].length};
-        };
+    };
         this.positionToIndex = function (pos, startRow) {
             var lines = this.$lines || this.getAllLines();
             var newlineLength = this.getNewLineCharacter().length;
@@ -1099,7 +1099,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 index += lines[i].length + newlineLength;
 
             return index + pos.column;
-        };
+    };
 
     }).call(Document.prototype);
 
@@ -1226,13 +1226,13 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
         var callback = function () {
             timer = null;
             fcn();
-        };
+    };
 
         var deferred = function (timeout) {
             deferred.cancel();
             timer = setTimeout(callback, timeout || 0);
             return deferred;
-        };
+    };
 
         deferred.schedule = deferred;
 
@@ -1240,7 +1240,7 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
             this.cancel();
             fcn();
             return deferred;
-        };
+    };
 
         deferred.cancel = function () {
             clearTimeout(timer);
@@ -1266,7 +1266,7 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
         var _self = function (timeout) {
             if (timer == null)
                 timer = setTimeout(callback, timeout || defaultTimeout);
-        };
+    };
 
         _self.delay = function (timeout) {
             timer && clearTimeout(timer);
@@ -1277,7 +1277,7 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
         _self.call = function () {
             this.cancel();
             fcn();
-    };
+        };
 
         _self.cancel = function () {
             timer && clearTimeout(timer);
@@ -1319,7 +1319,7 @@ define("ace/worker/mirror", ["require", "exports", "module", "ace/document", "ac
 
         this.setTimeout = function (timeout) {
             this.$timeout = timeout;
-    };
+        };
 
         this.setValue = function (value) {
             this.doc.setValue(value);
@@ -1571,7 +1571,7 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
                     stack.pop();
                     tokens.splice(j, 0, generate('}', '}'));
                     return i += 1;
-                };
+        };
                 if (inImplicitCall() && (tag === 'IF' || tag === 'TRY' || tag === 'FINALLY' || tag === 'CATCH' || tag === 'CLASS' || tag === 'SWITCH')) {
                     stack.push([
                         'CONTROL', i, {
@@ -1950,12 +1950,12 @@ define("ace/mode/coffee/helpers", ["require", "exports", "module"], function (re
                     _results.push(line);
                 } else if (maybe_code = /^\s*$/.test(line)) {
                     _results.push(line);
-                } else {
+        } else {
                     _results.push('# ' + line);
-                }
+        }
             }
             return _results;
-    })();
+        })();
         return lines.join('\n');
     };
 
@@ -1978,7 +1978,7 @@ define("ace/mode/coffee/helpers", ["require", "exports", "module"], function (re
                 obj.updateLocationDataIfMissing(buildLocationData(first, last));
             }
             return obj;
-        };
+    };
     };
 
     exports.locationDataToString = function (obj) {
@@ -1987,7 +1987,7 @@ define("ace/mode/coffee/helpers", ["require", "exports", "module"], function (re
             locationData = obj[2];
         } else if ("first_line" in obj) {
             locationData = obj;
-        }
+    }
         if (locationData) {
             return ("" + (locationData.first_line + 1) + ":" + (locationData.first_column + 1) + "-") + ("" + (locationData.last_line + 1) + ":" + (locationData.last_column + 1));
         } else {
@@ -1999,7 +1999,7 @@ define("ace/mode/coffee/helpers", ["require", "exports", "module"], function (re
         var parts, pathSep;
         if (stripExt == null) {
             stripExt = false;
-    }
+        }
         if (useWinPathSep == null) {
             useWinPathSep = false;
         }
@@ -2632,7 +2632,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                             return this;
                         } else {
                             return this;
-                        }
+            }
                 }
             }
             return this;
@@ -2716,7 +2716,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                         if (len > 1) {
                             nested.unshift(this.makeToken('(', '(', strOffset + i + 1, 0));
                             nested.push(this.makeToken(')', ')', strOffset + i + 1 + inner.length, 0));
-                        }
+            }
                         tokens.push(['TOKENS', nested]);
                     }
         }
@@ -2752,7 +2752,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                         last_line: locationToken[2].first_line,
                         last_column: locationToken[2].first_column
                     };
-        }
+                }
                 if (tag === 'TOKENS') {
                     (_ref4 = this.tokens).push.apply(_ref4, value);
                 } else if (tag === 'NEOSTRING') {
@@ -13278,12 +13278,12 @@ define("ace/mode/coffee/parser", ["require", "exports", "module"], function (req
                         if (this.terminals_[p] && p > TERROR) {
                             expected.push('\'' + this.terminals_[p] + '\'');
                         }
-                    }
+                }
                     if (this.lexer.showPosition) {
                         errStr = 'Expecting ' + expected.join(', ') + ', got \'' + (this.terminals_[symbol] || symbol) + '\'';
-                    } else {
+                } else {
                         errStr = 'Unexpected ' + (symbol == EOF ? 'end of input' : '\'' + (this.terminals_[symbol] || symbol) + '\'');
-                    }
+                }
                     if (this.lexer.yylloc.first_line !== yyloc.first_line) yyloc = this.lexer.yylloc;
                     this.parseError(errStr, {
                         text: this.lexer.match,
@@ -13310,7 +13310,7 @@ define("ace/mode/coffee/parser", ["require", "exports", "module"], function (req
                             yyloc = this.lexer.yylloc;
                             if (recovering > 0) {
                                 recovering--;
-                            }
+                }
             } else {
                             symbol = preErrorSymbol;
                             preErrorSymbol = null;
@@ -13618,7 +13618,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
             } else {
                 return node.compileClosure(o);
             }
-        };
+    };
 
         Base.prototype.compileClosure = function (o) {
             var args, argumentsNode, func, jumpNode, meth;
@@ -13635,11 +13635,11 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                     args.push(new Literal('arguments'));
                 } else {
                     meth = 'call';
-        }
+                }
                 func = new Value(func, [new Access(new Literal(meth))]);
             }
             return (new Call(func, args)).compileNode(o);
-        };
+    };
 
         Base.prototype.cache = function (o, level, reused) {
             var ref, sub;
@@ -13653,13 +13653,13 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                     return [sub.compileToFragments(o, level), [this.makeCode(ref.value)]];
                 } else {
                     return [sub, ref];
-                }
+        }
             }
         };
 
         Base.prototype.cacheToCodeFragments = function (cacheValues) {
             return [fragmentsToText(cacheValues[0]), fragmentsToText(cacheValues[1])];
-        };
+    };
 
         Base.prototype.makeReturn = function (res) {
             var me;
@@ -13681,7 +13681,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                 }
             });
             return node;
-        };
+    };
 
         Base.prototype.lastNonComment = function (list) {
             var i;
@@ -13689,7 +13689,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
             while (i--) {
                 if (!(list[i] instanceof Comment)) {
                     return list[i];
-                }
+        }
             }
             return null;
         };
@@ -13710,7 +13710,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                 return tree += node.toString(idt + TAB);
             });
             return tree;
-        };
+    };
 
         Base.prototype.eachChild = function (func) {
             var attr, child, _i, _j, _len, _len1, _ref2, _ref3;
@@ -13739,7 +13739,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                 recur = func(child);
                 if (recur !== false) {
                     return child.traverseChildren(crossScope, func);
-                }
+        }
             });
         };
 
@@ -13867,7 +13867,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                 exp = _ref2[_i];
                 if (jumpNode = exp.jumps(o)) {
                     return jumpNode;
-                }
+        }
             }
         };
 
@@ -14518,7 +14518,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                 arg = _ref3[argIndex];
                 if (argIndex) {
                     compiledArgs.push(this.makeCode(", "));
-                }
+        }
                 compiledArgs.push.apply(compiledArgs, arg.compileToFragments(o, LEVEL_LIST));
             }
             fragments = [];
@@ -14873,7 +14873,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                 for (_i = 0, _len = _ref2.length; _i < _len; _i++) {
                     obj = _ref2[_i];
                     _results.push(obj.compileToFragments(o, LEVEL_LIST));
-                }
+        }
                 return _results;
             }).call(this);
             for (index = _i = 0, _len = compiledObjs.length; _i < _len; index = ++_i) {
@@ -14992,7 +14992,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                                 if (func instanceof Code && func.bound) {
                                     this.boundFuncs.push(base);
                                     func.bound = false;
-                                }
+                }
                             }
             }
                     }
@@ -15131,7 +15131,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
             if (isValue = this.variable instanceof Value) {
                 if (this.variable.isArray() || this.variable.isObject()) {
                     return this.compilePatternMatch(o);
-                }
+        }
                 if (this.variable.isSplice()) {
                     return this.compileSplice(o);
                 }
@@ -15220,11 +15220,11 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                     } else {
                         if (obj.base instanceof Parens) {
                             _ref7 = new Value(obj.unwrapAll()).cacheReference(o), obj = _ref7[0], idx = _ref7[1];
-                        } else {
+            } else {
                             idx = obj["this"] ? obj.properties[0].name : obj;
             }
                     }
-        }
+                }
                 if (!splat && obj instanceof Splat) {
                     name = obj.name.unwrap().value;
                     obj = obj.unwrap();
@@ -15747,7 +15747,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
             if (op === 'new') {
                 if (first instanceof Call && !first["do"] && !first.isNew) {
                     return first.newInstance();
-                }
+        }
                 if (first instanceof Code && first.bound || first["do"]) {
                     first = new Parens(first);
                 }
@@ -16817,7 +16817,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     if (tailNewPos < tailOldPos) { // case A
                         for (var i = 0; i < tailCount; ++i) {
                             this[tailNewPos + i] = this[tailOldPos + i];
-                    }
+                        }
                     } else if (tailNewPos > tailOldPos) { // case B
                         for (i = tailCount; i--;) {
                             this[tailNewPos + i] = this[tailOldPos + i];
@@ -16827,7 +16827,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     if (add && pos === lengthAfterRemove) {
                         this.length = lengthAfterRemove; // truncate array
                         this.push.apply(this, insert);
-                    } else {
+                } else {
                         this.length = lengthAfterRemove + add; // reserves space
                         for (i = 0; i < add; ++i) {
                             this[pos + i] = insert[i];
@@ -17070,7 +17070,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             for (; i >= 0; i--) {
                 if (i in self && sought === self[i]) {
                     return i;
-                }
+            }
             }
             return -1;
         };
@@ -17245,7 +17245,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             return function freeze(object) {
                 if (typeof object == "function") {
                     return object;
-                } else {
+            } else {
                     return freezeObject(object);
             }
         };
@@ -17368,7 +17368,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
         var val, valueOf, toString;
         if (isPrimitive(input)) {
             return input;
-        }
+    }
         valueOf = input.valueOf;
         if (typeof valueOf === "function") {
             val = valueOf.call(input);
