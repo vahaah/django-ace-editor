@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='djace_editor',
-    version='',
+    version='0.9.1',
     description='djace_editor provides integration for ajax.org ACE with Django',
     long_description=open('README.rst').read(),
 
