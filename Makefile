@@ -14,4 +14,3 @@ release:
 	@git push --tags
 	@git push origin master
 	@make clean
-	@python setup.py sdist upload
