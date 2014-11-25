@@ -54,7 +54,7 @@ define("ace/mode/latex_highlight_rules", ["require", "exports", "module", "ace/l
                 defaultToken: "string"
             }]
 
-        };
+    };
     };
     oop.inherits(LatexHighlightRules, TextHighlightRules);
 
@@ -105,7 +105,7 @@ define("ace/mode/folding/latex", ["require", "exports", "module", "ace/lib/oop",
             var keywords = {
                 "\\begin": 1,
                 "\\end": -1
-            };
+        };
 
             var stream = new TokenIterator(session, row, column);
             var token = stream.getCurrentToken();
@@ -121,8 +121,8 @@ define("ace/mode/folding/latex", ["require", "exports", "module", "ace/lib/oop",
                 if (dir === -1) {
                     stream.stepBackward();
                     if (type)
-                        stream.stepBackward();
-                }
+                    stream.stepBackward();
+            }
                 return type;
             };
             var stack = [getType()];

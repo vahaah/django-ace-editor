@@ -186,7 +186,7 @@ user-select: none;\
             editor.searchBox = this;
             editor.container.appendChild(this.element);
             this.editor = editor;
-        };
+    };
 
         this.$initElements = function (sb) {
             this.searchBox = sb.querySelector(".ace_search_form");
@@ -333,7 +333,7 @@ user-select: none;\
                 regExp: this.regExpOption.checked,
                 caseSensitive: this.caseSensitiveOption.checked,
                 wholeWord: this.wholeWordOption.checked
-            });
+        });
             var noMatch = !range && this.searchInput.value;
             dom.setCssClass(this.searchBox, "ace_nomatch", noMatch);
             this.editor._emit("findSearchBox", {match: !noMatch});

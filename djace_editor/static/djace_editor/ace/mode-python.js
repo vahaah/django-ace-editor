@@ -146,7 +146,7 @@ define("ace/mode/python_highlight_rules", ["require", "exports", "module", "ace/
             }, {
                 defaultToken: "string"
             }]
-        };
+    };
     };
 
     oop.inherits(PythonHighlightRules, TextHighlightRules);
@@ -176,7 +176,7 @@ define("ace/mode/folding/pythonic", ["require", "exports", "module", "ace/lib/oo
                 if (match[2])
                     return this.indentationBlock(session, row, match.index + match[2].length);
                 return this.indentationBlock(session, row);
-            }
+        }
         }
 
     }).call(FoldMode.prototype);
@@ -216,7 +216,7 @@ define("ace/mode/python", ["require", "exports", "module", "ace/lib/oop", "ace/m
                 var match = line.match(/^.*[\{\(\[\:]\s*$/);
                 if (match) {
                     indent += tab;
-                }
+            }
             }
 
             return indent;

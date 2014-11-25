@@ -68,7 +68,7 @@ define("ace/mode/diff_highlight_rules", ["require", "exports", "module", "ace/li
                 caseInsensitive: true
             }
             ]
-        };
+    };
     };
 
     oop.inherits(DiffHighlightRules, TextHighlightRules);

@@ -43,7 +43,7 @@
             while (moduleName.indexOf(".") !== -1 && previous != moduleName) {
                 var previous = moduleName;
                 moduleName = moduleName.replace(/^\.\//, "").replace(/\/\.\//, "/").replace(/[^\/]+\/\.\.\//, "");
-            }
+        }
         }
 
         return moduleName;
@@ -64,7 +64,7 @@
             if (!module.initialized) {
                 module.initialized = true;
                 module.exports = module.factory().exports;
-            }
+        }
             return module.exports;
         }
 
@@ -87,7 +87,7 @@
             if (typeof id != "string") {
                 deps = id;
                 id = window.require.id;
-            }
+        }
         } else if (arguments.length == 1) {
             factory = id;
             deps = [];
@@ -109,7 +109,7 @@
 
         var req = function (childId) {
             return window.require(id, childId);
-        };
+    };
 
         window.require.modules[id] = {
             exports: {},
@@ -134,7 +134,7 @@
                 if (returnExports)
                     module.exports = returnExports;
                 return module;
-            }
+        }
         };
     };
     window.define.amd = {};
@@ -161,7 +161,7 @@
                     id: callbackId,
                     data: data
                 });
-            };
+        };
 
             this.emit = function (name, data) {
                 postMessage({
@@ -169,7 +169,7 @@
                     name: name,
                     data: data
                 });
-            };
+        };
 
         }).call(Sender.prototype);
 
@@ -367,12 +367,12 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
         this.start = {
             row: startRow,
             column: startColumn
-        };
+    };
 
         this.end = {
             row: endRow,
             column: endColumn
-        };
+    };
     };
 
     (function () {
@@ -416,8 +416,8 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                 } else {
                     return 0;
                 }
-            }
-        };
+        }
+    };
         this.comparePoint = function (p) {
             return this.compare(p.row, p.column);
         };
@@ -441,8 +441,8 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
             } else {
                 this.start.row = row;
                 this.start.column = column;
-            }
-        };
+        }
+    };
         this.setEnd = function (row, column) {
             if (typeof row == "object") {
                 this.end.column = row.column;
@@ -539,7 +539,7 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                 var start = {row: firstRow, column: 0};
 
             return Range.fromPoints(start || this.start, end || this.end);
-        };
+    };
         this.extend = function (row, column) {
             var cmp = this.compare(row, column);
 
@@ -555,7 +555,7 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
 
         this.isEmpty = function () {
             return (this.start.row === this.end.row && this.start.column === this.end.column);
-        };
+    };
         this.isMultiLine = function () {
             return (this.start.row !== this.end.row);
         };
@@ -576,7 +576,7 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                 screenPosStart.row, screenPosStart.column,
                 screenPosEnd.row, screenPosEnd.column
             );
-        };
+    };
         this.moveBy = function (row, column) {
             this.start.row += row;
             this.start.column += column;
@@ -647,19 +647,19 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
                     if (start.column === column && this.$insertRight) {
                     } else if (start.row === end.row) {
                         column += end.column - start.column;
-                    } else {
+                } else {
                         column -= start.column;
                         row += end.row - start.row;
-                    }
+                }
                 } else if (start.row !== end.row && start.row < row) {
                     row += end.row - start.row;
-                }
+            }
             } else if (delta.action === "insertLines") {
                 if (start.row === row && column === 0 && this.$insertRight) {
-                }
+            }
                 else if (start.row <= row) {
                     row += end.row - start.row;
-                }
+            }
             } else if (delta.action === "removeText") {
                 if (start.row === row && start.column < column) {
                     if (end.column >= column)
@@ -674,7 +674,7 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
                 } else if (end.row === row) {
                     row -= end.row - start.row;
                     column = Math.max(0, column - end.column) + start.column;
-                }
+            }
             } else if (delta.action == "removeLines") {
                 if (start.row <= row) {
                     if (end.row <= row)
@@ -682,8 +682,8 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
                     else {
                         row = start.row;
                         column = 0;
-                    }
                 }
+            }
             }
 
             this.setPosition(row, column, true);
@@ -705,7 +705,7 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
             var old = {
                 row: this.row,
                 column: this.column
-            };
+        };
 
             this.row = pos.row;
             this.column = pos.column;
@@ -783,18 +783,18 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
         if ("aaa".split(/a/).length === 0)
             this.$split = function (text) {
                 return text.replace(/\r\n|\r/g, "\n").split("\n");
-            };
+        };
         else
             this.$split = function (text) {
                 return text.split(/\r\n|\r|\n/);
-            };
+        };
 
 
         this.$detectNewLine = function (text) {
             var match = text.match(/^.*?(\r\n|\r|\n)/m);
             this.$autoNewLine = match ? match[1] : "\n";
             this._signal("changeNewLineMode");
-        };
+    };
         this.getNewLineCharacter = function () {
             switch (this.$newLineMode) {
                 case "windows":
@@ -874,7 +874,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 position = this.insertInLine(position, lastLine || "");
             }
             return position;
-        };
+    };
         this.insertLines = function (row, lines) {
             if (row >= this.getLength())
                 return this.insert({row: row, column: 0}, "\n" + lines.join("\n"));
@@ -898,7 +898,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 action: "insertLines",
                 range: range,
                 lines: lines
-            };
+        };
             this._signal("change", {data: delta});
             return range.end;
         };
@@ -935,13 +935,13 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
             var end = {
                 row: position.row,
                 column: position.column + text.length
-            };
+        };
 
             var delta = {
                 action: "insertText",
                 range: Range.fromPoints(position, end),
                 text: text
-            };
+        };
             this._signal("change", {data: delta});
 
             return end;
@@ -972,12 +972,12 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                     this.removeInLine(firstRow, range.start.column, this.getLine(firstRow).length);
                     this.removeNewLine(range.start.row);
                 }
-            }
+        }
             else {
                 this.removeInLine(firstRow, range.start.column, range.end.column);
             }
             return range.start;
-        };
+    };
         this.removeInLine = function (row, startColumn, endColumn) {
             if (startColumn == endColumn)
                 return;
@@ -992,7 +992,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 action: "removeText",
                 range: range,
                 text: removed
-            };
+        };
             this._signal("change", {data: delta});
             return range.start;
         };
@@ -1011,7 +1011,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 range: range,
                 nl: this.getNewLineCharacter(),
                 lines: removed
-            };
+        };
             this._signal("change", {data: delta});
             return removed;
         };
@@ -1028,7 +1028,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 action: "removeText",
                 range: range,
                 text: this.getNewLineCharacter()
-            };
+        };
             this._signal("change", {data: delta});
         };
         this.replace = function (range, text) {
@@ -1277,12 +1277,12 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
         _self.call = function () {
             this.cancel();
             fcn();
-        };
+    };
 
         _self.cancel = function () {
             timer && clearTimeout(timer);
             timer = null;
-        };
+    };
 
         _self.isPending = function () {
             return timer;
@@ -1319,7 +1319,7 @@ define("ace/worker/mirror", ["require", "exports", "module", "ace/document", "ac
 
         this.setTimeout = function (timeout) {
             this.$timeout = timeout;
-        };
+    };
 
         this.setValue = function (value) {
             this.doc.setValue(value);
@@ -1373,7 +1373,7 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
             this.addImplicitBracesAndParens();
             this.addLocationDataToGeneratedTokens();
             return this.tokens;
-        };
+    };
 
         Rewriter.prototype.scanTokens = function (block) {
             var i, token, tokens;
@@ -1383,7 +1383,7 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
                 i += block.call(this, token, i, tokens);
             }
             return true;
-        };
+    };
 
         Rewriter.prototype.detectEnd = function (i, condition, action) {
             var levels, token, tokens, _ref, _ref1;
@@ -1392,7 +1392,7 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
             while (token = tokens[i]) {
                 if (levels === 0 && condition.call(this, token, i)) {
                     return action.call(this, token, i);
-                }
+        }
                 if (!token || levels < 0) {
                     return action.call(this, token, i - 1);
                 }
@@ -1404,7 +1404,7 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
                 i += 1;
             }
             return i - 1;
-        };
+    };
 
         Rewriter.prototype.removeLeadingNewlines = function () {
             var i, tag, _i, _len, _ref;
@@ -1413,12 +1413,12 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
                 tag = _ref[i][0];
                 if (tag !== 'TERMINATOR') {
                     break;
-                }
+        }
             }
             if (i) {
                 return this.tokens.splice(0, i);
             }
-        };
+    };
 
         Rewriter.prototype.closeOpenCalls = function () {
             var action, condition;
@@ -1432,10 +1432,10 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
             return this.scanTokens(function (token, i) {
                 if (token[0] === 'CALL_START') {
                     this.detectEnd(i + 1, condition, action);
-                }
+        }
                 return 1;
             });
-        };
+    };
 
         Rewriter.prototype.closeOpenIndexes = function () {
             var action, condition;
@@ -1449,10 +1449,10 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
             return this.scanTokens(function (token, i) {
                 if (token[0] === 'INDEX_START') {
                     this.detectEnd(i + 1, condition, action);
-                }
+        }
                 return 1;
             });
-        };
+    };
 
         Rewriter.prototype.matchTags = function () {
             var fuzz, i, j, pattern, _i, _ref, _ref1;
@@ -1461,10 +1461,10 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
             for (j = _i = 0, _ref = pattern.length; 0 <= _ref ? _i < _ref : _i > _ref; j = 0 <= _ref ? ++_i : --_i) {
                 while (this.tag(i + j + fuzz) === 'HERECOMMENT') {
                     fuzz += 2;
-                }
+        }
                 if (pattern[j] == null) {
                     continue;
-                }
+        }
                 if (typeof pattern[j] === 'string') {
                     pattern[j] = [pattern[j]];
                 }
@@ -1473,11 +1473,11 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
                 }
             }
             return true;
-        };
+    };
 
         Rewriter.prototype.looksObjectish = function (j) {
             return this.matchTags(j, '@', null, ':') || this.matchTags(j, null, ':');
-        };
+    };
 
         Rewriter.prototype.findTagsBackwards = function (i, tags) {
             var backStack, _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
@@ -1492,7 +1492,7 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
                 i -= 1;
             }
             return _ref5 = this.tag(i), __indexOf.call(tags, _ref5) >= 0;
-        };
+    };
 
         Rewriter.prototype.addImplicitBracesAndParens = function () {
             var stack;
@@ -1504,27 +1504,27 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
                 nextTag = (i < tokens.length - 1 ? tokens[i + 1] : [])[0];
                 stackTop = function () {
                     return stack[stack.length - 1];
-                };
+        };
                 startIdx = i;
                 forward = function (n) {
                     return i - startIdx + n;
-                };
+        };
                 inImplicit = function () {
                     var _ref, _ref1;
                     return (_ref = stackTop()) != null ? (_ref1 = _ref[2]) != null ? _ref1.ours : void 0 : void 0;
-                };
+        };
                 inImplicitCall = function () {
                     var _ref;
                     return inImplicit() && ((_ref = stackTop()) != null ? _ref[0] : void 0) === '(';
-                };
+        };
                 inImplicitObject = function () {
                     var _ref;
                     return inImplicit() && ((_ref = stackTop()) != null ? _ref[0] : void 0) === '{';
-                };
+        };
                 inImplicitControl = function () {
                     var _ref;
                     return inImplicit && ((_ref = stackTop()) != null ? _ref[0] : void 0) === 'CONTROL';
-                };
+        };
                 startImplicitCall = function (j) {
                     var idx;
                     idx = j != null ? j : i;
@@ -1537,17 +1537,17 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
                     if (j == null) {
                         return i += 1;
                     }
-                };
+        };
                 endImplicitCall = function () {
                     stack.pop();
                     tokens.splice(i, 0, generate('CALL_END', ')'));
                     return i += 1;
-                };
+        };
                 endAllImplicitCalls = function () {
                     while (inImplicitCall()) {
                         endImplicitCall();
                     }
-                };
+        };
                 startImplicitObject = function (j, startsLine) {
                     var idx;
                     if (startsLine == null) {
@@ -1565,7 +1565,7 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
                     if (j == null) {
                         return i += 1;
                     }
-                };
+        };
                 endImplicitObject = function (j) {
                     j = j != null ? j : i;
                     stack.pop();
@@ -1697,7 +1697,7 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
                     first_column: column,
                     last_line: line,
                     last_column: column
-                };
+        };
                 return 1;
             });
         };
@@ -1749,7 +1749,7 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
                 }
                 return 1;
             });
-        };
+    };
 
         Rewriter.prototype.tagPostfixConditionals = function () {
             var action, condition, original;
@@ -1796,7 +1796,7 @@ define("ace/mode/coffee/rewriter", ["require", "exports", "module"], function (r
         Rewriter.prototype.tag = function (i) {
             var _ref;
             return (_ref = this.tokens[i]) != null ? _ref[0] : void 0;
-        };
+    };
 
         return Rewriter;
 
@@ -1955,7 +1955,7 @@ define("ace/mode/coffee/helpers", ["require", "exports", "module"], function (re
                 }
             }
             return _results;
-        })();
+    })();
         return lines.join('\n');
     };
 
@@ -1999,7 +1999,7 @@ define("ace/mode/coffee/helpers", ["require", "exports", "module"], function (re
         var parts, pathSep;
         if (stripExt == null) {
             stripExt = false;
-        }
+    }
         if (useWinPathSep == null) {
             useWinPathSep = false;
         }
@@ -2130,7 +2130,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                 return this.tokens;
             }
             return (new Rewriter).rewrite(this.tokens);
-        };
+    };
 
         Lexer.prototype.clean = function (code) {
             if (code.charCodeAt(0) === BOM) {
@@ -2145,7 +2145,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                 code = invertLiterate(code);
             }
             return code;
-        };
+    };
 
         Lexer.prototype.identifierToken = function () {
             var colon, colonOffset, forcedIdentifier, id, idLength, input, match, poppedToken, prev, tag, tagToken, _ref2, _ref3, _ref4;
@@ -2180,9 +2180,9 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                         if (this.value() === '!') {
                             poppedToken = this.tokens.pop();
                             id = '!' + id;
-                        }
+            }
                     }
-                }
+        }
             }
             if (__indexOf.call(JS_FORBIDDEN, id) >= 0) {
                 if (forcedIdentifier) {
@@ -2191,7 +2191,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                     id.reserved = true;
                 } else if (__indexOf.call(RESERVED, id) >= 0) {
                     this.error("reserved word \"" + id + "\"");
-                }
+        }
             }
             if (!forcedIdentifier) {
                 if (__indexOf.call(COFFEE_ALIASES, id) >= 0) {
@@ -2227,7 +2227,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                 this.token(':', ':', colonOffset, colon.length);
             }
             return input.length;
-        };
+    };
 
         Lexer.prototype.numberToken = function () {
             var binaryLiteral, lexedLength, match, number, octalLiteral;
@@ -2253,7 +2253,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
             }
             this.token('NUMBER', number, 0, lexedLength);
             return lexedLength;
-        };
+    };
 
         Lexer.prototype.stringToken = function () {
             var octalEsc, quote, string, trimmed;
@@ -2280,7 +2280,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                 this.error("octal escape sequences " + string + " are not allowed");
             }
             return string.length;
-        };
+    };
 
         Lexer.prototype.heredocToken = function () {
             var doc, heredoc, match, quote;
@@ -2303,7 +2303,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                 this.token('STRING', this.makeString(doc, quote, true), 0, heredoc.length);
             }
             return heredoc.length;
-        };
+    };
 
         Lexer.prototype.commentToken = function () {
             var comment, here, match;
@@ -2318,7 +2318,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                 }), 0, comment.length);
             }
             return comment.length;
-        };
+    };
 
         Lexer.prototype.jsToken = function () {
             var match, script;
@@ -2327,7 +2327,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
             }
             this.token('JS', (script = match[0]).slice(1, -1), 0, script.length);
             return script.length;
-        };
+    };
 
         Lexer.prototype.regexToken = function () {
             var flags, length, match, prev, regex, _ref2, _ref3;
@@ -2354,7 +2354,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
             }
             this.token('REGEX', "" + regex + flags, 0, match.length);
             return match.length;
-        };
+    };
 
         Lexer.prototype.heregexToken = function (match) {
             var body, flags, flagsOffset, heregex, plusToken, prev, re, tag, token, tokens, value, _i, _len, _ref2, _ref3, _ref4;
@@ -2363,7 +2363,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                 re = this.escapeLines(body.replace(HEREGEX_OMIT, '$1$2').replace(/\//g, '\\/'), true);
                 if (re.match(/^\*/)) {
                     this.error('regular expressions cannot begin with `*`');
-                }
+        }
                 this.token('REGEX', "/" + (re || '(?:)') + "/" + flags, 0, heregex.length);
                 return heregex.length;
             }
@@ -2407,7 +2407,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
             }
             this.token(')', ')', heregex.length - 1, 0);
             return heregex.length;
-        };
+    };
 
         Lexer.prototype.lineToken = function () {
             var diff, indent, match, noNewlines, size;
@@ -2449,7 +2449,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
             }
             this.indent = size;
             return indent.length;
-        };
+    };
 
         Lexer.prototype.outdentToken = function (moveOut, noNewlines, outdentLength) {
             var dent, len;
@@ -2463,13 +2463,13 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                 } else if (this.indents[len] < this.outdebt) {
                     this.outdebt -= this.indents[len];
                     moveOut -= this.indents[len];
-                } else {
+        } else {
                     dent = this.indents.pop() + this.outdebt;
                     moveOut -= dent;
                     this.outdebt = 0;
                     this.pair('OUTDENT');
                     this.token('OUTDENT', dent, 0, outdentLength);
-                }
+        }
             }
             if (dent) {
                 this.outdebt -= moveOut;
@@ -2481,7 +2481,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                 this.token('TERMINATOR', '\n', outdentLength, 0);
             }
             return this;
-        };
+    };
 
         Lexer.prototype.whitespaceToken = function () {
             var match, nline, prev;
@@ -2497,7 +2497,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
             } else {
                 return 0;
             }
-        };
+    };
 
         Lexer.prototype.newlineToken = function (offset) {
             while (this.value() === ';') {
@@ -2522,7 +2522,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                 value = match[0];
                 if (CODE.test(value)) {
                     this.tagParameters();
-                }
+        }
             } else {
                 value = this.chunk.charAt(0);
             }
@@ -2531,7 +2531,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
             if (value === '=' && prev) {
                 if (!prev[1].reserved && (_ref2 = prev[1], __indexOf.call(JS_FORBIDDEN, _ref2) >= 0)) {
                     this.error("reserved word \"" + (this.value()) + "\" can't be assigned");
-                }
+        }
                 if ((_ref3 = prev[1]) === '||' || _ref3 === '&&') {
                     prev[0] = 'COMPOUND_ASSIGN';
                     prev[1] += '=';
@@ -2580,7 +2580,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
             }
             this.token(tag, value);
             return value.length;
-        };
+    };
 
         Lexer.prototype.sanitizeHeredoc = function (doc, options) {
             var attempt, herecomment, indent, match, _ref2;
@@ -2588,17 +2588,17 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
             if (herecomment) {
                 if (HEREDOC_ILLEGAL.test(doc)) {
                     this.error("block comment cannot contain \"*/\", starting");
-                }
+        }
                 if (doc.indexOf('\n') < 0) {
                     return doc;
-                }
+        }
             } else {
                 while (match = HEREDOC_INDENT.exec(doc)) {
                     attempt = match[1];
                     if (indent === null || (0 < (_ref2 = attempt.length) && _ref2 < indent.length)) {
                         indent = attempt;
                     }
-                }
+        }
             }
             if (indent) {
                 doc = doc.replace(RegExp("\\n" + indent, "g"), '\n');
@@ -2607,7 +2607,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                 doc = doc.replace(/^\n/, '');
             }
             return doc;
-        };
+    };
 
         Lexer.prototype.tagParameters = function () {
             var i, stack, tok, tokens;
@@ -2636,11 +2636,11 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                 }
             }
             return this;
-        };
+    };
 
         Lexer.prototype.closeIndentation = function () {
             return this.outdentToken(this.indent);
-        };
+    };
 
         Lexer.prototype.balancedString = function (str, end) {
             var continueCount, i, letter, match, prev, stack, _i, _ref2;
@@ -2650,7 +2650,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                 if (continueCount) {
                     --continueCount;
                     continue;
-                }
+        }
                 switch (letter = str.charAt(i)) {
                     case '\\':
                         ++continueCount;
@@ -2662,7 +2662,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                         }
                         end = stack[stack.length - 1];
                         continue;
-                }
+        }
                 if (end === '}' && (letter === '"' || letter === "'")) {
                     stack.push(end = letter);
                 } else if (end === '}' && letter === '/' && (match = HEREGEX.exec(str.slice(i)) || REGEX.exec(str.slice(i)))) {
@@ -2671,11 +2671,11 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                     stack.push(end = '}');
                 } else if (end === '"' && prev === '#' && letter === '{') {
                     stack.push(end = '}');
-                }
+        }
                 prev = letter;
             }
             return this.error("missing " + (stack.pop()) + ", starting");
-        };
+    };
 
         Lexer.prototype.interpolateString = function (str, options) {
             var column, expr, heredoc, i, inner, interpolated, len, letter, lexedLength, line, locationToken, nested, offsetInChunk, pi, plusToken, popped, regex, rparen, strOffset, tag, token, tokens, value, _i, _len, _ref2, _ref3, _ref4;
@@ -2693,13 +2693,13 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                 if (letter === '\\') {
                     i += 1;
                     continue;
-                }
+        }
                 if (!(letter === '#' && str.charAt(i + 1) === '{' && (expr = this.balancedString(str.slice(i + 1), '}')))) {
                     continue;
-                }
+        }
                 if (pi < i) {
                     tokens.push(this.makeToken('NEOSTRING', str.slice(pi, i), strOffset + pi));
-                }
+        }
                 inner = expr.slice(1, -1);
                 if (inner.length) {
                     _ref2 = this.getLineAndColumnFromChunk(strOffset + i + 1), line = _ref2[0], column = _ref2[1];
@@ -2719,7 +2719,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                         }
                         tokens.push(['TOKENS', nested]);
                     }
-                }
+        }
                 i += expr.length;
                 pi = i + 1;
             }
@@ -2752,7 +2752,7 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                         last_line: locationToken[2].first_line,
                         last_column: locationToken[2].first_column
                     };
-                }
+        }
                 if (tag === 'TOKENS') {
                     (_ref4 = this.tokens).push.apply(_ref4, value);
                 } else if (tag === 'NEOSTRING') {
@@ -2769,14 +2769,14 @@ define("ace/mode/coffee/lexer", ["require", "exports", "module", "ace/mode/coffe
                 this.tokens.push(rparen);
             }
             return tokens;
-        };
+    };
 
         Lexer.prototype.pair = function (tag) {
             var size, wanted;
             if (tag !== (wanted = last(this.ends))) {
                 if ('OUTDENT' !== wanted) {
                     this.error("unmatched " + tag);
-                }
+        }
                 this.indent -= size = last(this.indents);
                 this.outdentToken(size, true);
                 return this.pair(tag);
@@ -13268,7 +13268,7 @@ define("ace/mode/coffee/parser", ["require", "exports", "module"], function (req
                 } else {
                     if (symbol === null || typeof symbol == 'undefined') {
                         symbol = lex();
-                    }
+            }
                     action = table[state] && table[state][symbol];
                 }
                 if (typeof action === 'undefined' || !action.length || !action[0]) {
@@ -13292,7 +13292,7 @@ define("ace/mode/coffee/parser", ["require", "exports", "module"], function (req
                         loc: yyloc,
                         expected: expected
                     });
-                }
+            }
                 if (action[0] instanceof Array && action.length > 1) {
                     throw new Error('Parse Error: multiple actions possible at state: ' + state + ', token: ' + symbol);
                 }
@@ -13311,10 +13311,10 @@ define("ace/mode/coffee/parser", ["require", "exports", "module"], function (req
                             if (recovering > 0) {
                                 recovering--;
                             }
-                        } else {
+            } else {
                             symbol = preErrorSymbol;
                             preErrorSymbol = null;
-                        }
+            }
                         break;
                     case 2:
                         len = this.productions_[action[1]][1];
@@ -13330,16 +13330,16 @@ define("ace/mode/coffee/parser", ["require", "exports", "module"], function (req
                                 lstack[lstack.length - (len || 1)].range[0],
                                 lstack[lstack.length - 1].range[1]
                             ];
-                        }
+            }
                         r = this.performAction.call(yyval, yytext, yyleng, yylineno, this.yy, action[1], vstack, lstack);
                         if (typeof r !== 'undefined') {
                             return r;
-                        }
+            }
                         if (len) {
                             stack = stack.slice(0, -1 * len * 2);
                             vstack = vstack.slice(0, -1 * len);
                             lstack = lstack.slice(0, -1 * len);
-                        }
+            }
                         stack.push(this.productions_[action[1]][0]);
                         vstack.push(yyval.$);
                         lstack.push(yyval._$);
@@ -13347,9 +13347,9 @@ define("ace/mode/coffee/parser", ["require", "exports", "module"], function (req
                         stack.push(newState);
                         break;
                     case 3:
-                        return true;
-                }
-            }
+            return true;
+        }
+    }
             return true;
         }
     };
@@ -13383,7 +13383,7 @@ define("ace/mode/coffee/scope", ["require", "exports", "module", "ace/mode/coffe
                 {
                     name: 'arguments',
                     type: 'arguments'
-                }
+        }
             ];
             this.positions = {};
             if (!this.parent) {
@@ -13578,7 +13578,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
 
         CodeFragment.prototype.toString = function () {
             return "" + this.code + (this.locationData ? ": " + locationDataToString(this.locationData) : '');
-        };
+    };
 
         return CodeFragment;
 
@@ -13603,7 +13603,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
 
         Base.prototype.compile = function (o, lvl) {
             return fragmentsToText(this.compileToFragments(o, lvl));
-        };
+    };
 
         Base.prototype.compileToFragments = function (o, lvl) {
             var node;
@@ -13635,7 +13635,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                     args.push(new Literal('arguments'));
                 } else {
                     meth = 'call';
-                }
+        }
                 func = new Value(func, [new Access(new Literal(meth))]);
             }
             return (new Call(func, args)).compileNode(o);
@@ -13726,7 +13726,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                         child = _ref3[_j];
                         if (func(child) === false) {
                             return this;
-                        }
+            }
                     }
                 }
             }
@@ -13962,7 +13962,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                         exp = _ref3[i];
                         if (!(exp.unwrap() instanceof Comment)) {
                             break;
-                        }
+            }
                         _results.push(exp);
                     }
                     return _results;
@@ -14021,7 +14021,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                     if (assigns) {
                         if (declars) {
                             fragments.push(this.makeCode(",\n" + (this.tab + TAB)));
-                        }
+            }
                         fragments.push(this.makeCode(scope.assignedVariables().join(",\n" + (this.tab + TAB))));
                     }
                     fragments.push(this.makeCode(";\n" + (this.spaced ? '\n' : '')));
@@ -14356,7 +14356,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                         prop = _ref3[i];
                         if (!prop.soak) {
                             continue;
-                        }
+            }
                         prop.soak = false;
                         fst = new Value(_this.base, _this.properties.slice(0, i));
                         snd = new Value(_this.base, _this.properties.slice(i));
@@ -14364,13 +14364,13 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                             ref = new Literal(o.scope.freeVariable('ref'));
                             fst = new Parens(new Assign(ref, fst));
                             snd.base = ref;
-                        }
+            }
                         return new If(new Existence(fst), snd, {
                             soak: true
                         });
                     }
                     return false;
-                };
+        };
             })(this)();
         };
 
@@ -14437,7 +14437,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                 accesses = [new Access(new Literal('__super__'))];
                 if (method["static"]) {
                     accesses.push(new Access(new Literal('constructor')));
-                }
+        }
                 accesses.push(new Access(new Literal(method.name)));
                 return (new Value(new Literal(method.klass), accesses)).compile(o);
             } else if (method != null ? method.ctor : void 0) {
@@ -14713,7 +14713,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                 }).apply(this);
                 if (this.exclusive) {
                     range.pop();
-                }
+        }
                 return [this.makeCode("[" + (range.join(', ')) + "]")];
             }
             idt = this.tab + TAB;
@@ -14837,7 +14837,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                 prop = _ref2[_i];
                 if (prop.assigns(name)) {
                     return true;
-                }
+        }
             }
             return false;
         };
@@ -14900,7 +14900,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                 obj = _ref2[_i];
                 if (obj.assigns(name)) {
                     return true;
-                }
+        }
             }
             return false;
         };
@@ -14938,7 +14938,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
             return this.body.traverseChildren(false, function (node) {
                 if (node.classBody) {
                     return false;
-                }
+        }
                 if (node instanceof Literal && node.value === 'this') {
                     return node.value = name;
                 } else if (node instanceof Code) {
@@ -14994,7 +14994,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                                     func.bound = false;
                                 }
                             }
-                        }
+            }
                     }
                     _results.push(assign);
                 }
@@ -15021,11 +15021,11 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                                 cont = false;
                                 exps[i] = _this.addProperties(node, name, o);
                             }
-                        }
+            }
                         child.expressions = exps = flatten(exps);
                     }
                     return cont && !(child instanceof Class);
-                };
+        };
             })(this));
         };
 
@@ -15222,9 +15222,9 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                             _ref7 = new Value(obj.unwrapAll()).cacheReference(o), obj = _ref7[0], idx = _ref7[1];
                         } else {
                             idx = obj["this"] ? obj.properties[0].name : obj;
-                        }
+            }
                     }
-                }
+        }
                 if (!splat && obj instanceof Splat) {
                     name = obj.name.unwrap().value;
                     obj = obj.unwrap();
@@ -15377,7 +15377,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                 param = _ref4[_j];
                 if (!param.splat) {
                     continue;
-                }
+        }
                 _ref5 = this.params;
                 for (_k = 0, _len2 = _ref5.length; _k < _len2; _k++) {
                     p = _ref5[_k].name;
@@ -15549,7 +15549,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                 node = obj.properties[0].name;
                 if (!node.value.reserved) {
                     return iterator(node.value, node);
-                }
+        }
             };
             if (name instanceof Literal) {
                 return iterator(name.value, name);
@@ -15620,7 +15620,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                 fragments = node.compileToFragments(o, LEVEL_LIST);
                 if (apply) {
                     return fragments;
-                }
+        }
                 return [].concat(node.makeCode("" + (utility('slice')) + ".call("), fragments, node.makeCode(")"));
             }
             args = list.slice(index);
@@ -15693,7 +15693,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                         loop: true
                     })) {
                     return jumpNode;
-                }
+        }
             }
             return false;
         };
@@ -15716,7 +15716,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                     } else {
                         if (this.guard) {
                             body = Block.wrap([new If(this.guard, body)]);
-                        }
+            }
                     }
                 }
                 body = [].concat(this.makeCode("\n"), body.compileToFragments(o, LEVEL_TOP), this.makeCode("\n" + this.tab));
@@ -15954,7 +15954,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                     }
                     hasSplat = true;
                     break;
-                }
+        }
                 if (!hasSplat) {
                     return this.compileOrTest(o);
                 }
@@ -16214,7 +16214,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                 if ((name || this.own) && !IDENTIFIER.test(svar)) {
                     defPart += "" + this.tab + (ref = scope.freeVariable('ref')) + " = " + svar + ";\n";
                     svar = ref;
-                }
+        }
                 if (name && !this.pattern) {
                     namePart = "" + name + " = " + svar + "[" + kvar + "]";
                 }
@@ -16235,10 +16235,10 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
                                 compare = compareDown;
                                 declare = declareDown;
                             }
-                        } else {
+            } else {
                             compare = "" + stepVar + " > 0 ? " + compare + " : " + compareDown;
                             declare = "(" + stepVar + " > 0 ? (" + declare + ") : " + declareDown + ")";
-                        }
+            }
                         increment = "" + ivar + " += " + stepVar;
                     } else {
                         increment = "" + (kvar !== ivar ? "++" + ivar : "" + ivar + "++");
@@ -16330,7 +16330,7 @@ define("ace/mode/coffee/nodes", ["require", "exports", "module", "ace/mode/coffe
             if (o == null) {
                 o = {
                     block: true
-                };
+        };
             }
             _ref2 = this.cases;
             for (_i = 0, _len = _ref2.length; _i < _len; _i++) {
@@ -16683,7 +16683,7 @@ define("ace/mode/coffee_worker", ["require", "exports", "module", "ace/lib/oop",
                         text: e.message,
                         type: "error"
                     });
-                }
+            }
                 return;
             }
             this.sender.emit("ok");
@@ -16715,7 +16715,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     );
                     if (Object(result) === result) {
                         return result;
-                    }
+                }
                     return this;
 
                 } else {
@@ -16724,9 +16724,9 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                         args.concat(slice.call(arguments))
                     );
 
-                }
+            }
 
-            };
+        };
             if (target.prototype) {
                 Empty.prototype = target.prototype;
                 bound.prototype = new Empty();
@@ -16806,7 +16806,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 if (pos === length) {
                     if (add) {
                         this.push.apply(this, insert);
-                    }
+                }
                 } else {
                     var remove = Math.min(removeCount, length - pos);
                     var tailOldPos = pos + remove;
@@ -16817,7 +16817,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     if (tailNewPos < tailOldPos) { // case A
                         for (var i = 0; i < tailCount; ++i) {
                             this[tailNewPos + i] = this[tailOldPos + i];
-                        }
+                    }
                     } else if (tailNewPos > tailOldPos) { // case B
                         for (i = tailCount; i--;) {
                             this[tailNewPos + i] = this[tailOldPos + i];
@@ -16831,12 +16831,12 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                         this.length = lengthAfterRemove + add; // reserves space
                         for (i = 0; i < add; ++i) {
                             this[pos + i] = insert[i];
-                        }
                     }
                 }
+                }
                 return removed;
-            };
-        }
+        };
+    }
     }
     if (!Array.isArray) {
         Array.isArray = function isArray(obj) {
@@ -16862,7 +16862,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             while (++i < length) {
                 if (i in self) {
                     fun.call(thisp, self[i], i, object);
-                }
+            }
             }
         };
     }
@@ -16905,8 +16905,8 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     value = self[i];
                     if (fun.call(thisp, value, i, object)) {
                         result.push(value);
-                    }
                 }
+            }
             }
             return result;
         };
@@ -16926,7 +16926,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             for (var i = 0; i < length; i++) {
                 if (i in self && !fun.call(thisp, self[i], i, object)) {
                     return false;
-                }
+            }
             }
             return true;
         };
@@ -16946,7 +16946,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             for (var i = 0; i < length; i++) {
                 if (i in self && fun.call(thisp, self[i], i, object)) {
                     return true;
-                }
+            }
             }
             return false;
         };
@@ -16971,10 +16971,10 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 result = arguments[1];
             } else {
                 do {
-                    if (i in self) {
-                        result = self[i++];
-                        break;
-                    }
+                if (i in self) {
+                    result = self[i++];
+                    break;
+                }
                     if (++i >= length) {
                         throw new TypeError("reduce of empty array with no initial value");
                     }
@@ -16984,7 +16984,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             for (; i < length; i++) {
                 if (i in self) {
                     result = fun.call(void 0, result, self[i], i, object);
-                }
+            }
             }
 
             return result;
@@ -17008,21 +17008,21 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             if (arguments.length >= 2) {
                 result = arguments[1];
             } else {
-                do {
-                    if (i in self) {
-                        result = self[i--];
-                        break;
-                    }
-                    if (--i < 0) {
-                        throw new TypeError("reduceRight of empty array with no initial value");
-                    }
-                } while (true);
+            do {
+                if (i in self) {
+                    result = self[i--];
+                    break;
+                }
+                if (--i < 0) {
+                    throw new TypeError("reduceRight of empty array with no initial value");
+                }
+            } while (true);
             }
 
             do {
                 if (i in this) {
                     result = fun.call(void 0, result, self[i], i, object);
-                }
+            }
             } while (i--);
 
             return result;
@@ -17036,7 +17036,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 length = self.length >>> 0;
 
             if (!length) {
-                return -1;
+            return -1;
             }
 
             var i = 0;
@@ -17047,7 +17047,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             for (; i < length; i++) {
                 if (i in self && self[i] === sought) {
                     return i;
-                }
+            }
             }
             return -1;
         };
@@ -17060,7 +17060,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 length = self.length >>> 0;
 
             if (!length) {
-                return -1;
+            return -1;
             }
             var i = length - 1;
             if (arguments.length > 1) {
@@ -17107,7 +17107,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     if (getter) descriptor.get = getter;
                     if (setter) descriptor.set = setter;
                     return descriptor;
-                }
+            }
             }
             descriptor.value = object[property];
             return descriptor;
@@ -17123,7 +17123,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
         if (Object.prototype.__proto__ === null) {
             createEmpty = function () {
                 return {"__proto__": null};
-            };
+        };
         } else {
             createEmpty = function () {
                 var empty = {};
@@ -17139,13 +17139,13 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                                             empty.__proto__ = null;
                 return empty;
             }
-        }
+    }
 
         Object.create = function create(prototype, properties) {
             var object;
             if (prototype === null) {
                 object = createEmpty();
-            } else {
+        } else {
                 if (typeof prototype != "object")
                     throw new TypeError("typeof prototype[" + (typeof prototype) + "] != 'object'");
                 var Type = function () {
@@ -17153,7 +17153,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 Type.prototype = prototype;
                 object = new Type();
                 object.__proto__ = prototype;
-            }
+        }
             if (properties !== void 0)
                 Object.defineProperties(object, properties);
             return object;
@@ -17165,7 +17165,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             Object.defineProperty(object, "sentinel", {});
             return "sentinel" in object;
         } catch (exception) {
-        }
+    }
     }
 
     if (Object.defineProperty) {
@@ -17174,7 +17174,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             doesDefinePropertyWork(document.createElement("div"));
         if (!definePropertyWorksOnObject || !definePropertyWorksOnDom) {
             var definePropertyFallback = Object.defineProperty;
-        }
+    }
     }
 
     if (!Object.defineProperty || definePropertyFallback) {
@@ -17192,7 +17192,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 try {
                     return definePropertyFallback.call(Object, object, property, descriptor);
                 } catch (exception) {
-                }
+            }
             }
             if (owns(descriptor, "value")) {
 
@@ -17203,9 +17203,9 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     delete object[property];
                     object[property] = descriptor.value;
                     object.__proto__ = prototype;
-                } else {
+            } else {
                     object[property] = descriptor.value;
-                }
+            }
             } else {
                 if (!supportsAccessors)
                     throw new TypeError(ERR_ACCESSORS_NOT_SUPPORTED);
@@ -17247,8 +17247,8 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     return object;
                 } else {
                     return freezeObject(object);
-                }
-            };
+            }
+        };
         })(Object.freeze);
     }
     if (!Object.preventExtensions) {
@@ -17296,7 +17296,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
 
         for (var key in {"toString": null}) {
             hasDontEnumBug = false;
-        }
+    }
 
         Object.keys = function keys(object) {
 
@@ -17305,13 +17305,13 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 object === null
             ) {
                 throw new TypeError("Object.keys called on a non-object");
-            }
+        }
 
             var keys = [];
             for (var name in object) {
                 if (owns(object, name)) {
                     keys.push(name);
-                }
+            }
             }
 
             if (hasDontEnumBug) {
@@ -17319,8 +17319,8 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     var dontEnum = dontEnums[i];
                     if (owns(object, dontEnum)) {
                         keys.push(dontEnum);
-                    }
                 }
+            }
             }
             return keys;
         };
@@ -17349,7 +17349,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             n = 0;
         } else if (n !== 0 && n !== (1 / 0) && n !== -(1 / 0)) {
             n = (n > 0 || -1) * Math.floor(Math.abs(n));
-        }
+    }
         return n;
     }
 
@@ -17374,14 +17374,14 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             val = valueOf.call(input);
             if (isPrimitive(val)) {
                 return val;
-            }
         }
+    }
         toString = input.toString;
         if (typeof toString === "function") {
             val = toString.call(input);
             if (isPrimitive(val)) {
                 return val;
-            }
+        }
         }
         throw new TypeError();
     }

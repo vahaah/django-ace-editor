@@ -15,7 +15,7 @@ define("ace/mode/gitignore_highlight_rules", ["require", "exports", "module", "a
                     regex: /^\s*!.*$/
                 }
             ]
-        };
+    };
 
         this.normalizeRules();
     };

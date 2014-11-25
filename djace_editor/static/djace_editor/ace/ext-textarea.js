@@ -182,7 +182,7 @@ define("ace/ace", ["require", "exports", "module", "ace/lib/fixoldbrowsers", "ac
             document: doc,
             editor: editor,
             onResize: editor.resize.bind(editor, null)
-        };
+    };
         if (oldNode) env.textarea = oldNode;
         event.addListener(window, "resize", env.onResize);
         editor.on("destroy", function () {
@@ -220,7 +220,7 @@ define("ace/ext/textarea", ["require", "exports", "module", "ace/lib/event", "ac
                 ret = window.getComputedStyle(element, '').getPropertyValue(property);
             } else {
                 ret = element.currentStyle[property];
-            }
+        }
         }
 
         if (!ret || ret == 'auto' || ret == 'intrinsic') {
@@ -232,7 +232,7 @@ define("ace/ext/textarea", ["require", "exports", "module", "ace/lib/event", "ac
     function applyStyles(elm, styles) {
         for (var style in styles) {
             elm.style[style] = styles[style];
-        }
+    }
     }
 
     function setupContainer(element, getValue) {
@@ -269,9 +269,9 @@ define("ace/ext/textarea", ["require", "exports", "module", "ace/lib/event", "ac
                     }
                 };
                 break;
-            }
-            parentNode = parentNode.parentNode;
         }
+            parentNode = parentNode.parentNode;
+    }
         return container;
     }
 
@@ -348,10 +348,10 @@ define("ace/ext/textarea", ["require", "exports", "module", "ace/lib/event", "ac
             if (x + y < (rect.width + rect.height) / 2) {
                 this.style.cursor = "pointer";
                 state = "toggle";
-            } else {
+        } else {
                 state = "resize";
                 this.style.cursor = "nw-resize";
-            }
+        }
         });
 
         event.addListener(settingOpener, "mousedown", function (e) {
@@ -402,7 +402,7 @@ define("ace/ext/textarea", ["require", "exports", "module", "ace/lib/event", "ac
             } else {
                 editor.focus();
             }
-        };
+    };
 
         editor.$setOption = editor.setOption;
         editor.$getOption = editor.getOption;
@@ -434,7 +434,7 @@ define("ace/ext/textarea", ["require", "exports", "module", "ace/lib/event", "ac
 
                 default:
                     editor.$setOption(key, toBool(value));
-            }
+        }
         };
 
         editor.getOption = function (key) {
@@ -571,12 +571,12 @@ define("ace/ext/textarea", ["require", "exports", "module", "ace/lib/event", "ac
 
                 if (cValue == value) {
                     builder.push(" selected ");
-                }
+            }
 
                 builder.push(">",
                     obj[value],
                     "</option>");
-            }
+        }
             builder.push("</select>");
         }
 
@@ -585,14 +585,14 @@ define("ace/ext/textarea", ["require", "exports", "module", "ace/lib/event", "ac
             table.push("<td>");
             renderOption(table, option, optionValues[option], editor.getOption(option));
             table.push("</td></tr>");
-        }
+    }
         table.push("</table>");
         settingDiv.innerHTML = table.join("");
 
         var onChange = function (e) {
             var select = e.currentTarget;
             editor.setOption(select.title, select.value);
-        };
+    };
         var onClick = function (e) {
             var cb = e.currentTarget;
             editor.setOption(cb.title, cb.checked);
@@ -610,7 +610,7 @@ define("ace/ext/textarea", ["require", "exports", "module", "ace/lib/event", "ac
         button.value = "Hide";
         event.addListener(button, "click", function () {
             editor.setDisplaySettings(false);
-        });
+    });
         settingDiv.appendChild(button);
         settingDiv.hideButton = button;
     }

@@ -45,8 +45,8 @@ define("ace/mode/c9search_highlight_rules", ["require", "exports", "module", "ac
                                     tokens.push({type: types[3], value: m[0]});
                                 else if (!skipped)
                                     break;
-                            }
                         }
+                    }
                         if (last < str.length)
                             tokens.push({type: types[2], value: str.substr(last)});
                         return tokens;
@@ -80,10 +80,10 @@ define("ace/mode/c9search_highlight_rules", ["require", "exports", "module", "ac
                             replace = parts[i];
                             tokens.push({
                                 value: "'" + parts[i++] + "'",
-                                type: "text"
-                            }, {
+                            type: "text"
+                        }, {
                                 value: parts[i++],
-                                type: "text"
+                            type: "text"
                             });
                         }
                         tokens.push({
@@ -92,14 +92,14 @@ define("ace/mode/c9search_highlight_rules", ["require", "exports", "module", "ac
                         });
                         if (parts[i + 1]) {
                             options = parts[i + 1];
-                            tokens.push({
-                                value: "(" + parts[i + 1] + ")",
-                                type: "text"
-                            });
+                        tokens.push({
+                            value: "(" + parts[i + 1] + ")",
+                            type: "text"
+                        });
                             i += 1;
                         } else {
                             i -= 1;
-                        }
+                    }
                         while (i++ < parts.length) {
                             parts[i] && tokens.push({
                                 value: parts[i],
@@ -129,14 +129,14 @@ define("ace/mode/c9search_highlight_rules", ["require", "exports", "module", "ac
                         }
 
                         return tokens;
-                    }
+                }
                 },
                 {
                     regex: "\\d+",
                     token: "constant.numeric"
                 }
             ]
-        };
+    };
     };
 
     oop.inherits(C9SearchHighlightRules, TextHighlightRules);
@@ -216,7 +216,7 @@ define("ace/mode/folding/c9search", ["require", "exports", "module", "ace/lib/oo
                 for (var i = row + 1, l = session.getLength(); i < l; i++) {
                     if (re.test(lines[i]))
                         break;
-                }
+            }
                 endRow = i;
             }
             else if (this.foldingStopMarker.test(line)) {
@@ -224,7 +224,7 @@ define("ace/mode/folding/c9search", ["require", "exports", "module", "ace/lib/oo
                     line = lines[i];
                     if (re.test(line))
                         break;
-                }
+            }
                 startRow = i;
             }
             if (startRow != endRow) {
@@ -260,7 +260,7 @@ define("ace/mode/c9search", ["require", "exports", "module", "ace/lib/oop", "ace
         this.getNextLineIndent = function (state, line, tab) {
             var indent = this.$getIndent(line);
             return indent;
-        };
+    };
 
         this.checkOutdent = function (state, line, input) {
             return this.$outdent.checkOutdent(line, input);

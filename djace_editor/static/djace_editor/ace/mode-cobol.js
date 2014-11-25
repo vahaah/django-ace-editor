@@ -61,7 +61,7 @@ define("ace/mode/cobol_highlight_rules", ["require", "exports", "module", "ace/l
                 token: "text",
                 regex: "\\s+"
             }]
-        };
+    };
     };
 
     oop.inherits(CobolHighlightRules, TextHighlightRules);

@@ -141,11 +141,11 @@ define("ace/mode/matlab_highlight_rules", ["require", "exports", "module", "ace/
                 next: [{
                     token: "constant.language.escape",
                     regex: "''"
-                }, {
+            }, {
                     token: "string",
                     regex: "'|$",
                     next: "start"
-                }, {
+            }, {
                     defaultToken: "string"
                 }]
             }, {
@@ -169,15 +169,15 @@ define("ace/mode/matlab_highlight_rules", ["require", "exports", "module", "ace/
                 next: [{
                     token: "constant.language.escape",
                     regex: /\\./
-                }, {
+            }, {
                     token: "string",
                     regex: "\\\\$",
                     next: "qqstring"
-                }, {
+            }, {
                     token: "string",
                     regex: '"|$',
                     next: "start"
-                }, {
+            }, {
                     defaultToken: "string"
                 }]
             }, {
@@ -220,7 +220,7 @@ define("ace/mode/matlab_highlight_rules", ["require", "exports", "module", "ace/
             }, {
                 defaultToken: "comment"
             }],
-        };
+    };
 
         this.normalizeRules();
     };

@@ -15,7 +15,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
                     defaultToken: "comment.doc",
                     caseInsensitive: true
                 }]
-        };
+    };
     };
 
     oop.inherits(DocCommentHighlightRules, TextHighlightRules);
@@ -32,7 +32,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
             token: "comment.doc", // doc comment
             regex: "\\/\\*(?=\\*)",
             next: start
-        };
+    };
     };
 
     DocCommentHighlightRules.getEndRule = function (start) {
@@ -40,7 +40,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
             token: "comment.doc", // closing comment
             regex: "\\*\\/",
             next: start
-        };
+    };
     };
 
 
@@ -354,13 +354,13 @@ define("ace/mode/javascript_highlight_rules", ["require", "exports", "module", "
                     if (val == "{" && stack.length) {
                         stack.unshift("start", state);
                         return "paren";
-                    }
+                }
                     if (val == "}" && stack.length) {
                         stack.shift();
                         this.next = stack.shift();
                         if (this.next.indexOf("string") != -1)
                             return "paren.quasi.end";
-                    }
+                }
                     return val == "{" ? "paren.lparen" : "paren.rparen";
                 },
                 nextState: "start"
@@ -370,7 +370,7 @@ define("ace/mode/javascript_highlight_rules", ["require", "exports", "module", "
                 push: [{
                     token: "constant.language.escape",
                     regex: escapedRe
-                }, {
+            }, {
                     token: "paren.quasi.start",
                     regex: /\${/,
                     push: "start"
@@ -557,7 +557,7 @@ define("ace/mode/xml_highlight_rules", ["require", "exports", "module", "ace/lib
                     {defaultToken: "string.attribute-value.xml"}
                 ]
             }]
-        };
+    };
 
         if (this.constructor === XmlHighlightRules)
             this.normalizeRules();
@@ -573,7 +573,7 @@ define("ace/mode/xml_highlight_rules", ["require", "exports", "module", "ace/lib
                 next: [
                     {include: "attributes"},
                     {token: "meta.tag.punctuation.tag-close.xml", regex: "/?>", next: prefix + "start"}
-                ]
+            ]
             });
 
             this.$rules[tag + "-end"] = [
@@ -740,7 +740,7 @@ define("ace/mode/css_highlight_rules", ["require", "exports", "module", "ace/lib
                 }, {
                     caseInsensitive: true
                 }]
-        };
+    };
 
         this.normalizeRules();
     };
@@ -793,12 +793,12 @@ define("ace/mode/html_highlight_rules", ["require", "exports", "module", "ace/li
                 token: "keyword.operator.attribute-equals.xml",
                 regex: "=",
                 push: [{
-                    include: "tag_whitespace"
-                }, {
+                include: "tag_whitespace"
+            }, {
                     token: "string.unquoted.attribute-value.html",
                     regex: "[^<>='\"`\\s]+",
                     next: "pop"
-                }, {
+            }, {
                     token: "empty",
                     regex: "",
                     next: "pop"
@@ -1209,7 +1209,7 @@ define("ace/mode/scss_highlight_rules", ["require", "exports", "module", "ace/li
                             return "variable.language";
                         else
                             return "text";
-                    },
+                },
                     regex: "\\-?[@a-z_][@a-z0-9_\\-]*"
                 }, {
                     token: "variable",
@@ -1272,7 +1272,7 @@ define("ace/mode/scss_highlight_rules", ["require", "exports", "module", "ace/li
                     regex: '.+'
                 }
             ]
-        };
+    };
     };
 
     oop.inherits(ScssHighlightRules, TextHighlightRules);
@@ -1442,7 +1442,7 @@ define("ace/mode/less_highlight_rules", ["require", "exports", "module", "ace/li
                             return "keyword";
                         else
                             return "variable";
-                    },
+                },
                     regex: "@[a-z0-9_\\-@]*\\b"
                 }, {
                     token: function (value) {
@@ -1500,7 +1500,7 @@ define("ace/mode/less_highlight_rules", ["require", "exports", "module", "ace/li
                     regex: ".+"
                 }
             ]
-        };
+    };
     };
 
     oop.inherits(LessHighlightRules, TextHighlightRules);
@@ -1657,7 +1657,7 @@ define("ace/mode/coffee_highlight_rules", ["require", "exports", "module", "ace/
                     token: ["entity.name.function", "text", "keyword.operator", "text"].concat(functionRule.token),
                     regex: "(" + identifier + ")(\\s*)([=:])(\\s*)" + functionRule.regex
                 },
-                functionRule,
+                functionRule, 
                 {
                     token: "variable",
                     regex: "@(?:" + identifier + ")?"
@@ -1836,7 +1836,7 @@ define("ace/mode/jade_highlight_rules", ["require", "exports", "module", "ace/li
                 {
                     token: ["text", "punctuation"],
                     regex: "($)|((?!\\.|#|=|-))",
-                    next: "start"
+            next: "start"
                 }
             ],
             "tag_attributes": [
@@ -1994,8 +1994,8 @@ define("ace/mode/folding/coffee", ["require", "exports", "module", "ace/lib/oop"
                 if (session.getLine(row - 2).search(/\S/) == -1) {
                     session.foldWidgets[row - 1] = "start";
                     session.foldWidgets[row + 1] = "";
-                    return "";
-                }
+                return "";
+            }
             }
 
             if (prevIndent != -1 && prevIndent < indent)

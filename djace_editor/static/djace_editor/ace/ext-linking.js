@@ -22,13 +22,13 @@ define("ace/ext/linking", ["require", "exports", "module", "ace/editor", "ace/co
         var ctrl = e.getAccelKey();
 
         if (ctrl) {
-            var editor = e.editor;
+        var editor = e.editor;
             var docPos = e.getDocumentPosition();
             var session = editor.session;
             var token = session.getTokenAt(docPos.row, docPos.column);
 
             editor._emit("linkHover", {position: docPos, token: token});
-        }
+    }
     }
 
     function onClick(e) {
@@ -42,7 +42,7 @@ define("ace/ext/linking", ["require", "exports", "module", "ace/editor", "ace/co
             var token = session.getTokenAt(docPos.row, docPos.column);
 
             editor._emit("linkClick", {position: docPos, token: token});
-        }
+    }
     }
 
 });

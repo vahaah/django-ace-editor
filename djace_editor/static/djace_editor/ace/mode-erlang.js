@@ -21,7 +21,7 @@ define("ace/mode/erlang_highlight_rules", ["require", "exports", "module", "ace/
                 regex: '\'',
                 push: [{
                     token: 'punctuation.definition.symbol.end.erlang',
-                    regex: '\'',
+                regex: '\'',
                     next: 'pop'
                 },
                     {
@@ -146,7 +146,7 @@ define("ace/mode/erlang_highlight_rules", ["require", "exports", "module", "ace/
                             regex: '^(\\s*)(-)(\\s*)(define)(\\s*)(\\()(\\s*)([a-zA-Z\\d@_]+)(\\s*)(\\()',
                             push: [{
                                 token: ['punctuation.definition.parameters.end.erlang',
-                                    'text',
+                        'text',
                                     'punctuation.separator.parameters.erlang'],
                                 regex: '(\\))(\\s*)(,)',
                                 next: 'pop'
@@ -263,7 +263,7 @@ define("ace/mode/erlang_highlight_rules", ["require", "exports", "module", "ace/
                     },
                         {
                             token: 'text',
-                            regex: '(?=\\()',
+                regex: '(?=\\()',
                             push: [{
                                 token: 'punctuation.separator.clauses.erlang',
                                 regex: ';|(?=\\bend\\b)',
@@ -452,7 +452,7 @@ define("ace/mode/erlang_highlight_rules", ["require", "exports", "module", "ace/
                 },
                     {
                         token: 'punctuation.definition.parameters.begin.erlang',
-                        regex: '\\(',
+                regex: '\\(',
                         push: [{
                             token: 'punctuation.definition.parameters.end.erlang',
                             regex: '\\)',
@@ -890,7 +890,7 @@ define("ace/mode/erlang_highlight_rules", ["require", "exports", "module", "ace/
                 regex: '"',
                 push: [{
                     token: 'punctuation.definition.string.end.erlang',
-                    regex: '"',
+                regex: '"',
                     next: 'pop'
                 },
                     {
@@ -1009,7 +1009,7 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
                         range = this.getSectionRange(session, row);
                     } else if (foldStyle != "all")
                         range = null;
-                }
+            }
 
                 return range;
             }
@@ -1047,13 +1047,13 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
 
                 if (subRange) {
                     if (subRange.start.row <= startRow) {
-                        break;
+                    break;
                     } else if (subRange.isMultiLine()) {
                         row = subRange.end.row;
                     } else if (startIndent == indent) {
                         break;
-                    }
                 }
+            }
                 endRow = row;
             }
 

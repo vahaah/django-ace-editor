@@ -1,9 +1,6 @@
 update:
-	DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-	git clone https://github.com/ajaxorg/ace-builds.git /tmp/ace
-	cd  "${DIR}/djace_editor/static/djace_editor/ace"
-	cp -R /tmp/ace/src/* ./
+	@git clone https://github.com/ajaxorg/ace-builds.git /tmp/ace
+	@cp -R /tmp/ace/src/* ./djace_editor/static/djace_editor/ace
 
 clean:
 	@find . -name "*.pyc" -delete

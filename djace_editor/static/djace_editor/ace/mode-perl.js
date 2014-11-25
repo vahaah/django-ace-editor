@@ -123,7 +123,7 @@ define("ace/mode/perl_highlight_rules", ["require", "exports", "module", "ace/li
                     defaultToken: "comment.doc"
                 }
             ]
-        };
+    };
     };
 
     oop.inherits(PerlHighlightRules, TextHighlightRules);
@@ -212,7 +212,7 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
                         range = this.getSectionRange(session, row);
                     } else if (foldStyle != "all")
                         range = null;
-                }
+            }
 
                 return range;
             }
@@ -250,13 +250,13 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
 
                 if (subRange) {
                     if (subRange.start.row <= startRow) {
-                        break;
+                    break;
                     } else if (subRange.isMultiLine()) {
                         row = subRange.end.row;
                     } else if (startIndent == indent) {
                         break;
-                    }
                 }
+            }
                 endRow = row;
             }
 
@@ -308,7 +308,7 @@ define("ace/mode/perl", ["require", "exports", "module", "ace/lib/oop", "ace/mod
                 var match = line.match(/^.*[\{\(\[\:]\s*$/);
                 if (match) {
                     indent += tab;
-                }
+            }
             }
 
             return indent;

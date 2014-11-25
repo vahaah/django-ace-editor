@@ -120,7 +120,7 @@ define("ace/mode/ruby_highlight_rules", ["require", "exports", "module", "ace/li
                                 return "paren.end";
                         }
                         return val == "{" ? "paren.lparen" : "paren.rparen";
-                    },
+                },
                     nextState: "start"
                 }, {
                     token: "string.start",
@@ -128,15 +128,15 @@ define("ace/mode/ruby_highlight_rules", ["require", "exports", "module", "ace/li
                     push: [{
                         token: "constant.language.escape",
                         regex: /\\(?:[nsrtvfbae'"\\]|c.|C-.|M-.(?:\\C-.)?|[0-7]{3}|x[\da-fA-F]{2}|u[\da-fA-F]{4})/
-                    }, {
+                }, {
                         token: "paren.start",
                         regex: /\#{/,
                         push: "start"
-                    }, {
+                }, {
                         token: "string.end",
                         regex: /"/,
                         next: "pop"
-                    }, {
+                }, {
                         defaultToken: "string"
                     }]
                 }, {
@@ -145,15 +145,15 @@ define("ace/mode/ruby_highlight_rules", ["require", "exports", "module", "ace/li
                     push: [{
                         token: "constant.language.escape",
                         regex: /\\(?:[nsrtvfbae'"\\]|c.|C-.|M-.(?:\\C-.)?|[0-7]{3}|x[\da-fA-F]{2}|u[\da-fA-F]{4})/
-                    }, {
+                }, {
                         token: "paren.start",
                         regex: /\#{/,
                         push: "start"
-                    }, {
+                }, {
                         token: "string.end",
                         regex: /`/,
                         next: "pop"
-                    }, {
+                }, {
                         defaultToken: "string"
                     }]
                 }, {
@@ -166,7 +166,7 @@ define("ace/mode/ruby_highlight_rules", ["require", "exports", "module", "ace/li
                         token: "string.end",
                         regex: /'/,
                         next: "pop"
-                    }, {
+                }, {
                         defaultToken: "string"
                     }]
                 }],
@@ -241,7 +241,7 @@ define("ace/mode/ruby_highlight_rules", ["require", "exports", "module", "ace/li
                             regex: ".*$",
                             next: "start"
                         }]
-                    }
+                }
                 }, {
                     regex: "$",
                     token: "empty",
@@ -249,7 +249,7 @@ define("ace/mode/ruby_highlight_rules", ["require", "exports", "module", "ace/li
                         if (stack[0] === "heredoc" || stack[0] === "indentedHeredoc")
                             return stack[0];
                         return currentState;
-                    }
+                }
                 }, {
                     token: "keyword.operator",
                     regex: "!|\\$|%|&|\\*|\\-\\-|\\-|\\+\\+|\\+|~|===|==|=|!=|!==|<=|>=|<<=|>>=|>>>=|<>|<|>|!|&&|\\|\\||\\?\\:|\\*=|%=|\\+=|\\-=|&=|\\^=|\\b(?:in|instanceof|new|delete|typeof|void)"
@@ -274,7 +274,7 @@ define("ace/mode/ruby_highlight_rules", ["require", "exports", "module", "ace/li
                     regex: ".+"
                 }
             ]
-        };
+    };
 
         this.normalizeRules();
     };
@@ -333,7 +333,7 @@ define("ace/mode/haml_highlight_rules", ["require", "exports", "module", "ace/li
                     token: "text",
                     regex: "=|-|~",
                     next: "embedded_ruby"
-                }
+        }
             ],
             "tag_single": [
                 {
@@ -483,8 +483,8 @@ define("ace/mode/folding/coffee", ["require", "exports", "module", "ace/lib/oop"
                 if (session.getLine(row - 2).search(/\S/) == -1) {
                     session.foldWidgets[row - 1] = "start";
                     session.foldWidgets[row + 1] = "";
-                    return "";
-                }
+                return "";
+            }
             }
 
             if (prevIndent != -1 && prevIndent < indent)

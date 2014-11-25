@@ -139,7 +139,7 @@ define("ace/mode/prolog_highlight_rules", ["require", "exports", "module", "ace/
                 },
                     {
                         token: 'meta.rule.signature.prolog',
-                        regex: '(?=[a-z]\\w*.*:-)',
+                regex: '(?=[a-z]\\w*.*:-)',
                         push: [{
                             token: 'meta.rule.signature.prolog',
                             regex: '(?=:-)',
@@ -205,7 +205,7 @@ define("ace/mode/prolog_highlight_rules", ["require", "exports", "module", "ace/
                 regex: '\'',
                 push: [{
                     token: 'punctuation.definition.string.end.prolog',
-                    regex: '\'',
+                regex: '\'',
                     next: 'pop'
                 },
                     {token: 'constant.character.escape.prolog', regex: '\\\\.'},
@@ -283,7 +283,7 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
                         range = this.getSectionRange(session, row);
                     } else if (foldStyle != "all")
                         range = null;
-                }
+            }
 
                 return range;
             }
@@ -321,13 +321,13 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
 
                 if (subRange) {
                     if (subRange.start.row <= startRow) {
-                        break;
+                    break;
                     } else if (subRange.isMultiLine()) {
                         row = subRange.end.row;
                     } else if (startIndent == indent) {
                         break;
-                    }
                 }
+            }
                 endRow = row;
             }
 

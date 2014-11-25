@@ -10,7 +10,7 @@ define("ace/ext/elastic_tabstops_lite", ["require", "exports", "module", "ace/ed
             recordChanges = false;
             self.processRows(changedRows);
             changedRows = [];
-        };
+    };
         this.onExec = function () {
             recordChanges = true;
         };
@@ -45,7 +45,7 @@ define("ace/ext/elastic_tabstops_lite", ["require", "exports", "module", "ace/ed
                     checkedRows.push(rowIndex);
                     this.$adjustRow(rowIndex, widths);
                     rowIndex++;
-                }
+            }
             }
             this.$inChange = false;
         };
@@ -127,18 +127,18 @@ define("ace/ext/elastic_tabstops_lite", ["require", "exports", "module", "ace/ed
                         blockStartRow = r;
                         maxWidth = 0;
                         startingNewBlock = false;
-                    }
+                }
                     if (isNaN(width)) {
                         blockEndRow = r;
 
                         for (var j = blockStartRow; j < blockEndRow; j++) {
                             cellWidths[j][c] = maxWidth;
-                        }
-                        startingNewBlock = true;
                     }
+                        startingNewBlock = true;
+                }
 
                     maxWidth = Math.max(maxWidth, width);
-                }
+            }
             }
 
             return cellWidths;
@@ -154,7 +154,7 @@ define("ace/ext/elastic_tabstops_lite", ["require", "exports", "module", "ace/ed
                         lengths.push(s);
                     else
                         lengths.push(0);
-                }
+            }
                 rightmost = Math.max.apply(Math, lengths);
             }
 
@@ -202,12 +202,12 @@ define("ace/ext/elastic_tabstops_lite", ["require", "exports", "module", "ace/ed
                     this.$editor.session.getDocument().removeInLine(row, it, it + 1);
 
                     bias += difference;
-                }
+            }
 
                 if (difference < 0 && ispaces >= -difference) {
                     this.$editor.session.getDocument().removeInLine(row, it + difference, it);
                     bias += difference;
-                }
+            }
             }
         };
         this.$izip_longest = function (iterables) {
@@ -231,7 +231,7 @@ define("ace/ext/elastic_tabstops_lite", ["require", "exports", "module", "ace/ed
                         set.push(NaN);
                     else
                         set.push(iterables[i][l]);
-                }
+            }
 
                 expandedSet.push(set);
             }
@@ -268,8 +268,8 @@ define("ace/ext/elastic_tabstops_lite", ["require", "exports", "module", "ace/ed
                     this.commands.removeListener("afterExec", this.elasticTabstops.onAfterExec);
                     this.commands.removeListener("exec", this.elasticTabstops.onExec);
                     this.removeListener("change", this.elasticTabstops.onChange);
-                }
             }
+        }
         }
     });
 

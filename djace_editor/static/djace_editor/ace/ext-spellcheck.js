@@ -43,11 +43,11 @@ define("ace/ext/spellcheck", ["require", "exports", "module", "ace/lib/event", "
                     val = val.slice(0, -1);
                     host.session.replace(r, val);
                     return "";
-                }
             }
+        }
 
             return newVal;
-        });
+    });
     };
     var Editor = require("../editor").Editor;
     require("../config").defineOptions(Editor.prototype, "editor", {

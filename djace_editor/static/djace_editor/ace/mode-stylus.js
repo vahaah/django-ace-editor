@@ -131,7 +131,7 @@ define("ace/mode/css_highlight_rules", ["require", "exports", "module", "ace/lib
                 }, {
                     caseInsensitive: true
                 }]
-        };
+    };
 
         this.normalizeRules();
     };
@@ -249,7 +249,7 @@ define("ace/mode/stylus_highlight_rules", ["require", "exports", "module", "ace/
                 {
                     token: keywordMapper,
                     regex: "\\-?[a-zA-Z_][a-zA-Z0-9_\\-]*"
-                }
+        }
             ],
             "comment": [
                 {
@@ -371,8 +371,8 @@ define("ace/mode/folding/coffee", ["require", "exports", "module", "ace/lib/oop"
                 if (session.getLine(row - 2).search(/\S/) == -1) {
                     session.foldWidgets[row - 1] = "start";
                     session.foldWidgets[row + 1] = "";
-                    return "";
-                }
+                return "";
+            }
             }
 
             if (prevIndent != -1 && prevIndent < indent)

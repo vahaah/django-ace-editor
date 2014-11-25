@@ -52,7 +52,7 @@ define("ace/mode/lisp_highlight_rules", ["require", "exports", "module", "ace/li
                     token: "string",
                     regex: '"(?=.)',
                     next: "qqstring"
-                }
+        }
             ],
             "qqstring": [
                 {

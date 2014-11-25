@@ -160,7 +160,7 @@ define("ace/mode/xml_highlight_rules", ["require", "exports", "module", "ace/lib
                     {defaultToken: "string.attribute-value.xml"}
                 ]
             }]
-        };
+    };
 
         if (this.constructor === XmlHighlightRules)
             this.normalizeRules();
@@ -176,7 +176,7 @@ define("ace/mode/xml_highlight_rules", ["require", "exports", "module", "ace/lib
                 next: [
                     {include: "attributes"},
                     {token: "meta.tag.punctuation.tag-close.xml", regex: "/?>", next: prefix + "start"}
-                ]
+            ]
             });
 
             this.$rules[tag + "-end"] = [
@@ -256,7 +256,7 @@ define("ace/mode/behaviour/xml", ["require", "exports", "module", "ace/lib/oop",
 
                 while (is(token, "tag-whitespace") || is(token, "whitespace")) {
                     token = iterator.stepBackward();
-                }
+            }
                 var rightSpace = !rightChar || rightChar.match(/\s/);
                 if (is(token, "attribute-equals") && (rightSpace || rightChar == '>') || (is(token, "decl-attribute-equals") && (rightSpace || rightChar == '?'))) {
                     return {
@@ -275,7 +275,7 @@ define("ace/mode/behaviour/xml", ["require", "exports", "module", "ace/lib/oop",
                 if (rightChar == selected) {
                     range.end.column++;
                     return range;
-                }
+            }
             }
         });
 
@@ -295,7 +295,7 @@ define("ace/mode/behaviour/xml", ["require", "exports", "module", "ace/lib/oop",
                         var tokenEnd = iterator.getCurrentTokenColumn() + token.value.length;
                         if (tokenEnd > position.column || tokenEnd == position.column && firstChar != lastChar)
                             return;
-                    }
+                }
                 }
                 while (!is(token, "tag-name")) {
                     token = iterator.stepBackward();
@@ -358,9 +358,9 @@ define("ace/mode/behaviour/xml", ["require", "exports", "module", "ace/lib/oop",
                             return {
                                 text: "\n" + indent
                             };
-                        }
                     }
                 }
+            }
             }
         });
 
@@ -437,17 +437,17 @@ define("ace/mode/folding/xml", ["require", "exports", "module", "ace/lib/oop", "
                     tag.end.column += token.value.length;
                     for (i++; i < tokens.length; i++) {
                         token = tokens[i];
-                        tag.end.column += token.value.length;
+                    tag.end.column += token.value.length;
                         if (is(token, "tag-close")) {
                             tag.selfClosing = token.value == '/>';
                             break;
-                        }
                     }
+                }
                     return tag;
                 } else if (is(token, "tag-close")) {
                     tag.selfClosing = token.value == '/>';
                     return tag;
-                }
+            }
                 tag.start.column += token.value.length;
             }
 
@@ -466,14 +466,14 @@ define("ace/mode/folding/xml", ["require", "exports", "module", "ace/lib/oop", "
                     token = tokens[i + 1];
                     if (token && token.value == tagName)
                         return true;
-                }
+            }
             }
             return false;
         };
         this._readTagForward = function (iterator) {
             var token = iterator.getCurrentToken();
             if (!token)
-                return null;
+            return null;
 
             var tag = new Tag();
             do {
@@ -498,7 +498,7 @@ define("ace/mode/folding/xml", ["require", "exports", "module", "ace/lib/oop", "
         this._readTagBackward = function (iterator) {
             var token = iterator.getCurrentToken();
             if (!token)
-                return null;
+            return null;
 
             var tag = new Tag();
             do {
@@ -563,17 +563,17 @@ define("ace/mode/folding/xml", ["require", "exports", "module", "ace/lib/oop", "
                             return Range.fromPoints(tag.start, tag.end);
                         } else
                             continue;
-                    }
+                }
 
                     if (tag.closing) {
                         this._pop(stack, tag);
                         if (stack.length == 0)
                             return Range.fromPoints(start, tag.start);
-                    }
+                }
                     else {
                         stack.push(tag);
-                    }
                 }
+            }
             }
             else {
                 var iterator = new TokenIterator(session, row, firstTag.end.column);
@@ -590,19 +590,19 @@ define("ace/mode/folding/xml", ["require", "exports", "module", "ace/lib/oop", "
                             return Range.fromPoints(tag.start, tag.end);
                         } else
                             continue;
-                    }
+                }
 
                     if (!tag.closing) {
                         this._pop(stack, tag);
                         if (stack.length == 0) {
                             tag.start.column += tag.tagName.length + 2;
                             return Range.fromPoints(tag.start, end);
-                        }
                     }
+                }
                     else {
                         stack.push(tag);
                     }
-                }
+            }
             }
 
         };

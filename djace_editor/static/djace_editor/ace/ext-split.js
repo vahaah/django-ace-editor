@@ -64,7 +64,7 @@ define("ace/split", ["require", "exports", "module", "ace/lib/oop", "ace/lib/lan
                     this.$container.appendChild(editor.container);
                     editor.setFontSize(this.$fontSize);
                     this.$splits++;
-                }
+            }
                 while (this.$splits < splits) {
                     this.$createEditor();
                     this.$splits++;
@@ -180,7 +180,7 @@ define("ace/split", ["require", "exports", "module", "ace/lib/oop", "ace/lib/lan
                     editor.container.style.left = i * editorWidth + "px";
                     editor.container.style.height = height + "px";
                     editor.resize();
-                }
+            }
             } else {
                 var editorHeight = height / this.$splits;
                 for (var i = 0; i < this.$splits; i++) {
@@ -190,7 +190,7 @@ define("ace/split", ["require", "exports", "module", "ace/lib/oop", "ace/lib/lan
                     editor.container.style.left = "0px";
                     editor.container.style.height = editorHeight + "px";
                     editor.resize();
-                }
+            }
             }
         };
 

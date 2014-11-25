@@ -54,7 +54,7 @@ define("ace/mode/latex_highlight_rules", ["require", "exports", "module", "ace/l
                 defaultToken: "string"
             }]
 
-        };
+    };
     };
     oop.inherits(LatexHighlightRules, TextHighlightRules);
 
@@ -131,7 +131,7 @@ define("ace/mode/rdoc_highlight_rules", ["require", "exports", "module", "ace/li
                     regex: "\\w+"
                 }
             ]
-        };
+    };
     };
 
     oop.inherits(RDocHighlightRules, TextHighlightRules);
@@ -198,7 +198,7 @@ define("ace/mode/rdoc", ["require", "exports", "module", "ace/lib/oop", "ace/mod
     (function () {
         this.getNextLineIndent = function (state, line, tab) {
             return this.$getIndent(line);
-        };
+    };
         this.$id = "ace/mode/rdoc";
     }).call(Mode.prototype);
 

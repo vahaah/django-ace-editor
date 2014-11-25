@@ -10,8 +10,8 @@ define("ace/ext/modelist", ["require", "exports", "module"], function (require, 
             if (modes[i].supportsFile(fileName)) {
                 mode = modes[i];
                 break;
-            }
         }
+    }
         return mode;
     }
 

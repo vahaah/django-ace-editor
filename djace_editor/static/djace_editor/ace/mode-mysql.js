@@ -15,7 +15,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
                     defaultToken: "comment.doc",
                     caseInsensitive: true
                 }]
-        };
+    };
     };
 
     oop.inherits(DocCommentHighlightRules, TextHighlightRules);
@@ -32,7 +32,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
             token: "comment.doc", // doc comment
             regex: "\\/\\*(?=\\*)",
             next: start
-        };
+    };
     };
 
     DocCommentHighlightRules.getEndRule = function (start) {
@@ -40,7 +40,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
             token: "comment.doc", // closing comment
             regex: "\\*\\/",
             next: start
-        };
+    };
     };
 
 
@@ -79,8 +79,8 @@ define("ace/mode/mysql_highlight_rules", ["require", "exports", "module", "ace/l
                     {token: "constant.language.escape", regex: escapeSeq},
                     {token: "string.end", next: "start", regex: start},
                     {defaultToken: "string"}
-                ]
-            };
+            ]
+        };
         }
 
         this.$rules = {
@@ -126,7 +126,7 @@ define("ace/mode/mysql_highlight_rules", ["require", "exports", "module", "ace/l
                 {token: "comment", regex: "\\*\\/", next: "start"},
                 {defaultToken: "comment"}
             ]
-        };
+    };
 
         this.embedRules(DocCommentHighlightRules, "doc-", [DocCommentHighlightRules.getEndRule("start")]);
         this.normalizeRules();

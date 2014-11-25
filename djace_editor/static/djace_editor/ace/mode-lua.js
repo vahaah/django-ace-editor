@@ -69,23 +69,23 @@ define("ace/mode/lua_highlight_rules", ["require", "exports", "module", "ace/lib
                 onMatch: function (value, currentState, stack) {
                     stack.unshift(this.next, value.length - 2, currentState);
                     return "comment";
-                },
+            },
                 regex: /\-\-\[=*\[/,
                 next: [
-                    {
-                        onMatch: function (value, currentState, stack) {
-                            if (value.length == stack[1]) {
-                                stack.shift();
-                                stack.shift();
-                                this.next = stack.shift();
-                            } else {
-                                this.next = "";
-                            }
-                            return "comment";
-                        },
-                        regex: /\]=*\]/,
-                        next: "start"
-                    }, {
+                {
+                    onMatch: function (value, currentState, stack) {
+                        if (value.length == stack[1]) {
+                            stack.shift();
+                            stack.shift();
+                            this.next = stack.shift();
+                        } else {
+                            this.next = "";
+                        }
+                        return "comment";
+                    },
+                    regex: /\]=*\]/,
+                    next: "start"
+                }, {
                         defaultToken: "comment"
                     }
                 ]
@@ -103,21 +103,21 @@ define("ace/mode/lua_highlight_rules", ["require", "exports", "module", "ace/lib
                     },
                     regex: /\[=*\[/,
                     next: [
-                        {
-                            onMatch: function (value, currentState, stack) {
-                                if (value.length == stack[1]) {
-                                    stack.shift();
-                                    stack.shift();
-                                    this.next = stack.shift();
-                                } else {
-                                    this.next = "";
-                                }
-                                return "comment";
-                            },
+                {
+                    onMatch: function (value, currentState, stack) {
+                        if (value.length == stack[1]) {
+                            stack.shift();
+                            stack.shift();
+                            this.next = stack.shift();
+                        } else {
+                            this.next = "";
+                        }
+                        return "comment";
+                    },
 
-                            regex: /\]=*\]/,
-                            next: "start"
-                        }, {
+                    regex: /\]=*\]/,
+                    next: "start"
+                }, {
                             defaultToken: "comment"
                         }
                     ]
@@ -190,14 +190,14 @@ define("ace/mode/folding/lua", ["require", "exports", "module", "ace/lib/oop", "
                     return;
                 if (match[1]) {
                     if (session.getTokenAt(row, match.index + 1).type === "keyword")
-                        return "start";
+                    return "start";
                 } else if (match[2]) {
                     var type = session.bgTokenizer.getState(row) || "";
                     if (type[0] == "bracketedComment" || type[0] == "bracketedString")
                         return "start";
                 } else {
                     return "start";
-                }
+            }
             }
             if (foldStyle != "markbeginend" || !isEnd || isStart && isEnd)
                 return "";
@@ -205,7 +205,7 @@ define("ace/mode/folding/lua", ["require", "exports", "module", "ace/lib/oop", "
             var match = line.match(this.foldingStopMarker);
             if (match[0] === "end") {
                 if (session.getTokenAt(row, match.index + 1).type === "keyword")
-                    return "end";
+                return "end";
             } else if (match[0][0] === "]") {
                 var type = session.bgTokenizer.getState(row - 1) || "";
                 if (type[0] == "bracketedComment" || type[0] == "bracketedString")
@@ -232,7 +232,7 @@ define("ace/mode/folding/lua", ["require", "exports", "module", "ace/lib/oop", "
                 if (match[0] === "end") {
                     if (session.getTokenAt(row, match.index + 1).type === "keyword")
                         return this.luaBlock(session, row, match.index + 1);
-                }
+            }
 
                 if (match[0][0] === "]")
                     return session.getCommentFoldRange(row, match.index + 1);
@@ -251,7 +251,7 @@ define("ace/mode/folding/lua", ["require", "exports", "module", "ace/lib/oop", "
                 "end": -1,
                 "repeat": 1,
                 "until": -1
-            };
+        };
 
             var token = stream.getCurrentToken();
             if (!token || token.type != "keyword")
@@ -280,8 +280,8 @@ define("ace/mode/folding/lua", ["require", "exports", "module", "ace/lib/oop", "
                     if (!stack.length && token.value != "elseif")
                         break;
                     if (level === 0)
-                        stack.unshift(token.value);
-                }
+                    stack.unshift(token.value);
+            }
             }
 
             var row = stream.getCurrentTokenRow();
@@ -326,7 +326,7 @@ define("ace/mode/lua", ["require", "exports", "module", "ace/lib/oop", "ace/mode
             "repeat": 1,
             "end": -1,
             "until": -1
-        };
+    };
         var outdentKeywords = [
             "else",
             "elseif",
@@ -341,13 +341,13 @@ define("ace/mode/lua", ["require", "exports", "module", "ace/lib/oop", "ace/mode
                 if (token.type == "keyword") {
                     if (token.value in indentKeywords) {
                         level += indentKeywords[token.value];
-                    }
+                }
                 } else if (token.type == "paren.lparen") {
                     level++;
                 } else if (token.type == "paren.rparen") {
                     level--;
-                }
             }
+        }
             if (level < 0) {
                 return -1;
             } else if (level > 0) {
@@ -372,7 +372,7 @@ define("ace/mode/lua", ["require", "exports", "module", "ace/lib/oop", "ace/mode
             } else if (level < 0 && indent.substr(indent.length - tab.length) == tab) {
                 if (!this.checkOutdent(state, line, "\n")) {
                     return indent.substr(0, indent.length - tab.length);
-                }
+            }
             }
             return indent;
         };

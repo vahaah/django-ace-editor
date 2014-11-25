@@ -15,7 +15,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
                     defaultToken: "comment.doc",
                     caseInsensitive: true
                 }]
-        };
+    };
     };
 
     oop.inherits(DocCommentHighlightRules, TextHighlightRules);
@@ -32,7 +32,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
             token: "comment.doc", // doc comment
             regex: "\\/\\*(?=\\*)",
             next: start
-        };
+    };
     };
 
     DocCommentHighlightRules.getEndRule = function (start) {
@@ -40,7 +40,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
             token: "comment.doc", // closing comment
             regex: "\\*\\/",
             next: start
-        };
+    };
     };
 
 
@@ -173,7 +173,7 @@ define("ace/mode/perl_highlight_rules", ["require", "exports", "module", "ace/li
                     defaultToken: "comment.doc"
                 }
             ]
-        };
+    };
     };
 
     oop.inherits(PerlHighlightRules, TextHighlightRules);
@@ -349,32 +349,32 @@ define("ace/mode/json_highlight_rules", ["require", "exports", "module", "ace/li
                 {
                     token: "variable", // single line
                     regex: '["](?:(?:\\\\.)|(?:[^"\\\\]))*?["]\\s*(?=:)'
-                }, {
+            }, {
                     token: "string", // single line
                     regex: '"',
                     next: "string"
-                }, {
+            }, {
                     token: "constant.numeric", // hex
                     regex: "0[xX][0-9a-fA-F]+\\b"
-                }, {
+            }, {
                     token: "constant.numeric", // float
                     regex: "[+-]?\\d+(?:(?:\\.\\d*)?(?:[eE][+-]?\\d+)?)?\\b"
-                }, {
+            }, {
                     token: "constant.language.boolean",
                     regex: "(?:true|false)\\b"
-                }, {
+            }, {
                     token: "invalid.illegal", // single quoted strings are not allowed
                     regex: "['](?:(?:\\\\.)|(?:[^'\\\\]))*?[']"
-                }, {
+            }, {
                     token: "invalid.illegal", // comments are not allowed
                     regex: "\\/\\/.*$"
-                }, {
+            }, {
                     token: "paren.lparen",
                     regex: "[[({]"
-                }, {
+            }, {
                     token: "paren.rparen",
                     regex: "[\\])}]"
-                }, {
+            }, {
                     token: "text",
                     regex: "\\s+"
                 }
@@ -383,14 +383,14 @@ define("ace/mode/json_highlight_rules", ["require", "exports", "module", "ace/li
                 {
                     token: "constant.language.escape",
                     regex: /\\(?:x[0-9a-fA-F]{2}|u[0-9a-fA-F]{4}|["\\\/bfnrt])/
-                }, {
+            }, {
                     token: "string",
                     regex: '[^"\\\\]+'
-                }, {
+            }, {
                     token: "string",
                     regex: '"',
                     next: "start"
-                }, {
+            }, {
                     token: "string",
                     regex: "",
                     next: "start"
@@ -457,15 +457,15 @@ define("ace/mode/javascript_highlight_rules", ["require", "exports", "module", "
                     token: "comment", // multi line comment
                     regex: /\/\*/,
                     next: "comment"
-                }, {
+            }, {
                     token: "string",
                     regex: "'(?=.)",
                     next: "qstring"
-                }, {
+            }, {
                     token: "string",
                     regex: '"(?=.)',
                     next: "qqstring"
-                }, {
+            }, {
                     token: "constant.numeric", // hex
                     regex: /0[xX][0-9a-fA-F]+\b/
                 }, {
@@ -603,14 +603,14 @@ define("ace/mode/javascript_highlight_rules", ["require", "exports", "module", "
                     token: "constant.language.delimiter",
                     regex: /\|/
                 }, {
-                    token: "constant.language.escape",
+                token: "constant.language.escape",
                     regex: /\[\^?/,
                     next: "regex_character_class"
-                }, {
+            }, {
                     token: "empty",
                     regex: "$",
                     next: "no_regex"
-                }, {
+            }, {
                     defaultToken: "string.regexp"
                 }
             ],
@@ -619,17 +619,17 @@ define("ace/mode/javascript_highlight_rules", ["require", "exports", "module", "
                     token: "regexp.charclass.keyword.operator",
                     regex: "\\\\(?:u[\\da-fA-F]{4}|x[\\da-fA-F]{2}|.)"
                 }, {
-                    token: "constant.language.escape",
+                token: "constant.language.escape",
                     regex: "]",
                     next: "regex"
-                }, {
+            }, {
                     token: "constant.language.escape",
                     regex: "-"
-                }, {
+            }, {
                     token: "empty",
                     regex: "$",
                     next: "no_regex"
-                }, {
+            }, {
                     defaultToken: "string.regexp.charachterclass"
                 }
             ],
@@ -682,26 +682,26 @@ define("ace/mode/javascript_highlight_rules", ["require", "exports", "module", "
                     regex: '"|$',
                     next: "no_regex"
                 }, {
-                    defaultToken: "string"
+                defaultToken: "string"
                 }
             ],
             "qstring": [
                 {
                     token: "constant.language.escape",
                     regex: escapedRe
-                }, {
+            }, {
                     token: "string",
                     regex: "\\\\$",
                     next: "qstring"
-                }, {
+            }, {
                     token: "string",
                     regex: "'|$",
                     next: "no_regex"
-                }, {
-                    defaultToken: "string"
+            }, {
+                defaultToken: "string"
                 }
             ]
-        };
+    };
 
 
         if (!options || !options.noES6) {
@@ -711,13 +711,13 @@ define("ace/mode/javascript_highlight_rules", ["require", "exports", "module", "
                     if (val == "{" && stack.length) {
                         stack.unshift("start", state);
                         return "paren";
-                    }
+                }
                     if (val == "}" && stack.length) {
                         stack.shift();
                         this.next = stack.shift();
                         if (this.next.indexOf("string") != -1)
                             return "paren.quasi.end";
-                    }
+                }
                     return val == "{" ? "paren.lparen" : "paren.rparen";
                 },
                 nextState: "start"
@@ -727,7 +727,7 @@ define("ace/mode/javascript_highlight_rules", ["require", "exports", "module", "
                 push: [{
                     token: "constant.language.escape",
                     regex: escapedRe
-                }, {
+            }, {
                     token: "paren.quasi.start",
                     regex: /\${/,
                     push: "start"
@@ -1324,7 +1324,7 @@ define("ace/mode/pgsql_highlight_rules", ["require", "exports", "module", "ace/l
                 regex: ".+"
             }
             ]
-        };
+    };
 
         this.embedRules(DocCommentHighlightRules, "doc-", [DocCommentHighlightRules.getEndRule("start")]);
         this.embedRules(PerlHighlightRules, "perl-", [{token: "string", regex: "\\$perl\\$", next: "statement"}]);
@@ -1363,7 +1363,7 @@ define("ace/mode/pgsql", ["require", "exports", "module", "ace/lib/oop", "ace/mo
                 return "";
             } else {
                 return this.$getIndent(line); // Keep whatever indent the previous line has
-            }
+        }
         }
 
         this.$id = "ace/mode/pgsql";

@@ -146,7 +146,7 @@ define("ace/mode/coffee_highlight_rules", ["require", "exports", "module", "ace/
                     token: ["entity.name.function", "text", "keyword.operator", "text"].concat(functionRule.token),
                     regex: "(" + identifier + ")(\\s*)([=:])(\\s*)" + functionRule.regex
                 },
-                functionRule,
+                functionRule, 
                 {
                     token: "variable",
                     regex: "@(?:" + identifier + ")?"
@@ -310,8 +310,8 @@ define("ace/mode/folding/coffee", ["require", "exports", "module", "ace/lib/oop"
                 if (session.getLine(row - 2).search(/\S/) == -1) {
                     session.foldWidgets[row - 1] = "start";
                     session.foldWidgets[row + 1] = "";
-                    return "";
-                }
+                return "";
+            }
             }
 
             if (prevIndent != -1 && prevIndent < indent)

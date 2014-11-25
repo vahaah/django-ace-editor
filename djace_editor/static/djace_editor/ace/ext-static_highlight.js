@@ -53,8 +53,8 @@ counter-reset: ace_line;\
                     data += ch.data;
                 } else {
                     nodes.push(textLen, ch);
-                }
             }
+        }
         } else {
             data = dom.getInnerText(el);
             if (opts.trim)
@@ -70,7 +70,7 @@ counter-reset: ace_line;\
                 var node = nodes[i + 1];
                 var lineEl = container.children[pos.row];
                 lineEl && lineEl.appendChild(node);
-            }
+        }
             callback && callback();
         });
     };
@@ -117,7 +117,7 @@ counter-reset: ace_line;\
         textLayer.config = {
             characterWidth: 10,
             lineHeight: 20
-        };
+    };
 
         session.setValue(input);
 
@@ -143,7 +143,7 @@ counter-reset: ace_line;\
             css: baseStyles + theme.cssText,
             html: html,
             session: session
-        };
+    };
     };
 
     module.exports = highlight;

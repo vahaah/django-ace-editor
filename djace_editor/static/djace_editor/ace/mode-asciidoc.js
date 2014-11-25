@@ -195,12 +195,12 @@ define("ace/mode/asciidoc_highlight_rules", ["require", "exports", "module", "ac
                         args = args.filter(function (x) {
                             return !x.next;
                         });
-                    }
+                }
                     stateRules.splice.apply(stateRules, args);
                 } else if (rule.token in tokenMap) {
                     rule.token = tokenMap[rule.token];
-                }
             }
+        }
         }
     };
     oop.inherits(AsciidocHighlightRules, TextHighlightRules);
@@ -230,10 +230,10 @@ define("ace/mode/folding/asciidoc", ["require", "exports", "module", "ace/lib/oo
 
             if (line[0] == "=") {
                 if (this.singleLineHeadingRe.test(line))
-                    return "start";
+                return "start";
                 if (session.getLine(row - 1).length != session.getLine(row).length)
                     return "";
-                return "start";
+            return "start";
             }
             if (session.bgTokenizer.getState(row) == "dissallowDelimitedBlock")
                 return "end";
@@ -268,7 +268,7 @@ define("ace/mode/folding/asciidoc", ["require", "exports", "module", "ace/lib/oo
                 if (level == 1) {
                     if (session.getLine(row - 1).length != session.getLine(row).length)
                         return Infinity;
-                }
+            }
                 return level;
             }
 
@@ -288,7 +288,7 @@ define("ace/mode/folding/asciidoc", ["require", "exports", "module", "ace/lib/oo
                 if (endRow > startRow) {
                     while (endRow > startRow && (!getTokenType(endRow) || token.value[0] == "["))
                         endRow--;
-                }
+            }
 
                 if (endRow > startRow) {
                     var endColumn = session.getLine(endRow).length;
@@ -299,24 +299,24 @@ define("ace/mode/folding/asciidoc", ["require", "exports", "module", "ace/lib/oo
                 if (state == "dissallowDelimitedBlock") {
                     while (row-- > 0) {
                         if (session.bgTokenizer.getState(row).lastIndexOf("Block") == -1)
-                            break;
-                    }
+                        break;
+                }
                     endRow = row + 1;
                     if (endRow < startRow) {
                         var endColumn = session.getLine(row).length;
                         return new Range(endRow, 5, startRow, startColumn - 5);
-                    }
-                } else {
+                }
+            } else {
                     while (++row < maxRow) {
                         if (session.bgTokenizer.getState(row) == "dissallowDelimitedBlock")
                             break;
-                    }
+                }
                     endRow = row;
                     if (endRow > startRow) {
                         var endColumn = session.getLine(row).length;
                         return new Range(startRow, 5, endRow, endColumn - 5);
                     }
-                }
+            }
             }
         };
 
@@ -346,9 +346,9 @@ define("ace/mode/asciidoc", ["require", "exports", "module", "ace/lib/oop", "ace
                 var match = /^((?:.+)?)([-+*][ ]+)/.exec(line);
                 if (match) {
                     return new Array(match[1].length + 1).join(" ") + match[2];
-                } else {
+            } else {
                     return "";
-                }
+            }
             } else {
                 return this.$getIndent(line);
             }

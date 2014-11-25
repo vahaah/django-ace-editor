@@ -40,7 +40,7 @@ define("ace/mode/lucene_highlight_rules", ["require", "exports", "module", "ace/
                     regex: "\\s+"
                 }
             ]
-        };
+    };
     };
 
     oop.inherits(LuceneHighlightRules, TextHighlightRules);

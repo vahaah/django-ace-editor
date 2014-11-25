@@ -52,7 +52,7 @@ define("ace/mode/scheme_highlight_rules", ["require", "exports", "module", "ace/
                     "token": "string",
                     "regex": '"(?=.)',
                     "next": "qqstring"
-                }
+        }
             ],
             "qqstring": [
                 {

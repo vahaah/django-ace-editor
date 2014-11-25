@@ -26,7 +26,7 @@ define("ace/occur", ["require", "exports", "module", "ace/lib/oop", "ace/range",
             var translatedPos = pos && this.occurToOriginalPosition(editor.session, pos);
             this.displayOriginalContent(editor);
             if (translatedPos)
-                editor.moveCursorToPosition(translatedPos);
+            editor.moveCursorToPosition(translatedPos);
             return true;
         }
 
@@ -64,7 +64,7 @@ define("ace/occur", ["require", "exports", "module", "ace/lib/oop", "ace/range",
             for (var i = 0; i < lines.length; i++) {
                 if (lines[i].row === pos.row)
                     return {row: i, column: pos.column};
-            }
+        }
             return nullPos;
         }
         this.occurToOriginalPosition = function (session, pos) {
@@ -403,7 +403,7 @@ define("ace/commands/incremental_search_commands", ["require", "exports", "modul
                 if (extendCmd) {
                     return {command: extendCmd, args: key};
                 }
-            }
+        }
             return {command: "null", passEvent: hashId == 0 || hashId == 4};
         }
 
@@ -442,7 +442,7 @@ define("ace/incremental_search", ["require", "exports", "module", "ace/lib/oop",
         return {
             expression: string.slice(start + 1, flagStart),
             flags: string.slice(flagStart + 1)
-        }
+    }
     }
 
     function stringToRegExp(string, flags) {
@@ -471,7 +471,7 @@ define("ace/incremental_search", ["require", "exports", "module", "ace/lib/oop",
             this.$mousedownHandler = ed.addEventListener('mousedown', this.onMouseDown.bind(this));
             this.selectionFix(ed);
             this.statusMessage(true);
-        }
+    }
 
         this.deactivate = function (reset) {
             this.cancelSearch(reset);
@@ -480,16 +480,16 @@ define("ace/incremental_search", ["require", "exports", "module", "ace/lib/oop",
             if (this.$mousedownHandler) {
                 ed.removeEventListener('mousedown', this.$mousedownHandler);
                 delete this.$mousedownHandler;
-            }
+        }
             ed.onPaste = this.$originalEditorOnPaste;
             this.message('');
-        }
+    }
 
         this.selectionFix = function (editor) {
             if (editor.selection.isEmpty() && !editor.session.$emacsMark) {
                 editor.clearSelection();
-            }
         }
+    }
 
         this.highlight = function (regexp) {
             var sess = this.$editor.session,
@@ -497,7 +497,7 @@ define("ace/incremental_search", ["require", "exports", "module", "ace/lib/oop",
                     new SearchHighlight(null, "ace_isearch-result", "text"));
             hl.setRegexp(regexp);
             sess._emit("changeBackMarker"); // force highlight layer redraw
-        }
+    }
 
         this.cancelSearch = function (reset) {
             var e = this.$editor;
@@ -508,7 +508,7 @@ define("ace/incremental_search", ["require", "exports", "module", "ace/lib/oop",
                 this.$currentPos = this.$startPos;
             } else {
                 e.pushEmacsMark && e.pushEmacsMark(this.$startPos, false);
-            }
+        }
             this.highlight(null);
             return Range.fromPoints(this.$currentPos, this.$currentPos);
         }
@@ -518,7 +518,7 @@ define("ace/incremental_search", ["require", "exports", "module", "ace/lib/oop",
             var options = this.$options;
             if (needleUpdateFunc) {
                 options.needle = needleUpdateFunc.call(this, options.needle || '') || '';
-            }
+        }
             if (options.needle.length === 0) {
                 this.statusMessage(true);
                 return this.cancelSearch(true);
@@ -534,7 +534,7 @@ define("ace/incremental_search", ["require", "exports", "module", "ace/lib/oop",
                 this.$editor.selection.setRange(Range.fromPoints(shouldSelect ? this.$startPos : found.end, found.end));
                 if (moveToNext) this.$currentPos = found.end;
                 this.highlight(options.re)
-            }
+        }
 
             this.statusMessage(found);
 
@@ -606,7 +606,7 @@ define("ace/incremental_search", ["require", "exports", "module", "ace/lib/oop",
                 this.$editor.focus();
             } else {
                 console.log(msg);
-            }
+        }
         }
 
     }).call(IncrementalSearch.prototype);
@@ -652,7 +652,7 @@ div.ace_isearch-result {\
                     }
                 });
                 this._emit('incrementalSearchSettingChanged', {isEnabled: val});
-            }
+        }
         }
     });
 
@@ -767,7 +767,7 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
                 markRing.splice(markIndex, 1,
                     "row" in replacement && "column" in replacement ?
                         replacement : undefined);
-            }
+        }
             return lastMark;
         }
 
@@ -826,7 +826,7 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
         var hashId = 0;
         c.split("-").forEach(function (c) {
             hashId = hashId | keys[eMods[c]];
-        });
+    });
         eMods[hashId] = c.toLowerCase() + "-";
     });
 
@@ -881,7 +881,7 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
                 var str = new Array(data.count + 1).join(key);
                 data.count = null;
                 return {command: "insertstring", args: str};
-            }
+        }
         }
 
         var modifier = eMods[hashId];
@@ -891,7 +891,7 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
                 data.count = Math.max(data.count, 0) || 0;
                 data.count = 10 * data.count + count;
                 return {command: "null"};
-            }
+        }
         }
         if (modifier) key = modifier + key;
         if (data.keyChain) key = data.keyChain += " " + key;
@@ -911,7 +911,7 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
             if (command === "goorselect") {
                 command = editor.emacsMark() ? args[1] : args[0];
                 args = null;
-            }
+        }
         }
 
         if (typeof command === "string") {
@@ -919,7 +919,7 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
                 command === "splitline" ||
                 command === "togglecomment") {
                 editor.pushEmacsMark();
-            }
+        }
             command = this.commands[command] || editor.commands.commands[command];
             if (!command) return undefined;
         }
@@ -947,7 +947,7 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
             } else {
                 if (!args) args = {};
                 if (typeof args === 'object') args.count = count;
-            }
+        }
         }
 
         return {command: command, args: args};
@@ -1053,7 +1053,7 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
                     else moveToMark();
                     moveToMark();
                     return;
-                }
+            }
 
                 var mark = editor.emacsMark(),
                     ranges = editor.selection.getAllRanges(),
@@ -1084,7 +1084,7 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
                     mark && editor.moveCursorToPosition(mark);
                 }
 
-            },
+        },
             readOnly: true,
             handlesCount: true
         },
@@ -1103,7 +1103,7 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
                 } else { // create selection to last mark
                     sel.selectToPosition(editor.emacsMarkForSelection());
                 }
-            },
+        },
             readOnly: true,
             handlesCount: true,
             multiSelectAction: "forEach"
@@ -1116,13 +1116,13 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
                 else
                     editor.selection.selectWordRight();
 
-                var range = editor.getSelectionRange();
-                var text = editor.session.getTextRange(range);
-                exports.killRing.add(text);
+            var range = editor.getSelectionRange();
+            var text = editor.session.getTextRange(range);
+            exports.killRing.add(text);
 
-                editor.session.remove(range);
-                editor.clearSelection();
-            },
+            editor.session.remove(range);
+            editor.clearSelection();
+        },
             multiSelectAction: "forEach"
         },
         killLine: function (editor) {
@@ -1158,7 +1158,7 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
             exec: function (editor) {
                 exports.killRing.add(editor.getCopyText());
                 editor.commands.byName.cut.exec(editor);
-            },
+        },
             readOnly: true,
             multiSelectAction: "forEach"
         },
@@ -1183,7 +1183,7 @@ define("ace/keyboard/emacs", ["require", "exports", "module", "ace/lib/dom", "ac
                     else deselect();
                     editor.session.$emacsMarkRing = marks.concat(deselectedMarks.reverse());
                 }, 0);
-            },
+        },
             readOnly: true
         },
         keyboardQuit: function (editor) {

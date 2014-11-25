@@ -15,7 +15,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
                     defaultToken: "comment.doc",
                     caseInsensitive: true
                 }]
-        };
+    };
     };
 
     oop.inherits(DocCommentHighlightRules, TextHighlightRules);
@@ -32,7 +32,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
             token: "comment.doc", // doc comment
             regex: "\\/\\*(?=\\*)",
             next: start
-        };
+    };
     };
 
     DocCommentHighlightRules.getEndRule = function (start) {
@@ -40,7 +40,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
             token: "comment.doc", // closing comment
             regex: "\\*\\/",
             next: start
-        };
+    };
     };
 
 
@@ -139,7 +139,7 @@ define("ace/mode/d_highlight_rules", ["require", "exports", "module", "ace/lib/o
                     onMatch: function (value, currentState, state) {
                         state.unshift(this.next, value.substr(2));
                         return "string";
-                    },
+                },
                     regex: 'q"(?:[\\[\\(\\{\\<]+)',
                     next: 'operator-heredoc-string'
                 }, {
@@ -327,7 +327,7 @@ define("ace/mode/d_highlight_rules", ["require", "exports", "module", "ace/lib/o
                     regex: '\\s+'
                 }
             ]
-        };
+    };
 
         this.embedRules(DocCommentHighlightRules, "doc-",
             [DocCommentHighlightRules.getEndRule("start")]);
@@ -388,7 +388,7 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
                         range = this.getSectionRange(session, row);
                     } else if (foldStyle != "all")
                         range = null;
-                }
+            }
 
                 return range;
             }
@@ -426,13 +426,13 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
 
                 if (subRange) {
                     if (subRange.start.row <= startRow) {
-                        break;
+                    break;
                     } else if (subRange.isMultiLine()) {
                         row = subRange.end.row;
                     } else if (startIndent == indent) {
                         break;
-                    }
                 }
+            }
                 endRow = row;
             }
 

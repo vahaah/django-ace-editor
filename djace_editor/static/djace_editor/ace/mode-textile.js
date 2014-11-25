@@ -13,7 +13,7 @@ define("ace/mode/textile_highlight_rules", ["require", "exports", "module", "ace
                             return "markup.heading." + value.charAt(1);
                         else
                             return "markup.heading";
-                    },
+                },
                     regex: "h1|h2|h3|h4|h5|h6|bq|p|bc|pre",
                     next: "blocktag"
                 },
@@ -53,7 +53,7 @@ define("ace/mode/textile_highlight_rules", ["require", "exports", "module", "ace
                     regex: "#"
                 }
             ]
-        };
+    };
     };
 
     oop.inherits(TextileHighlightRules, TextHighlightRules);
@@ -124,7 +124,7 @@ define("ace/mode/textile", ["require", "exports", "module", "ace/lib/oop", "ace/
                 return tab;
 
             return "";
-        };
+    };
 
         this.checkOutdent = function (state, line, input) {
             return this.$outdent.checkOutdent(line, input);

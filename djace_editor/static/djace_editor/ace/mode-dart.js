@@ -15,7 +15,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
                     defaultToken: "comment.doc",
                     caseInsensitive: true
                 }]
-        };
+    };
     };
 
     oop.inherits(DocCommentHighlightRules, TextHighlightRules);
@@ -32,7 +32,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
             token: "comment.doc", // doc comment
             regex: "\\/\\*(?=\\*)",
             next: start
-        };
+    };
     };
 
     DocCommentHighlightRules.getEndRule = function (start) {
@@ -40,7 +40,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
             token: "comment.doc", // closing comment
             regex: "\\*\\/",
             next: start
-        };
+    };
     };
 
 
@@ -228,7 +228,7 @@ define("ace/mode/c_cpp_highlight_rules", ["require", "exports", "module", "ace/l
                     next: "start"
                 }
             ]
-        };
+    };
 
         this.embedRules(DocCommentHighlightRules, "doc-",
             [DocCommentHighlightRules.getEndRule("start")]);
@@ -312,7 +312,7 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
             maybeInsertedRow: -1,
             maybeInsertedLineStart: "",
             maybeInsertedLineEnd: ""
-        };
+    };
     };
 
     var CstyleBehaviour = function () {
@@ -331,17 +331,17 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                 } else if (CstyleBehaviour.isSaneInsertion(editor, session)) {
                     if (/[\]\}\)]/.test(line[cursor.column]) || editor.inMultiSelectMode) {
                         CstyleBehaviour.recordAutoInsert(editor, session, "}");
-                        return {
-                            text: '{}',
-                            selection: [1, 1]
-                        };
-                    } else {
+                    return {
+                        text: '{}',
+                        selection: [1, 1]
+                    };
+                } else {
                         CstyleBehaviour.recordMaybeInsert(editor, session, "{");
                         return {
                             text: '{',
                             selection: [1, 1]
                         };
-                    }
+                }
                 }
             } else if (text == '}') {
                 initContext(editor);
@@ -371,10 +371,10 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                     var next_indent = this.$getIndent(session.getLine(openBracePos.row));
                 } else if (closing) {
                     var next_indent = this.$getIndent(line);
-                } else {
-                    CstyleBehaviour.clearMaybeInsertedClosing();
+            } else {
+                CstyleBehaviour.clearMaybeInsertedClosing();
                     return;
-                }
+            }
                 var indent = next_indent + session.getTabString();
 
                 return {
@@ -397,7 +397,7 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                     return range;
                 } else {
                     context.maybeInsertedBrackets--;
-                }
+            }
             }
         });
 
@@ -427,12 +427,12 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                     var matching = session.$findOpeningBracket(')', {column: cursor.column + 1, row: cursor.row});
                     if (matching !== null && CstyleBehaviour.isAutoInsertedClosing(cursor, line, text)) {
                         CstyleBehaviour.popAutoInsertedClosing();
-                        return {
-                            text: '',
-                            selection: [1, 1]
-                        };
-                    }
+                    return {
+                        text: '',
+                        selection: [1, 1]
+                    };
                 }
+            }
             }
         });
 
@@ -445,7 +445,7 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                 if (rightChar == ')') {
                     range.end.column++;
                     return range;
-                }
+            }
             }
         });
 
@@ -475,11 +475,11 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                     var matching = session.$findOpeningBracket(']', {column: cursor.column + 1, row: cursor.row});
                     if (matching !== null && CstyleBehaviour.isAutoInsertedClosing(cursor, line, text)) {
                         CstyleBehaviour.popAutoInsertedClosing();
-                        return {
-                            text: '',
-                            selection: [1, 1]
-                        };
-                    }
+                    return {
+                        text: '',
+                        selection: [1, 1]
+                    };
+                }
                 }
             }
         });
@@ -509,12 +509,12 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                         selection: false
                     };
                 } else {
-                    var cursor = editor.getCursorPosition();
-                    var line = session.doc.getLine(cursor.row);
+                var cursor = editor.getCursorPosition();
+                var line = session.doc.getLine(cursor.row);
                     var leftChar = line.substring(cursor.column - 1, cursor.column);
                     if (leftChar == '\\') {
                         return null;
-                    }
+                }
                     var tokens = session.getTokens(selection.start.row);
                     var col = 0, token;
                     var quotepos = -1; // Track whether we're inside an open quote.
@@ -530,24 +530,24 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                             break;
                         }
                         col += tokens[x].value.length;
-                    }
+                }
                     if (!token || (quotepos < 0 && token.type !== "comment" && (token.type !== "string" || ((selection.start.column !== token.value.length + col - 1) && token.value.lastIndexOf(quote) === token.value.length - 1)))) {
                         if (!CstyleBehaviour.isSaneInsertion(editor, session))
                             return;
-                        return {
-                            text: quote + quote,
-                            selection: [1, 1]
-                        };
+                    return {
+                        text: quote + quote,
+                        selection: [1, 1]
+                    };
                     } else if (token && token.type === "string") {
                         var rightChar = line.substring(cursor.column, cursor.column + 1);
                         if (rightChar == quote) {
-                            return {
-                                text: '',
-                                selection: [1, 1]
-                            };
-                        }
+                        return {
+                            text: '',
+                            selection: [1, 1]
+                        };
                     }
                 }
+            }
             }
         });
 
@@ -560,7 +560,7 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                 if (rightChar == selected) {
                     range.end.column++;
                     return range;
-                }
+            }
             }
         });
 
@@ -677,7 +677,7 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
                         range = this.getSectionRange(session, row);
                     } else if (foldStyle != "all")
                         range = null;
-                }
+            }
 
                 return range;
             }
@@ -715,13 +715,13 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
 
                 if (subRange) {
                     if (subRange.start.row <= startRow) {
-                        break;
+                    break;
                     } else if (subRange.isMultiLine()) {
                         row = subRange.end.row;
                     } else if (startIndent == indent) {
                         break;
-                    }
                 }
+            }
                 endRow = row;
             }
 
@@ -782,9 +782,9 @@ define("ace/mode/c_cpp", ["require", "exports", "module", "ace/lib/oop", "ace/mo
                 if (match) {
                     if (match[1]) {
                         indent += " ";
-                    }
-                    indent += "* ";
                 }
+                    indent += "* ";
+            }
             }
 
             return indent;

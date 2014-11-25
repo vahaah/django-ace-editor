@@ -15,7 +15,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
                     defaultToken: "comment.doc",
                     caseInsensitive: true
                 }]
-        };
+    };
     };
 
     oop.inherits(DocCommentHighlightRules, TextHighlightRules);
@@ -32,7 +32,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
             token: "comment.doc", // doc comment
             regex: "\\/\\*(?=\\*)",
             next: start
-        };
+    };
     };
 
     DocCommentHighlightRules.getEndRule = function (start) {
@@ -40,7 +40,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
             token: "comment.doc", // closing comment
             regex: "\\*\\/",
             next: start
-        };
+    };
     };
 
 
@@ -354,13 +354,13 @@ define("ace/mode/javascript_highlight_rules", ["require", "exports", "module", "
                     if (val == "{" && stack.length) {
                         stack.unshift("start", state);
                         return "paren";
-                    }
+                }
                     if (val == "}" && stack.length) {
                         stack.shift();
                         this.next = stack.shift();
                         if (this.next.indexOf("string") != -1)
                             return "paren.quasi.end";
-                    }
+                }
                     return val == "{" ? "paren.lparen" : "paren.rparen";
                 },
                 nextState: "start"
@@ -370,7 +370,7 @@ define("ace/mode/javascript_highlight_rules", ["require", "exports", "module", "
                 push: [{
                     token: "constant.language.escape",
                     regex: escapedRe
-                }, {
+            }, {
                     token: "paren.quasi.start",
                     regex: /\${/,
                     push: "start"
@@ -468,7 +468,7 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
             maybeInsertedRow: -1,
             maybeInsertedLineStart: "",
             maybeInsertedLineEnd: ""
-        };
+    };
     };
 
     var CstyleBehaviour = function () {
@@ -487,17 +487,17 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                 } else if (CstyleBehaviour.isSaneInsertion(editor, session)) {
                     if (/[\]\}\)]/.test(line[cursor.column]) || editor.inMultiSelectMode) {
                         CstyleBehaviour.recordAutoInsert(editor, session, "}");
-                        return {
-                            text: '{}',
-                            selection: [1, 1]
-                        };
-                    } else {
+                    return {
+                        text: '{}',
+                        selection: [1, 1]
+                    };
+                } else {
                         CstyleBehaviour.recordMaybeInsert(editor, session, "{");
                         return {
                             text: '{',
                             selection: [1, 1]
                         };
-                    }
+                }
                 }
             } else if (text == '}') {
                 initContext(editor);
@@ -527,10 +527,10 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                     var next_indent = this.$getIndent(session.getLine(openBracePos.row));
                 } else if (closing) {
                     var next_indent = this.$getIndent(line);
-                } else {
-                    CstyleBehaviour.clearMaybeInsertedClosing();
+            } else {
+                CstyleBehaviour.clearMaybeInsertedClosing();
                     return;
-                }
+            }
                 var indent = next_indent + session.getTabString();
 
                 return {
@@ -553,7 +553,7 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                     return range;
                 } else {
                     context.maybeInsertedBrackets--;
-                }
+            }
             }
         });
 
@@ -583,12 +583,12 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                     var matching = session.$findOpeningBracket(')', {column: cursor.column + 1, row: cursor.row});
                     if (matching !== null && CstyleBehaviour.isAutoInsertedClosing(cursor, line, text)) {
                         CstyleBehaviour.popAutoInsertedClosing();
-                        return {
-                            text: '',
-                            selection: [1, 1]
-                        };
-                    }
+                    return {
+                        text: '',
+                        selection: [1, 1]
+                    };
                 }
+            }
             }
         });
 
@@ -601,7 +601,7 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                 if (rightChar == ')') {
                     range.end.column++;
                     return range;
-                }
+            }
             }
         });
 
@@ -631,11 +631,11 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                     var matching = session.$findOpeningBracket(']', {column: cursor.column + 1, row: cursor.row});
                     if (matching !== null && CstyleBehaviour.isAutoInsertedClosing(cursor, line, text)) {
                         CstyleBehaviour.popAutoInsertedClosing();
-                        return {
-                            text: '',
-                            selection: [1, 1]
-                        };
-                    }
+                    return {
+                        text: '',
+                        selection: [1, 1]
+                    };
+                }
                 }
             }
         });
@@ -665,12 +665,12 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                         selection: false
                     };
                 } else {
-                    var cursor = editor.getCursorPosition();
-                    var line = session.doc.getLine(cursor.row);
+                var cursor = editor.getCursorPosition();
+                var line = session.doc.getLine(cursor.row);
                     var leftChar = line.substring(cursor.column - 1, cursor.column);
                     if (leftChar == '\\') {
                         return null;
-                    }
+                }
                     var tokens = session.getTokens(selection.start.row);
                     var col = 0, token;
                     var quotepos = -1; // Track whether we're inside an open quote.
@@ -686,24 +686,24 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                             break;
                         }
                         col += tokens[x].value.length;
-                    }
+                }
                     if (!token || (quotepos < 0 && token.type !== "comment" && (token.type !== "string" || ((selection.start.column !== token.value.length + col - 1) && token.value.lastIndexOf(quote) === token.value.length - 1)))) {
                         if (!CstyleBehaviour.isSaneInsertion(editor, session))
                             return;
-                        return {
-                            text: quote + quote,
-                            selection: [1, 1]
-                        };
+                    return {
+                        text: quote + quote,
+                        selection: [1, 1]
+                    };
                     } else if (token && token.type === "string") {
                         var rightChar = line.substring(cursor.column, cursor.column + 1);
                         if (rightChar == quote) {
-                            return {
-                                text: '',
-                                selection: [1, 1]
-                            };
-                        }
+                        return {
+                            text: '',
+                            selection: [1, 1]
+                        };
                     }
                 }
+            }
             }
         });
 
@@ -716,7 +716,7 @@ define("ace/mode/behaviour/cstyle", ["require", "exports", "module", "ace/lib/oo
                 if (rightChar == selected) {
                     range.end.column++;
                     return range;
-                }
+            }
             }
         });
 
@@ -833,7 +833,7 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
                         range = this.getSectionRange(session, row);
                     } else if (foldStyle != "all")
                         range = null;
-                }
+            }
 
                 return range;
             }
@@ -871,13 +871,13 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
 
                 if (subRange) {
                     if (subRange.start.row <= startRow) {
-                        break;
+                    break;
                     } else if (subRange.isMultiLine()) {
                         row = subRange.end.row;
                     } else if (startIndent == indent) {
                         break;
-                    }
                 }
+            }
                 endRow = row;
             }
 
@@ -929,7 +929,7 @@ define("ace/mode/javascript", ["require", "exports", "module", "ace/lib/oop", "a
                 var match = line.match(/^.*(?:\bcase\b.*\:|[\{\(\[])\s*$/);
                 if (match) {
                     indent += tab;
-                }
+            }
             } else if (state == "doc-start") {
                 if (endState == "start" || endState == "no_regex") {
                     return "";
@@ -938,9 +938,9 @@ define("ace/mode/javascript", ["require", "exports", "module", "ace/lib/oop", "a
                 if (match) {
                     if (match[1]) {
                         indent += " ";
-                    }
-                    indent += "* ";
                 }
+                    indent += "* ";
+            }
             }
 
             return indent;
@@ -1108,7 +1108,7 @@ define("ace/mode/css_highlight_rules", ["require", "exports", "module", "ace/lib
                 }, {
                     caseInsensitive: true
                 }]
-        };
+    };
 
         this.normalizeRules();
     };
@@ -1147,14 +1147,14 @@ define("ace/mode/behaviour/css", ["require", "exports", "module", "ace/lib/oop",
                             text: '',
                             selection: [1, 1]
                         }
-                    }
+                }
                     if (!line.substring(cursor.column).match(/^\s*;/)) {
                         return {
                             text: ':;',
                             selection: [1, 1]
-                        }
                     }
                 }
+            }
             }
         });
 
@@ -1173,8 +1173,8 @@ define("ace/mode/behaviour/css", ["require", "exports", "module", "ace/lib/oop",
                     if (rightChar === ';') {
                         range.end.column++;
                         return range;
-                    }
                 }
+            }
             }
         });
 
@@ -1187,8 +1187,8 @@ define("ace/mode/behaviour/css", ["require", "exports", "module", "ace/lib/oop",
                     return {
                         text: '',
                         selection: [1, 1]
-                    }
                 }
+            }
             }
         });
 
@@ -1429,7 +1429,7 @@ define("ace/mode/xml_highlight_rules", ["require", "exports", "module", "ace/lib
                     {defaultToken: "string.attribute-value.xml"}
                 ]
             }]
-        };
+    };
 
         if (this.constructor === XmlHighlightRules)
             this.normalizeRules();
@@ -1445,7 +1445,7 @@ define("ace/mode/xml_highlight_rules", ["require", "exports", "module", "ace/lib
                 next: [
                     {include: "attributes"},
                     {token: "meta.tag.punctuation.tag-close.xml", regex: "/?>", next: prefix + "start"}
-                ]
+            ]
             });
 
             this.$rules[tag + "-end"] = [
@@ -1521,12 +1521,12 @@ define("ace/mode/html_highlight_rules", ["require", "exports", "module", "ace/li
                 token: "keyword.operator.attribute-equals.xml",
                 regex: "=",
                 push: [{
-                    include: "tag_whitespace"
-                }, {
+                include: "tag_whitespace"
+            }, {
                     token: "string.unquoted.attribute-value.html",
                     regex: "[^<>='\"`\\s]+",
                     next: "pop"
-                }, {
+            }, {
                     token: "empty",
                     regex: "",
                     next: "pop"
@@ -1607,7 +1607,7 @@ define("ace/mode/behaviour/xml", ["require", "exports", "module", "ace/lib/oop",
 
                 while (is(token, "tag-whitespace") || is(token, "whitespace")) {
                     token = iterator.stepBackward();
-                }
+            }
                 var rightSpace = !rightChar || rightChar.match(/\s/);
                 if (is(token, "attribute-equals") && (rightSpace || rightChar == '>') || (is(token, "decl-attribute-equals") && (rightSpace || rightChar == '?'))) {
                     return {
@@ -1626,7 +1626,7 @@ define("ace/mode/behaviour/xml", ["require", "exports", "module", "ace/lib/oop",
                 if (rightChar == selected) {
                     range.end.column++;
                     return range;
-                }
+            }
             }
         });
 
@@ -1646,7 +1646,7 @@ define("ace/mode/behaviour/xml", ["require", "exports", "module", "ace/lib/oop",
                         var tokenEnd = iterator.getCurrentTokenColumn() + token.value.length;
                         if (tokenEnd > position.column || tokenEnd == position.column && firstChar != lastChar)
                             return;
-                    }
+                }
                 }
                 while (!is(token, "tag-name")) {
                     token = iterator.stepBackward();
@@ -1709,9 +1709,9 @@ define("ace/mode/behaviour/xml", ["require", "exports", "module", "ace/lib/oop",
                             return {
                                 text: "\n" + indent
                             };
-                        }
                     }
                 }
+            }
             }
         });
 
@@ -1842,17 +1842,17 @@ define("ace/mode/folding/xml", ["require", "exports", "module", "ace/lib/oop", "
                     tag.end.column += token.value.length;
                     for (i++; i < tokens.length; i++) {
                         token = tokens[i];
-                        tag.end.column += token.value.length;
+                    tag.end.column += token.value.length;
                         if (is(token, "tag-close")) {
                             tag.selfClosing = token.value == '/>';
                             break;
-                        }
                     }
+                }
                     return tag;
                 } else if (is(token, "tag-close")) {
                     tag.selfClosing = token.value == '/>';
                     return tag;
-                }
+            }
                 tag.start.column += token.value.length;
             }
 
@@ -1871,14 +1871,14 @@ define("ace/mode/folding/xml", ["require", "exports", "module", "ace/lib/oop", "
                     token = tokens[i + 1];
                     if (token && token.value == tagName)
                         return true;
-                }
+            }
             }
             return false;
         };
         this._readTagForward = function (iterator) {
             var token = iterator.getCurrentToken();
             if (!token)
-                return null;
+            return null;
 
             var tag = new Tag();
             do {
@@ -1903,7 +1903,7 @@ define("ace/mode/folding/xml", ["require", "exports", "module", "ace/lib/oop", "
         this._readTagBackward = function (iterator) {
             var token = iterator.getCurrentToken();
             if (!token)
-                return null;
+            return null;
 
             var tag = new Tag();
             do {
@@ -1968,17 +1968,17 @@ define("ace/mode/folding/xml", ["require", "exports", "module", "ace/lib/oop", "
                             return Range.fromPoints(tag.start, tag.end);
                         } else
                             continue;
-                    }
+                }
 
                     if (tag.closing) {
                         this._pop(stack, tag);
                         if (stack.length == 0)
                             return Range.fromPoints(start, tag.start);
-                    }
+                }
                     else {
                         stack.push(tag);
-                    }
                 }
+            }
             }
             else {
                 var iterator = new TokenIterator(session, row, firstTag.end.column);
@@ -1995,19 +1995,19 @@ define("ace/mode/folding/xml", ["require", "exports", "module", "ace/lib/oop", "
                             return Range.fromPoints(tag.start, tag.end);
                         } else
                             continue;
-                    }
+                }
 
                     if (!tag.closing) {
                         this._pop(stack, tag);
                         if (stack.length == 0) {
                             tag.start.column += tag.tagName.length + 2;
                             return Range.fromPoints(tag.start, end);
-                        }
                     }
+                }
                     else {
                         stack.push(tag);
                     }
-                }
+            }
             }
 
         };
@@ -2250,7 +2250,7 @@ define("ace/mode/html_completions", ["require", "exports", "module", "ace/token_
         var token = iterator.getCurrentToken();
         while (token && !is(token, "tag-name")) {
             token = iterator.stepBackward();
-        }
+    }
         if (token)
             return token.value;
     }
@@ -2265,7 +2265,7 @@ define("ace/mode/html_completions", ["require", "exports", "module", "ace/token_
             var token = session.getTokenAt(pos.row, pos.column);
 
             if (!token)
-                return [];
+            return [];
             if (is(token, "tag-name") || is(token, "tag-open") || is(token, "end-tag-open"))
                 return this.getTagCompletions(state, session, pos, prefix);
             if (is(token, "tag-whitespace") || is(token, "attribute-name"))
@@ -2453,23 +2453,23 @@ define("ace/mode/lua_highlight_rules", ["require", "exports", "module", "ace/lib
                 onMatch: function (value, currentState, stack) {
                     stack.unshift(this.next, value.length - 2, currentState);
                     return "comment";
-                },
+            },
                 regex: /\-\-\[=*\[/,
                 next: [
-                    {
-                        onMatch: function (value, currentState, stack) {
-                            if (value.length == stack[1]) {
-                                stack.shift();
-                                stack.shift();
-                                this.next = stack.shift();
-                            } else {
-                                this.next = "";
-                            }
-                            return "comment";
-                        },
-                        regex: /\]=*\]/,
-                        next: "start"
-                    }, {
+                {
+                    onMatch: function (value, currentState, stack) {
+                        if (value.length == stack[1]) {
+                            stack.shift();
+                            stack.shift();
+                            this.next = stack.shift();
+                        } else {
+                            this.next = "";
+                        }
+                        return "comment";
+                    },
+                    regex: /\]=*\]/,
+                    next: "start"
+                }, {
                         defaultToken: "comment"
                     }
                 ]
@@ -2487,21 +2487,21 @@ define("ace/mode/lua_highlight_rules", ["require", "exports", "module", "ace/lib
                     },
                     regex: /\[=*\[/,
                     next: [
-                        {
-                            onMatch: function (value, currentState, stack) {
-                                if (value.length == stack[1]) {
-                                    stack.shift();
-                                    stack.shift();
-                                    this.next = stack.shift();
-                                } else {
-                                    this.next = "";
-                                }
-                                return "comment";
-                            },
+                {
+                    onMatch: function (value, currentState, stack) {
+                        if (value.length == stack[1]) {
+                            stack.shift();
+                            stack.shift();
+                            this.next = stack.shift();
+                        } else {
+                            this.next = "";
+                        }
+                        return "comment";
+                    },
 
-                            regex: /\]=*\]/,
-                            next: "start"
-                        }, {
+                    regex: /\]=*\]/,
+                    next: "start"
+                }, {
                             defaultToken: "comment"
                         }
                     ]
@@ -2574,14 +2574,14 @@ define("ace/mode/folding/lua", ["require", "exports", "module", "ace/lib/oop", "
                     return;
                 if (match[1]) {
                     if (session.getTokenAt(row, match.index + 1).type === "keyword")
-                        return "start";
+                    return "start";
                 } else if (match[2]) {
                     var type = session.bgTokenizer.getState(row) || "";
                     if (type[0] == "bracketedComment" || type[0] == "bracketedString")
                         return "start";
                 } else {
                     return "start";
-                }
+            }
             }
             if (foldStyle != "markbeginend" || !isEnd || isStart && isEnd)
                 return "";
@@ -2589,7 +2589,7 @@ define("ace/mode/folding/lua", ["require", "exports", "module", "ace/lib/oop", "
             var match = line.match(this.foldingStopMarker);
             if (match[0] === "end") {
                 if (session.getTokenAt(row, match.index + 1).type === "keyword")
-                    return "end";
+                return "end";
             } else if (match[0][0] === "]") {
                 var type = session.bgTokenizer.getState(row - 1) || "";
                 if (type[0] == "bracketedComment" || type[0] == "bracketedString")
@@ -2616,7 +2616,7 @@ define("ace/mode/folding/lua", ["require", "exports", "module", "ace/lib/oop", "
                 if (match[0] === "end") {
                     if (session.getTokenAt(row, match.index + 1).type === "keyword")
                         return this.luaBlock(session, row, match.index + 1);
-                }
+            }
 
                 if (match[0][0] === "]")
                     return session.getCommentFoldRange(row, match.index + 1);
@@ -2635,7 +2635,7 @@ define("ace/mode/folding/lua", ["require", "exports", "module", "ace/lib/oop", "
                 "end": -1,
                 "repeat": 1,
                 "until": -1
-            };
+        };
 
             var token = stream.getCurrentToken();
             if (!token || token.type != "keyword")
@@ -2664,8 +2664,8 @@ define("ace/mode/folding/lua", ["require", "exports", "module", "ace/lib/oop", "
                     if (!stack.length && token.value != "elseif")
                         break;
                     if (level === 0)
-                        stack.unshift(token.value);
-                }
+                    stack.unshift(token.value);
+            }
             }
 
             var row = stream.getCurrentTokenRow();
@@ -2710,7 +2710,7 @@ define("ace/mode/lua", ["require", "exports", "module", "ace/lib/oop", "ace/mode
             "repeat": 1,
             "end": -1,
             "until": -1
-        };
+    };
         var outdentKeywords = [
             "else",
             "elseif",
@@ -2725,13 +2725,13 @@ define("ace/mode/lua", ["require", "exports", "module", "ace/lib/oop", "ace/mode
                 if (token.type == "keyword") {
                     if (token.value in indentKeywords) {
                         level += indentKeywords[token.value];
-                    }
+                }
                 } else if (token.type == "paren.lparen") {
                     level++;
                 } else if (token.type == "paren.rparen") {
                     level--;
-                }
             }
+        }
             if (level < 0) {
                 return -1;
             } else if (level > 0) {
@@ -2756,7 +2756,7 @@ define("ace/mode/lua", ["require", "exports", "module", "ace/lib/oop", "ace/mode
             } else if (level < 0 && indent.substr(indent.length - tab.length) == tab) {
                 if (!this.checkOutdent(state, line, "\n")) {
                     return indent.substr(0, indent.length - tab.length);
-                }
+            }
             }
             return indent;
         };

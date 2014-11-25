@@ -37,7 +37,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                             stack[0].expectIf = false;
                             stack[0].elseBranch = stack[0];
                             return [stack[0]];
-                        }
+                    }
                         return ":";
                     }
                     },
@@ -55,8 +55,8 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                                 val = "\n";
                             else if ("ulULE".indexOf(ch) != -1) {
                                 val = {changeCase: ch, local: ch > "a"};
-                            }
                         }
+                    }
 
                         return [val];
                     }
@@ -119,8 +119,8 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 ]
             });
             SnippetManager.prototype.getTokenizer = function () {
-                return SnippetManager.$tokenizer;
-            };
+            return SnippetManager.$tokenizer;
+        };
             return SnippetManager.$tokenizer;
         };
 
@@ -196,15 +196,15 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                                 else
                                     fmtParts[i] = next[0].toLowerCase();
                                 fmtParts[i + 1] = next.substr(1);
-                            }
+                        }
                         } else if (ch.changeCase) {
                             gChangeCase = ch.changeCase;
-                        }
+                    }
                     } else if (gChangeCase == "U") {
                         fmtParts[i] = ch.toUpperCase();
                     } else if (gChangeCase == "L") {
                         fmtParts[i] = ch.toLowerCase();
-                    }
+                }
                 }
                 return fmtParts.join("");
             });
@@ -233,18 +233,18 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                         if (value) {
                             result.push(value);
                             gotoNext(ch);
-                        }
+                    }
                     } else {
                         if (value) {
                             ch.skip = ch.elseBranch;
                         } else
                             gotoNext(ch);
-                    }
+                }
                 } else if (ch.tabstopId != null) {
                     result.push(ch);
                 } else if (ch.changeCase != null) {
                     result.push(ch);
-                }
+            }
             }
             function gotoNext(ch) {
                 var i1 = snippet.indexOf(ch, i + 1);
@@ -283,7 +283,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                     ts = tabstops[id] = [];
                     ts.index = id;
                     ts.value = "";
-                }
+            }
                 if (ts.indexOf(p) !== -1)
                     return;
                 ts.push(p);
@@ -299,7 +299,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                     ts.value = value;
                 } else if (value.length && (!ts.value || typeof ts.value !== "string")) {
                     ts.value = value.join("");
-                }
+            }
             });
             tabstops.forEach(function (ts) {
                 ts.length = 0
@@ -315,7 +315,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                             continue;
                         var j = val.lastIndexOf(p, i - 1);
                         p = copy[j] || {tabstopId: p.tabstopId};
-                    }
+                }
                     copy[i] = p;
                 }
                 return copy;
@@ -358,7 +358,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                         t.start = {row: row, column: column};
                     else
                         t.end = {row: row, column: column};
-                }
+            }
             });
             var range = editor.getSelectionRange();
             var end = editor.session.replace(range, text);
@@ -391,7 +391,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 var state = editor.session.getState(c.row);
                 if (typeof state === "object") {
                     state = state[0];
-                }
+            }
                 if (state.substring) {
                     if (state.substring(0, 3) == "js-")
                         scope = "javascript";
@@ -443,7 +443,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
             if (!snippet)
                 return false;
             if (options && options.dryRun)
-                return true;
+            return true;
             editor.session.doc.removeInLine(cursor.row,
                 cursor.column - snippet.replaceBefore.length,
                 cursor.column + snippet.replaceAfter.length
@@ -503,7 +503,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                     re = re + guard;
                     if (re && re[0] != "^")
                         re = "^" + re;
-                }
+            }
                 return new RegExp(re);
             }
 
@@ -514,7 +514,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 if (!snippetMap[scope]) {
                     snippetMap[scope] = [];
                     snippetNameMap[scope] = {};
-                }
+            }
 
                 var map = snippetNameMap[scope];
                 if (s.name) {
@@ -529,7 +529,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                     if (!s.guard && /^\w/.test(s.tabTrigger))
                         s.guard = "\\b";
                     s.trigger = lang.escapeRegExp(s.tabTrigger);
-                }
+            }
 
                 s.startRe = guardedRegexp(s.trigger, s.guard, true);
                 s.triggerRe = new RegExp(s.trigger, "", true);
@@ -574,7 +574,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 if (m[1]) {
                     try {
                         snippet = JSON.parse(m[1]);
-                        list.push(snippet);
+                    list.push(snippet);
                     } catch (e) {
                     }
                 }
@@ -594,10 +594,10 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                         snippet.tabTrigger = val.match(/^\S*/)[0];
                         if (!snippet.name)
                             snippet.name = val;
-                    } else {
+                } else {
                         snippet[key] = val;
-                    }
                 }
+            }
             }
             return list;
         };
@@ -640,7 +640,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
             this.editor.on("changeSession", this.$onChangeSession);
             this.editor.commands.on("afterExec", this.$onAfterExec);
             this.editor.keyBinding.addKeyboardHandler(this.keyboardHandler);
-        };
+    };
         this.detach = function () {
             this.tabstops.forEach(this.removeTabstopMarkers, this);
             this.ranges = null;
@@ -687,7 +687,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                     this.removeRange(r);
                     i--;
                     continue;
-                }
+            }
 
                 if (r.start.row == startRow && r.start.column > start.column)
                     r.start.column += colDiff;
@@ -736,7 +736,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 var containsLead = this.ranges[i].contains(lead.row, lead.column);
                 var containsAnchor = isEmpty || this.ranges[i].contains(anchor.row, anchor.column);
                 if (containsLead && containsAnchor)
-                    return;
+                return;
             }
             this.detach();
         };
@@ -767,11 +767,11 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
             if (!this.editor.inVirtualSelectionMode) {
                 var sel = this.editor.multiSelect;
                 sel.toSingleRange(ts.firstNonLinked.clone());
-                for (var i = ts.length; i--;) {
-                    if (ts.hasLinkedRanges && ts[i].linked)
-                        continue;
-                    sel.addRange(ts[i].clone(), true);
-                }
+            for (var i = ts.length; i--;) {
+                if (ts.hasLinkedRanges && ts[i].linked)
+                    continue;
+                sel.addRange(ts[i].clone(), true);
+            }
                 if (sel.ranges[0])
                     sel.addRange(sel.ranges[0].clone());
             } else {
@@ -814,13 +814,13 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                         dest.hasLinkedRanges = true;
                     } else if (!dest.firstNonLinked)
                         dest.firstNonLinked = range;
-                }
+            }
                 if (!dest.firstNonLinked)
                     dest.hasLinkedRanges = false;
                 if (dest === ts) {
                     arg.push(dest);
                     this.$openTabstops[index] = dest;
-                }
+            }
                 this.addTabstopMarkers(dest);
             }, this);
 
@@ -865,7 +865,7 @@ define("ace/snippets", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
             "Tab": function (ed) {
                 if (exports.snippetManager && exports.snippetManager.expandWithTab(ed)) {
                     return;
-                }
+            }
 
                 ed.tabstopManager.tabNext(1);
             },
@@ -1011,7 +1011,7 @@ define("ace/autocomplete/popup", ["require", "exports", "module", "ace/edit_sess
         popup.setSelectOnHover(false);
         popup.on("mousemove", function (e) {
             if (!lastMouseEvent) {
-                lastMouseEvent = e;
+            lastMouseEvent = e;
                 return;
             }
             if (lastMouseEvent.x == e.x && lastMouseEvent.y == e.y) {
@@ -1029,7 +1029,7 @@ define("ace/autocomplete/popup", ["require", "exports", "module", "ace/edit_sess
         popup.renderer.on("beforeRender", function () {
             if (lastMouseEvent && hoverMarker.start.row != -1) {
                 lastMouseEvent.$pos = null;
-                var row = lastMouseEvent.getDocumentPosition().row;
+            var row = lastMouseEvent.getDocumentPosition().row;
                 if (!hoverMarker.id)
                     popup.setRow(row);
                 setHoverMarker(row, true);
@@ -1097,7 +1097,7 @@ define("ace/autocomplete/popup", ["require", "exports", "module", "ace/edit_sess
                     last = flag;
                 } else {
                     tokens[tokens.length - 1].value += c;
-                }
+            }
             }
 
             if (data.meta) {
@@ -1136,8 +1136,8 @@ define("ace/autocomplete/popup", ["require", "exports", "module", "ace/edit_sess
                 selectionMarker.start.row = selectionMarker.end.row = line || 0;
                 popup.session._emit("changeBackMarker");
                 popup.moveCursorTo(line || 0, 0);
-                if (popup.isOpen)
-                    popup._signal("select");
+            if (popup.isOpen)
+                popup._signal("select");
             }
         };
 
@@ -1185,7 +1185,7 @@ define("ace/autocomplete/popup", ["require", "exports", "module", "ace/edit_sess
 
         popup.getTextLeftOffset = function () {
             return this.$borderSize + this.renderer.$padding + this.$imageSize;
-        };
+    };
 
         popup.$imageSize = 0;
         popup.$borderSize = 1;
@@ -1327,7 +1327,7 @@ define("ace/autocomplete", ["require", "exports", "module", "ace/keyboard/hash_h
             this.popup.on("select", this.tooltipTimer.bind(null, null));
             this.popup.on("changeHoverMarker", this.tooltipTimer.bind(null, null));
             return this.popup;
-        };
+    };
 
         this.getPopup = function () {
             return this.popup || this.$init();
@@ -1384,7 +1384,7 @@ define("ace/autocomplete", ["require", "exports", "module", "ace/keyboard/hash_h
         this.changeListener = function (e) {
             var cursor = this.editor.selection.lead;
             if (cursor.row != this.base.row || cursor.column < this.base.column) {
-                this.detach();
+            this.detach();
             }
             if (this.activated)
                 this.changeTimer.schedule();
@@ -1399,7 +1399,7 @@ define("ace/autocomplete", ["require", "exports", "module", "ace/keyboard/hash_h
                 && el != this.tooltipNode && e.relatedTarget != this.tooltipNode
                 && e.relatedTarget != text
             ) {
-                this.detach();
+            this.detach();
             }
         };
 
@@ -1447,8 +1447,8 @@ define("ace/autocomplete", ["require", "exports", "module", "ace/keyboard/hash_h
                     for (var i = 0, range; range = ranges[i]; i++) {
                         range.start.column -= this.completions.filterText.length;
                         this.editor.session.remove(range);
-                    }
                 }
+            }
                 if (data.snippet)
                     snippetManager.insertSnippet(this.editor, data.snippet);
                 else
@@ -1488,7 +1488,7 @@ define("ace/autocomplete", ["require", "exports", "module", "ace/keyboard/hash_h
             "Tab": function (editor) {
                 var result = editor.completer.insertMatch();
                 if (!result && !editor.tabstopManager)
-                    editor.completer.goTo("down");
+                editor.completer.goTo("down");
                 else
                     return result;
             },
@@ -1523,8 +1523,8 @@ define("ace/autocomplete", ["require", "exports", "module", "ace/keyboard/hash_h
                         prefix: util.retrievePrecedingIdentifier(line, pos.column, results[0] && results[0].identifierRegex),
                         matches: matches,
                         finished: (--total === 0)
-                    });
                 });
+            });
             });
             return true;
         };
@@ -1556,7 +1556,7 @@ define("ace/autocomplete", ["require", "exports", "module", "ace/keyboard/hash_h
                 var pos = this.editor.getCursorPosition();
                 var prefix = this.editor.session.getTextRange({start: this.base, end: pos});
                 if (prefix == this.completions.filterText)
-                    return;
+                return;
                 this.completions.setFilter(prefix);
                 if (!this.completions.filtered.length)
                     return this.detach();
@@ -1708,7 +1708,7 @@ define("ace/autocomplete", ["require", "exports", "module", "ace/keyboard/hash_h
             });
 
             this.filtered = matches;
-        };
+    };
         this.filterCompletions = function (items, needle) {
             var results = [];
             var upper = needle.toUpperCase();
@@ -1731,10 +1731,10 @@ define("ace/autocomplete", ["require", "exports", "module", "ace/keyboard/hash_h
                         if (lastIndex === -1)
                             penalty += 10;
                         penalty += distance;
-                    }
+                }
                     matchMask = matchMask | (1 << index);
                     lastIndex = index;
-                }
+            }
                 item.matchMask = matchMask;
                 item.exactMatch = penalty ? 0 : 1;
                 item.score = (item.score || 0) - penalty;
@@ -1758,7 +1758,6 @@ define("ace/autocomplete/text_completer", ["require", "exports", "module", "ace/
         var textBefore = doc.getTextRange(Range.fromPoints({row: 0, column: 0}, pos));
         return textBefore.split(splitRegex).length - 1;
     }
-
     function wordDistance(doc, pos) {
         var prefixPos = getWordIndex(doc, pos);
         var words = doc.getValue().split(splitRegex);
@@ -1808,7 +1807,7 @@ define("ace/ext/language_tools", ["require", "exports", "module", "ace/snippets"
         getCompletions: function (editor, session, pos, prefix, callback) {
             if (session.$mode.completer) {
                 return session.$mode.completer.getCompletions(editor, session, pos, prefix, callback);
-            }
+        }
             var state = editor.session.getState(pos.row);
             var completions = session.$mode.getCompletions(state, session, pos, prefix);
             callback(null, completions);
@@ -1832,7 +1831,7 @@ define("ace/ext/language_tools", ["require", "exports", "module", "ace/snippets"
                         meta: s.tabTrigger && !s.name ? s.tabTrigger + "\u21E5 " : "snippet",
                         type: "snippet"
                     });
-                }
+            }
             }, this);
             callback(null, completions);
         },
@@ -1842,7 +1841,7 @@ define("ace/ext/language_tools", ["require", "exports", "module", "ace/snippets"
                     "<b>", lang.escapeHTML(item.caption), "</b>", "<hr></hr>",
                     lang.escapeHTML(item.snippet)
                 ].join("");
-            }
+        }
         }
     };
 
@@ -1893,8 +1892,8 @@ define("ace/ext/language_tools", ["require", "exports", "module", "ace/snippets"
                     snippetManager.snippetMap[m.scope].includeScopes = m.includeScopes;
                     m.includeScopes.forEach(function (x) {
                         loadSnippetFile("ace/mode/" + x);
-                    });
-                }
+                });
+            }
             }
         });
     };
@@ -1909,7 +1908,7 @@ define("ace/ext/language_tools", ["require", "exports", "module", "ace/snippets"
                     if (!prefix && identifierRegex)
                         prefix = util.retrievePrecedingIdentifier(line, pos.column, identifierRegex);
                 });
-            }
+        }
         });
         return prefix;
     }
@@ -1927,11 +1926,11 @@ define("ace/ext/language_tools", ["require", "exports", "module", "ace/snippets"
             if (prefix && !hasCompleter) {
                 if (!editor.completer) {
                     editor.completer = new Autocomplete();
-                }
+            }
                 editor.completer.autoSelect = false;
                 editor.completer.autoInsert = false;
                 editor.completer.showPopup(editor);
-            }
+        }
         }
     };
 
@@ -1946,7 +1945,7 @@ define("ace/ext/language_tools", ["require", "exports", "module", "ace/snippets"
                 } else {
                     this.commands.removeCommand(Autocomplete.startCommand);
                 }
-            },
+        },
             value: false
         },
         enableLiveAutocompletion: {
@@ -1958,7 +1957,7 @@ define("ace/ext/language_tools", ["require", "exports", "module", "ace/snippets"
                 } else {
                     this.commands.removeListener('afterExec', doLiveAutocomplete);
                 }
-            },
+        },
             value: false
         },
         enableSnippets: {
@@ -1974,7 +1973,7 @@ define("ace/ext/language_tools", ["require", "exports", "module", "ace/snippets"
             },
             value: false
         }
-    });
+});
 });
 (function () {
     window.require(["ace/ext/language_tools"], function () {

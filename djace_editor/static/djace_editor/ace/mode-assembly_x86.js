@@ -82,7 +82,7 @@ define("ace/mode/assembly_x86_highlight_rules", ["require", "exports", "module",
                 {token: 'entity.name.function.assembly', regex: '^[\\w.]+?:'},
                 {token: 'entity.name.function.assembly', regex: '^[\\w.]+?\\b'},
                 {token: 'comment.assembly', regex: ';.*$'}]
-        }
+    }
 
         this.normalizeRules();
     };
@@ -168,8 +168,8 @@ define("ace/mode/folding/coffee", ["require", "exports", "module", "ace/lib/oop"
                 if (session.getLine(row - 2).search(/\S/) == -1) {
                     session.foldWidgets[row - 1] = "start";
                     session.foldWidgets[row + 1] = "";
-                    return "";
-                }
+                return "";
+            }
             }
 
             if (prevIndent != -1 && prevIndent < indent)

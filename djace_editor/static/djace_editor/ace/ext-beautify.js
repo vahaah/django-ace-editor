@@ -208,7 +208,7 @@ define("ace/ext/beautify/php_rules", ["require", "exports", "module", "ace/token
                     if (spaces[i].append) {
                         value += ' ';
                     }
-                }
+            }
             }
             if (token.type.indexOf('meta.tag.name') == 0) {
                 tag = token.value;
@@ -234,12 +234,43 @@ define("ace/ext/beautify/php_rules", ["require", "exports", "module", "ace/token
                         indentation--;
                     }
 
-                    if (
-                        newLines[i].breakBefore &&
-                        ( !newLines[i].prev || newLines[i].prev.test(lastToken.value) )
-                    ) {
+                if (
+                    newLines[i].breakBefore &&
+                    ( !newLines[i].prev || newLines[i].prev.test(lastToken.value) )
+                ) {
+                    code += "\n";
+                    breakAdded = true;
+                    for (i = 0; i < indentation; i++) {
+                        code += "\t";
+                    }
+                }
+
+                    break;
+            }
+            }
+
+            if (dontBreak === false) {
+            for (i in newLines) {
+                if (
+                    lastToken.type == newLines[i].type &&
+                    (
+                    !newLines[i].value || lastToken.value == newLines[i].value
+                    ) &&
+                    (
+                    !newLines[i].blockTag ||
+                    singleTags.indexOf(tag) === -1
+                    ) &&
+                    (
+                    !newLines[i].context ||
+                    newLines[i].context === context
+                    )
+                ) {
+                    if (newLines[i].indent === true) {
+                        indentation++;
+                    }
+
+                    if (!newLines[i].dontBreak && !breakAdded) {
                         code += "\n";
-                        breakAdded = true;
                         for (i = 0; i < indentation; i++) {
                             code += "\t";
                         }
@@ -248,37 +279,6 @@ define("ace/ext/beautify/php_rules", ["require", "exports", "module", "ace/token
                     break;
                 }
             }
-
-            if (dontBreak === false) {
-                for (i in newLines) {
-                    if (
-                        lastToken.type == newLines[i].type &&
-                        (
-                        !newLines[i].value || lastToken.value == newLines[i].value
-                        ) &&
-                        (
-                        !newLines[i].blockTag ||
-                        singleTags.indexOf(tag) === -1
-                        ) &&
-                        (
-                        !newLines[i].context ||
-                        newLines[i].context === context
-                        )
-                    ) {
-                        if (newLines[i].indent === true) {
-                            indentation++;
-                        }
-
-                        if (!newLines[i].dontBreak && !breakAdded) {
-                            code += "\n";
-                            for (i = 0; i < indentation; i++) {
-                                code += "\t";
-                            }
-                        }
-
-                        break;
-                    }
-                }
             }
 
             code += value;
@@ -293,11 +293,12 @@ define("ace/ext/beautify/php_rules", ["require", "exports", "module", "ace/token
 
             if (token === null) {
                 break;
-            }
+        }
         }
 
         return code;
     };
+
 
 
 });

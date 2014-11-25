@@ -59,7 +59,7 @@ font-weight: normal;\
         function documentEscListener(e) {
             if (e.keyCode === 27) {
                 closer.click();
-            }
+        }
         }
 
         closer.style.cssText = 'margin: 0; padding: 0; ' +
@@ -143,7 +143,7 @@ define("ace/ext/keybinding_menu", ["require", "exports", "module", "ace/editor",
             var kb = getEditorKeybordShortcuts(editor);
             var el = document.createElement('div');
             var commands = kb.reduce(function (previous, current) {
-                return previous + '<div class="ace_optionsMenuEntry"><span class="ace_optionsMenuCommand">'
+                return previous + '<div class="ace_optionsMenuEntry"><span class="ace_optionsMenuCommand">' 
                     + current.command + '</span> : '
                     + '<span class="ace_optionsMenuKey">' + current.key + '</span></div>';
             }, '');

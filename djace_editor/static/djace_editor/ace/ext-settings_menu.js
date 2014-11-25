@@ -9,8 +9,8 @@ define("ace/ext/menu_tools/element_generator", ["require", "exports", "module"],
                     el.setAttribute(attribute, obj[attribute]);
                 } else {
                     el[attribute] = obj[attribute];
-                }
             }
+        }
         }
         return el;
     };
@@ -66,8 +66,8 @@ define("ace/ext/modelist", ["require", "exports", "module"], function (require, 
             if (modes[i].supportsFile(fileName)) {
                 mode = modes[i];
                 break;
-            }
         }
+    }
         return mode;
     }
 
@@ -333,7 +333,7 @@ define("ace/ext/menu_tools/add_editor_menu_options", ["require", "exports", "mod
             return {
                 textContent: theme.caption,
                 value: theme.theme
-            };
+        };
         });
 
         editor.menuOptions.setMode = modelist.modes.map(function (mode) {
@@ -380,8 +380,8 @@ define("ace/ext/menu_tools/get_set_functions", ["require", "exports", "module"],
                             'parentObj': esr,
                             'parentName': clss
                         });
-                    }
                 }
+            }
             }
         });
         return out;
@@ -445,7 +445,7 @@ define("ace/ext/menu_tools/generate_settings_menu", ["require", "exports", "modu
                     } catch (err) {
                         throw new Error(err);
                     }
-                });
+            });
             } else if (typeof val === 'boolean') {
                 el = egen.createCheckbox(item, val, clss);
                 el.addEventListener('change', function (e) {
@@ -464,13 +464,13 @@ define("ace/ext/menu_tools/generate_settings_menu", ["require", "exports", "modu
                         } else if (e.target.value === 'false') {
                             obj[e.target.id](false);
                         } else {
-                            obj[e.target.id](e.target.value);
-                        }
+                        obj[e.target.id](e.target.value);
+                    }
                     } catch (err) {
                         throw new Error(err);
                     }
-                });
-            }
+            });
+        }
             el.style.cssText = 'float:right;';
             div.appendChild(el);
             return div;
@@ -501,13 +501,13 @@ define("ace/ext/menu_tools/generate_settings_menu", ["require", "exports", "modu
                     val = esr[fn]();
                     if (typeof val === 'object') {
                         val = val.$id;
-                    }
+                }
                     elements.push(
                         createNewEntry(esr, clss, item, val)
                     );
                 } catch (e) {
-                }
             }
+        }
         }
 
         addEditorMenuOptions(editor);
@@ -581,7 +581,7 @@ font-weight: normal;\
         function documentEscListener(e) {
             if (e.keyCode === 27) {
                 closer.click();
-            }
+        }
         }
 
         closer.style.cssText = 'margin: 0; padding: 0; ' +
@@ -636,7 +636,7 @@ define("ace/ext/settings_menu", ["require", "exports", "module", "ace/ext/menu_t
         var Editor = require("ace/editor").Editor;
         Editor.prototype.showSettingsMenu = function () {
             showSettingsMenu(this);
-        };
+    };
     };
 });
 (function () {

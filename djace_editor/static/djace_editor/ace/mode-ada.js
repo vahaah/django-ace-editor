@@ -54,7 +54,7 @@ define("ace/mode/ada_highlight_rules", ["require", "exports", "module", "ace/lib
                 token: "text",
                 regex: "\\s+"
             }]
-        };
+    };
     };
 
     oop.inherits(AdaHighlightRules, TextHighlightRules);

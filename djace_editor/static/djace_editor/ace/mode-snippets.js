@@ -67,8 +67,8 @@ define("ace/mode/folding/coffee", ["require", "exports", "module", "ace/lib/oop"
                 if (session.getLine(row - 2).search(/\S/) == -1) {
                     session.foldWidgets[row - 1] = "start";
                     session.foldWidgets[row + 1] = "";
-                    return "";
-                }
+                return "";
+            }
             }
 
             if (prevIndent != -1 && prevIndent < indent)
@@ -149,7 +149,7 @@ define("ace/mode/snippets", ["require", "exports", "module", "ace/lib/oop", "ace
                 {regex: "/[gim]*:?", token: "string.regex", next: "start"},
                 {"token": "string", regex: "."}
             ]
-        };
+    };
     };
     oop.inherits(SnippetHighlightRules, TextHighlightRules);
 
@@ -172,7 +172,7 @@ define("ace/mode/snippets", ["require", "exports", "module", "ace/lib/oop", "ace
                 {token: "keyword", regex: "/"},
                 {token: "empty", regex: "$", next: "start"}
             ]
-        };
+    };
         this.embedRules(SnippetHighlightRules, "sn-", [
             {token: "text", regex: "^\\t", next: "sn-start"},
             {

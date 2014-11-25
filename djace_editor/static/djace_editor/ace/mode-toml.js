@@ -37,7 +37,7 @@ define("ace/mode/toml_highlight_rules", ["require", "exports", "module", "ace/li
                 {
                     token: "constant.numeric.toml",
                     regex: "-?\\d+(\\.?\\d+)?"
-                }
+        }
             ],
             "qqstring": [
                 {

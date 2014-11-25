@@ -58,10 +58,10 @@ define("ace/mode/sh_highlight_rules", ["require", "exports", "module", "ace/lib/
                 push: [{
                     token: "constant.language.escape",
                     regex: /\\(?:[$abeEfnrtv\\'"]|x[a-fA-F\d]{1,2}|u[a-fA-F\d]{4}([a-fA-F\d]{4})?|c.|\d{1,3})/
-                }, {
+            }, {
                     token: "constant",
                     regex: /\$\w+/
-                }, {
+            }, {
                     token: "string",
                     regex: '"',
                     next: "pop"
@@ -102,9 +102,9 @@ define("ace/mode/sh_highlight_rules", ["require", "exports", "module", "ace/lib/
                         next: "start"
                     }],
                     indentedHeredoc: [{
-                        token: "string",
+                    token: "string",
                         regex: "^\t+"
-                    }, {
+                }, {
                         onMatch: function (value, currentState, stack) {
                             if (value === stack[1]) {
                                 stack.shift();
@@ -117,7 +117,7 @@ define("ace/mode/sh_highlight_rules", ["require", "exports", "module", "ace/lib/
                         },
                         regex: ".*$",
                         next: "start"
-                    }]
+                }]
                 }
             }, {
                 regex: "$",
@@ -161,7 +161,7 @@ define("ace/mode/sh_highlight_rules", ["require", "exports", "module", "ace/lib/
                 token: "paren.rparen",
                 regex: "[\\]\\)\\}]"
             }]
-        };
+    };
 
         this.normalizeRules();
     };
@@ -207,7 +207,7 @@ define("ace/mode/makefile_highlight_rules", ["require", "exports", "module", "ac
                 {// ^([^\t ]+(\s[^\t ]+)*:(?!\=))\s*.*
                     token: ["entity.name.function.makefile", "text"],
                     regex: "^([^\\t ]+(?:\\s[^\\t ]+)*:)(\\s*.*)"
-                }
+        }
             ],
             "comment": [
                 {
@@ -313,8 +313,8 @@ define("ace/mode/folding/coffee", ["require", "exports", "module", "ace/lib/oop"
                 if (session.getLine(row - 2).search(/\S/) == -1) {
                     session.foldWidgets[row - 1] = "start";
                     session.foldWidgets[row + 1] = "";
-                    return "";
-                }
+                return "";
+            }
             }
 
             if (prevIndent != -1 && prevIndent < indent)

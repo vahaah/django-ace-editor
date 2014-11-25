@@ -131,7 +131,7 @@ define("ace/mode/css_highlight_rules", ["require", "exports", "module", "ace/lib
                 }, {
                     caseInsensitive: true
                 }]
-        };
+    };
 
         this.normalizeRules();
     };
@@ -159,7 +159,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
                     defaultToken: "comment.doc",
                     caseInsensitive: true
                 }]
-        };
+    };
     };
 
     oop.inherits(DocCommentHighlightRules, TextHighlightRules);
@@ -176,7 +176,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
             token: "comment.doc", // doc comment
             regex: "\\/\\*(?=\\*)",
             next: start
-        };
+    };
     };
 
     DocCommentHighlightRules.getEndRule = function (start) {
@@ -184,7 +184,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
             token: "comment.doc", // closing comment
             regex: "\\*\\/",
             next: start
-        };
+    };
     };
 
 
@@ -498,13 +498,13 @@ define("ace/mode/javascript_highlight_rules", ["require", "exports", "module", "
                     if (val == "{" && stack.length) {
                         stack.unshift("start", state);
                         return "paren";
-                    }
+                }
                     if (val == "}" && stack.length) {
                         stack.shift();
                         this.next = stack.shift();
                         if (this.next.indexOf("string") != -1)
                             return "paren.quasi.end";
-                    }
+                }
                     return val == "{" ? "paren.lparen" : "paren.rparen";
                 },
                 nextState: "start"
@@ -514,7 +514,7 @@ define("ace/mode/javascript_highlight_rules", ["require", "exports", "module", "
                 push: [{
                     token: "constant.language.escape",
                     regex: escapedRe
-                }, {
+            }, {
                     token: "paren.quasi.start",
                     regex: /\${/,
                     push: "start"
@@ -701,7 +701,7 @@ define("ace/mode/xml_highlight_rules", ["require", "exports", "module", "ace/lib
                     {defaultToken: "string.attribute-value.xml"}
                 ]
             }]
-        };
+    };
 
         if (this.constructor === XmlHighlightRules)
             this.normalizeRules();
@@ -717,7 +717,7 @@ define("ace/mode/xml_highlight_rules", ["require", "exports", "module", "ace/lib
                 next: [
                     {include: "attributes"},
                     {token: "meta.tag.punctuation.tag-close.xml", regex: "/?>", next: prefix + "start"}
-                ]
+            ]
             });
 
             this.$rules[tag + "-end"] = [
@@ -793,12 +793,12 @@ define("ace/mode/html_highlight_rules", ["require", "exports", "module", "ace/li
                 token: "keyword.operator.attribute-equals.xml",
                 regex: "=",
                 push: [{
-                    include: "tag_whitespace"
-                }, {
+                include: "tag_whitespace"
+            }, {
                     token: "string.unquoted.attribute-value.html",
                     regex: "[^<>='\"`\\s]+",
                     next: "pop"
-                }, {
+            }, {
                     token: "empty",
                     regex: "",
                     next: "pop"
@@ -928,7 +928,7 @@ define("ace/mode/ftl_highlight_rules", ["require", "exports", "module", "ace/lib
             }, {
                 defaultToken: "string"
             }]
-        };
+    };
     };
 
     oop.inherits(FtlLangHighlightRules, TextHighlightRules);

@@ -61,7 +61,7 @@ define("ace/mode/verilog_highlight_rules", ["require", "exports", "module", "ace
                 token: "text",
                 regex: "\\s+"
             }]
-        };
+    };
     };
 
     oop.inherits(VerilogHighlightRules, TextHighlightRules);

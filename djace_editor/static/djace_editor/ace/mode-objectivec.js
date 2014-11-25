@@ -15,7 +15,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
                     defaultToken: "comment.doc",
                     caseInsensitive: true
                 }]
-        };
+    };
     };
 
     oop.inherits(DocCommentHighlightRules, TextHighlightRules);
@@ -32,7 +32,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
             token: "comment.doc", // doc comment
             regex: "\\/\\*(?=\\*)",
             next: start
-        };
+    };
     };
 
     DocCommentHighlightRules.getEndRule = function (start) {
@@ -40,7 +40,7 @@ define("ace/mode/doc_comment_highlight_rules", ["require", "exports", "module", 
             token: "comment.doc", // closing comment
             regex: "\\*\\/",
             next: start
-        };
+    };
     };
 
 
@@ -228,7 +228,7 @@ define("ace/mode/c_cpp_highlight_rules", ["require", "exports", "module", "ace/l
                     next: "start"
                 }
             ]
-        };
+    };
 
         this.embedRules(DocCommentHighlightRules, "doc-",
             [DocCommentHighlightRules.getEndRule("start")]);
@@ -414,7 +414,7 @@ define("ace/mode/objectivec_highlight_rules", ["require", "exports", "module", "
                 {
                     token: "meta.function.objc",
                     regex: "^(?:-|\\+)\\s*"
-                }
+        }
             ],
             "constant_NSString": [
                 {
@@ -433,7 +433,7 @@ define("ace/mode/objectivec_highlight_rules", ["require", "exports", "module", "
                     token: "punctuation.definition.string.end",
                     regex: "\"",
                     next: "start"
-                }
+        }
             ],
             "protocol_list": [
                 {
@@ -606,7 +606,7 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
                         range = this.getSectionRange(session, row);
                     } else if (foldStyle != "all")
                         range = null;
-                }
+            }
 
                 return range;
             }
@@ -644,13 +644,13 @@ define("ace/mode/folding/cstyle", ["require", "exports", "module", "ace/lib/oop"
 
                 if (subRange) {
                     if (subRange.start.row <= startRow) {
-                        break;
+                    break;
                     } else if (subRange.isMultiLine()) {
                         row = subRange.end.row;
                     } else if (startIndent == indent) {
                         break;
-                    }
                 }
+            }
                 endRow = row;
             }
 

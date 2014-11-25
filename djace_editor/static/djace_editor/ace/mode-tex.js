@@ -69,7 +69,7 @@ define("ace/mode/tex_highlight_rules", ["require", "exports", "module", "ace/lib
                     regex: "\\w+"
                 }
             ]
-        };
+    };
     };
 
     oop.inherits(TexHighlightRules, TextHighlightRules);

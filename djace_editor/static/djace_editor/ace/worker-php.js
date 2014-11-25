@@ -43,7 +43,7 @@
             while (moduleName.indexOf(".") !== -1 && previous != moduleName) {
                 var previous = moduleName;
                 moduleName = moduleName.replace(/^\.\//, "").replace(/\/\.\//, "/").replace(/[^\/]+\/\.\.\//, "");
-            }
+        }
         }
 
         return moduleName;
@@ -64,7 +64,7 @@
             if (!module.initialized) {
                 module.initialized = true;
                 module.exports = module.factory().exports;
-            }
+        }
             return module.exports;
         }
 
@@ -86,8 +86,8 @@
             factory = deps;
             if (typeof id != "string") {
                 deps = id;
-                id = window.require.id;
-            }
+            id = window.require.id;
+        }
         } else if (arguments.length == 1) {
             factory = id;
             deps = [];
@@ -109,7 +109,7 @@
 
         var req = function (childId) {
             return window.require(id, childId);
-        };
+    };
 
         window.require.modules[id] = {
             exports: {},
@@ -135,7 +135,7 @@
                     module.exports = returnExports;
                 return module;
             }
-        };
+    };
     };
     window.define.amd = {};
 
@@ -161,7 +161,7 @@
                     id: callbackId,
                     data: data
                 });
-            };
+        };
 
             this.emit = function (name, data) {
                 postMessage({
@@ -211,7 +211,7 @@ define("ace/lib/oop", ["require", "exports", "module"], function (require, expor
                 enumerable: false,
                 writable: true,
                 configurable: true
-            }
+        }
         });
     };
 
@@ -296,7 +296,7 @@ define("ace/lib/event_emitter", ["require", "exports", "module"], function (requ
 
         if (handlers[eventName]) {
             var old = handlers[eventName];
-            var disabled = handlers._disabled_[eventName];
+        var disabled = handlers._disabled_[eventName];
             if (!disabled)
                 handlers._disabled_[eventName] = disabled = [];
             disabled.push(old);
@@ -367,12 +367,12 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
         this.start = {
             row: startRow,
             column: startColumn
-        };
+    };
 
         this.end = {
             row: endRow,
             column: endColumn
-        };
+    };
     };
 
     (function () {
@@ -398,13 +398,13 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
             cmp = this.compare(end.row, end.column);
             if (cmp == 1) {
                 cmp = this.compare(start.row, start.column);
-                if (cmp == 1) {
-                    return 2;
-                } else if (cmp == 0) {
-                    return 1;
-                } else {
-                    return 0;
-                }
+            if (cmp == 1) {
+                return 2;
+            } else if (cmp == 0) {
+                return 1;
+            } else {
+                return 0;
+            }
             } else if (cmp == -1) {
                 return -2;
             } else {
@@ -413,9 +413,9 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                     return -1;
                 } else if (cmp == 1) {
                     return 42;
-                } else {
+            } else {
                     return 0;
-                }
+            }
             }
         };
         this.comparePoint = function (p) {
@@ -456,9 +456,9 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
             if (this.compare(row, column) == 0) {
                 if (this.isEnd(row, column) || this.isStart(row, column)) {
                     return false;
-                } else {
+            } else {
                     return true;
-                }
+            }
             }
             return false;
         };
@@ -468,7 +468,7 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                     return false;
                 } else {
                     return true;
-                }
+            }
             }
             return false;
         };
@@ -478,7 +478,7 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                     return false;
                 } else {
                     return true;
-                }
+            }
             }
             return false;
         };
@@ -555,7 +555,7 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
 
         this.isEmpty = function () {
             return (this.start.row === this.end.row && this.start.column === this.end.column);
-        };
+    };
         this.isMultiLine = function () {
             return (this.start.row !== this.end.row);
         };
@@ -576,7 +576,7 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                 screenPosStart.row, screenPosStart.column,
                 screenPosEnd.row, screenPosEnd.column
             );
-        };
+    };
         this.moveBy = function (row, column) {
             this.start.row += row;
             this.start.column += column;
@@ -649,8 +649,8 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
                         column += end.column - start.column;
                     } else {
                         column -= start.column;
-                        row += end.row - start.row;
-                    }
+                    row += end.row - start.row;
+                }
                 } else if (start.row !== end.row && start.row < row) {
                     row += end.row - start.row;
                 }
@@ -669,7 +669,7 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
 
                 } else if (start.row !== end.row && start.row < row) {
                     if (end.row === row)
-                        column = Math.max(0, column - end.column) + start.column;
+                    column = Math.max(0, column - end.column) + start.column;
                     row -= (end.row - start.row);
                 } else if (end.row === row) {
                     row -= end.row - start.row;
@@ -682,8 +682,8 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
                     else {
                         row = start.row;
                         column = 0;
-                    }
                 }
+            }
             }
 
             this.setPosition(row, column, true);
@@ -694,7 +694,7 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
                 pos = {
                     row: row,
                     column: column
-                };
+            };
             } else {
                 pos = this.$clipPositionToDocument(row, column);
             }
@@ -705,7 +705,7 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
             var old = {
                 row: this.row,
                 column: this.column
-            };
+        };
 
             this.row = pos.row;
             this.column = pos.column;
@@ -783,11 +783,11 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
         if ("aaa".split(/a/).length === 0)
             this.$split = function (text) {
                 return text.replace(/\r\n|\r/g, "\n").split("\n");
-            };
+        };
         else
             this.$split = function (text) {
                 return text.split(/\r\n|\r|\n/);
-            };
+        };
 
 
         this.$detectNewLine = function (text) {
@@ -857,7 +857,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
         };
         this.insert = function (position, text) {
             if (!text || text.length === 0)
-                return position;
+            return position;
 
             position = this.$clipPosition(position);
             if (this.getLength() <= 1)
@@ -898,7 +898,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 action: "insertLines",
                 range: range,
                 lines: lines
-            };
+        };
             this._signal("change", {data: delta});
             return range.end;
         };
@@ -918,7 +918,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 action: "insertText",
                 range: Range.fromPoints(position, end),
                 text: this.getNewLineCharacter()
-            };
+        };
             this._signal("change", {data: delta});
 
             return end;
@@ -941,7 +941,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 action: "insertText",
                 range: Range.fromPoints(position, end),
                 text: text
-            };
+        };
             this._signal("change", {data: delta});
 
             return end;
@@ -971,7 +971,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 if (firstFullRow != firstRow) {
                     this.removeInLine(firstRow, range.start.column, this.getLine(firstRow).length);
                     this.removeNewLine(range.start.row);
-                }
+            }
             }
             else {
                 this.removeInLine(firstRow, range.start.column, range.end.column);
@@ -992,7 +992,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 action: "removeText",
                 range: range,
                 text: removed
-            };
+        };
             this._signal("change", {data: delta});
             return range.start;
         };
@@ -1011,7 +1011,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 range: range,
                 nl: this.getNewLineCharacter(),
                 lines: removed
-            };
+        };
             this._signal("change", {data: delta});
             return removed;
         };
@@ -1028,7 +1028,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 action: "removeText",
                 range: range,
                 text: this.getNewLineCharacter()
-            };
+        };
             this._signal("change", {data: delta});
         };
         this.replace = function (range, text) {
@@ -1172,7 +1172,7 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
                 copy[key] = exports.deepCopy(obj[key]);
             } else {
                 copy[key] = obj[key];
-            }
+        }
         }
         return copy;
     };
@@ -1216,7 +1216,7 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
             matches.push({
                 offset: arguments[arguments.length - 2],
                 length: str.length
-            });
+        });
         });
 
         return matches;
@@ -1226,7 +1226,7 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
         var callback = function () {
             timer = null;
             fcn();
-        };
+    };
 
         var deferred = function (timeout) {
             deferred.cancel();
@@ -1245,8 +1245,8 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
         deferred.cancel = function () {
             clearTimeout(timer);
             timer = null;
-            return deferred;
-        };
+        return deferred;
+    };
 
         deferred.isPending = function () {
             return timer;
@@ -1265,7 +1265,7 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
 
         var _self = function (timeout) {
             if (timer == null)
-                timer = setTimeout(callback, timeout || defaultTimeout);
+            timer = setTimeout(callback, timeout || defaultTimeout);
         };
 
         _self.delay = function (timeout) {
@@ -1286,7 +1286,7 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
 
         _self.isPending = function () {
             return timer;
-        };
+    };
 
         return _self;
     };
@@ -1319,7 +1319,7 @@ define("ace/worker/mirror", ["require", "exports", "module", "ace/document", "ac
 
         this.setTimeout = function (timeout) {
             this.$timeout = timeout;
-        };
+    };
 
         this.setValue = function (value) {
             this.doc.setValue(value);
@@ -1664,7 +1664,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                     func: function (result) {
                         insidePHP = false;
                         return result;
-                    }
+                }
                 },
                 {
                     value: PHP.Constants.T_DOUBLE_ARROW,
@@ -1928,7 +1928,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                     value: PHP.Constants.T_DNUMBER,
                     re: /^[0-9]*\.[0-9]+([eE][-]?[0-9]*)?/
 
-                },
+            },
                 {
                     value: PHP.Constants.T_LNUMBER,
                     re: /^(0x[0-9A-F]+|[0-9]+)/i
@@ -1959,8 +1959,8 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                             bracketOpen = 0;
 
                         if (result.substring(0, 1) === "'") {
-                            return result;
-                        }
+                        return result;
+                    }
 
                         var match = result.match(/(?:[^\\]|\\.)*[^\\]\$[a-zA-Z_\x7f-\uffff][a-zA-Z0-9_\x7f-\uffff]*/g);
                         if (match !== null) {
@@ -2017,14 +2017,14 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                                         ]);
                                         if (match[3]) {
                                             results.push(match[3]);
-                                        }
+                                    }
                                         result = result.substring(match[0].length);
                                     }
 
 
                                     if (result.match(/^\[/g) !== null) {
                                         continue;
-                                    }
+                                }
                                 }
 
                                 var re;
@@ -2039,7 +2039,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                                 while (( match = result.match(re)) !== null) {
                                     if (result.length === 1) {
                                         throw new Error(match);
-                                    }
+                                }
 
                                     type = 0;
 
@@ -2047,8 +2047,8 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                                         if (match2 = match[0].match(/^[\[\]\;\:\?\(\)\!\.\,\>\<\=\+\-\/\*\|\&\{\}\@\^\%\$\~]/)) {
                                             results.push(match2[0]);
                                         } else {
-                                            type = PHP.Constants.T_STRING;
-                                        }
+                                            type = PHP.Constants.T_STRING;    
+                                    }
                                     } else {
                                         type = PHP.Constants.T_ENCAPSED_AND_WHITESPACE;
                                     }
@@ -2088,16 +2088,16 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                                 if (len === result.length) {
                                     if ((match = result.match(/^(([^\\]|\\.)*?[^\\]\$[a-zA-Z_\x7f-\uffff][a-zA-Z0-9_\x7f-\uffff]*)/g)) !== null) {
                                         return;
-                                    }
                                 }
-
                             }
+
+                        }
 
                             return undefined;
 
                         } else {
                             result = result.replace(/\r/g, "");
-                        }
+                    }
                         return result;
                     }
                 },
@@ -2159,7 +2159,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
 
                     if (result === null) {
                         throw Error("sup");
-                    }
+                        }
 
 
                 } else {
@@ -2168,7 +2168,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                             var last = results[results.length - 1];
                             if (!Array.isArray(last) || (last[0] !== PHP.Constants.T_WHITESPACE && last[0] !== PHP.Constants.T_OPEN_TAG && last[0] !== PHP.Constants.T_COMMENT)) {
                                 return false;
-                            }
+                                }
                         }
                         var result = src.match(token.re);
 
@@ -2192,12 +2192,12 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
 
                             } else {
                                 results.push(result[0]);
-                            }
+                                }
 
                             src = src.substring(result[0].length);
 
                             return true;
-                        }
+                            }
                         return false;
 
 
@@ -2232,9 +2232,9 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                         line
                     ]);
                     return results;
-                }
+                    }
 
-            }
+                }
 
 
         }
@@ -2336,12 +2336,12 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                         if (yyn < this.YYNLSTATES)
                             continue;
                         yyn -= this.YYNLSTATES;
-                    } else {
+                } else {
                         yyn = -yyn;
-                    }
+                }
                 } else {
                     yyn = yydefault[state];
-                }
+            }
             }
 
             for (; ;) {
@@ -2363,7 +2363,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                         && yyp < this.YYGLAST
                         && yygcheck[yyp] === yyn) {
                         state = yygoto[yyp];
-                    } else {
+                } else {
                         state = yygdefault[yyn];
                     }
 
@@ -2387,12 +2387,12 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                                     if (expected.length == 4) {
                                         expected = [];
                                         break;
-                                    }
+                                }
 
                                     expected.push(this.terminals[i]);
-                                }
                             }
                         }
+                    }
 
                         var expectedString = '';
                         if (expected.length) {
@@ -2401,14 +2401,14 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                         throw new PHP.ParseError('syntax error, unexpected ' + terminals[tokenId] + expectedString, this.startAttributes['startLine']);
                     } else {
                         return this.startAttributes['startLine'];
-                    }
-
                 }
+
+            }
 
                 if (state < this.YYNLSTATES)
                     break;
                 yyn = state - this.YYNLSTATES;
-            }
+        }
         }
     };
 
@@ -2441,7 +2441,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                 if ('b"' === token) {
                     this.tokenValue = 'b"';
                     return '"'.charCodeAt(0);
-                } else {
+            } else {
                     this.tokenValue = token;
                     return token.charCodeAt(0);
                 }
@@ -2470,8 +2470,8 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                     this.endAttributes['endLine'] = this.line;
 
                     return this.tokenMap[token[0]];
-                }
             }
+        }
         }
 
         this.startAttributes['startLine'] = this.line;
@@ -2507,7 +2507,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                 tokenMap[i] = 59;
             } else if ('UNKNOWN' !== (name = this.tokenName(i) )) {
                 tokenMap[i] = this[name];
-            }
+        }
         }
         return tokenMap;
     };
@@ -2570,7 +2570,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
                     return chr(hexdec(str));
                 } else {
                     return chr(octdec(str));
-                }
+            }
             }
         );
 
@@ -5449,7 +5449,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_Variable",
             name: arguments[0],
             attributes: arguments[1]
-        };
+    };
     };
 
     PHP.Parser.prototype.Node_Expr_FuncCall = function () {
@@ -5459,7 +5459,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             func: arguments[0],
             args: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5471,7 +5471,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             name: arguments[1],
             args: arguments[2],
             attributes: arguments[3]
-        };
+    };
 
     };
 
@@ -5483,7 +5483,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             func: arguments[1],
             args: arguments[2],
             attributes: arguments[3]
-        };
+    };
 
     };
 
@@ -5496,7 +5496,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             If: arguments[1],
             Else: arguments[2],
             attributes: arguments[3]
-        };
+    };
 
     };
 
@@ -5507,7 +5507,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             assignList: arguments[0],
             expr: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5519,7 +5519,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             variable: arguments[0],
             expr: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5530,7 +5530,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             variable: arguments[0],
             expr: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5541,7 +5541,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             variable: arguments[0],
             expr: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5552,7 +5552,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             variable: arguments[0],
             expr: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5563,7 +5563,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             variable: arguments[0],
             expr: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5574,7 +5574,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             variable: arguments[0],
             refVar: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5585,7 +5585,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             variable: arguments[0],
             expr: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5596,7 +5596,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             variable: arguments[0],
             expr: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5607,7 +5607,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5618,7 +5618,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5630,7 +5630,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5642,7 +5642,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5654,7 +5654,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5665,7 +5665,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5676,7 +5676,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5687,7 +5687,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5699,7 +5699,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5711,7 +5711,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5722,7 +5722,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5733,7 +5733,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5744,7 +5744,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5755,7 +5755,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5765,7 +5765,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_PostInc",
             variable: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -5775,7 +5775,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_PostDec",
             variable: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -5785,7 +5785,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_PreInc",
             variable: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -5795,7 +5795,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_PreDec",
             variable: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -5804,7 +5804,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             expr: arguments[0],
             type: arguments[1],
             attributes: arguments[2]
-        };
+    };
     };
 
     PHP.Parser.prototype.Node_Expr_ArrayDimFetch = function () {
@@ -5814,7 +5814,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             variable: arguments[0],
             dim: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5825,7 +5825,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             Class: arguments[0],
             name: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5836,7 +5836,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             Class: arguments[0],
             name: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5848,7 +5848,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             Class: arguments[0],
             name: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5858,7 +5858,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_ConstFetch",
             name: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -5870,7 +5870,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             key: arguments[1],
             byRef: arguments[2],
             attributes: arguments[3]
-        };
+    };
 
     };
 
@@ -5880,7 +5880,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_Array",
             items: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -5891,7 +5891,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             variable: arguments[0],
             name: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5902,7 +5902,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             Class: arguments[0],
             args: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -5912,7 +5912,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_Print",
             expr: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -5922,7 +5922,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_Exit",
             expr: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -5932,7 +5932,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_Cast_Bool",
             expr: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -5941,7 +5941,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_Cast_Int",
             expr: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -5950,7 +5950,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_Cast_String",
             expr: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -5959,7 +5959,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_Cast_Double",
             expr: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -5968,7 +5968,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_Cast_Array",
             expr: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -5977,7 +5977,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_Cast_Object",
             expr: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -5987,7 +5987,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_ErrorSuppress",
             expr: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -5997,7 +5997,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_Isset",
             variables: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -6007,7 +6007,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_UnaryMinus",
             expr: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -6017,7 +6017,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_UnaryPlus",
             expr: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -6026,7 +6026,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_Empty",
             variable: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -6036,7 +6036,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -6046,7 +6046,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -6056,7 +6056,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -6067,7 +6067,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -6077,7 +6077,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -6087,7 +6087,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -6097,7 +6097,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -6106,7 +6106,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_BitwiseNot",
             expr: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -6115,7 +6115,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_BooleanNot",
             expr: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -6125,7 +6125,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -6136,7 +6136,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             left: arguments[0],
             right: arguments[1],
             attributes: arguments[2]
-        };
+    };
 
     };
 
@@ -6146,7 +6146,7 @@ define("ace/mode/php/php", ["require", "exports", "module"], function (require, 
             type: "Node_Expr_Clone",
             expr: arguments[0],
             attributes: arguments[1]
-        };
+    };
 
     };
 
@@ -6304,7 +6304,7 @@ define("ace/mode/php_worker", ["require", "exports", "module", "ace/lib/oop", "a
     (function () {
         this.setOptions = function (opts) {
             this.inlinePhp = opts && opts.inline;
-        };
+    };
 
         this.onUpdate = function () {
             var value = this.doc.getValue();
@@ -6329,7 +6329,7 @@ define("ace/mode/php_worker", ["require", "exports", "module", "ace/lib/oop", "a
             } else {
                 this.sender.emit("ok");
             }
-        };
+    };
 
     }).call(PhpWorker.prototype);
 
@@ -6368,7 +6368,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
 
                 }
 
-            };
+        };
             if (target.prototype) {
                 Empty.prototype = target.prototype;
                 bound.prototype = new Empty();
@@ -6420,13 +6420,13 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             Array.prototype.splice = function (start, deleteCount) {
                 if (!arguments.length) {
                     return [];
-                } else {
+            } else {
                     return array_splice.apply(this, [
                         start === void 0 ? 0 : start,
                         deleteCount === void 0 ? (this.length - start) : deleteCount
                     ].concat(slice.call(arguments, 2)))
-                }
-            };
+            }
+        };
         } else {//IE8
             Array.prototype.splice = function (pos, removeCount) {
                 var length = this.length;
@@ -6437,7 +6437,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     pos = 0;
                 } else if (pos < 0) {
                     pos = Math.max(length + pos, 0);
-                }
+            }
 
                 if (!(pos + removeCount < length))
                     removeCount = length - pos;
@@ -6459,7 +6459,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     if (tailNewPos < tailOldPos) { // case A
                         for (var i = 0; i < tailCount; ++i) {
                             this[tailNewPos + i] = this[tailOldPos + i];
-                        }
+                    }
                     } else if (tailNewPos > tailOldPos) { // case B
                         for (i = tailCount; i--;) {
                             this[tailNewPos + i] = this[tailOldPos + i];
@@ -6469,16 +6469,16 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     if (add && pos === lengthAfterRemove) {
                         this.length = lengthAfterRemove; // truncate array
                         this.push.apply(this, insert);
-                    } else {
+                } else {
                         this.length = lengthAfterRemove + add; // reserves space
                         for (i = 0; i < add; ++i) {
                             this[pos + i] = insert[i];
                         }
-                    }
                 }
+            }
                 return removed;
-            };
-        }
+        };
+    }
     }
     if (!Array.isArray) {
         Array.isArray = function isArray(obj) {
@@ -6505,7 +6505,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 if (i in self) {
                     fun.call(thisp, self[i], i, object);
                 }
-            }
+        }
         };
     }
     if (!Array.prototype.map) {
@@ -6547,8 +6547,8 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     value = self[i];
                     if (fun.call(thisp, value, i, object)) {
                         result.push(value);
-                    }
                 }
+            }
             }
             return result;
         };
@@ -6568,7 +6568,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             for (var i = 0; i < length; i++) {
                 if (i in self && !fun.call(thisp, self[i], i, object)) {
                     return false;
-                }
+            }
             }
             return true;
         };
@@ -6588,7 +6588,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             for (var i = 0; i < length; i++) {
                 if (i in self && fun.call(thisp, self[i], i, object)) {
                     return true;
-                }
+            }
             }
             return false;
         };
@@ -6613,20 +6613,20 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 result = arguments[1];
             } else {
                 do {
-                    if (i in self) {
-                        result = self[i++];
-                        break;
-                    }
+                if (i in self) {
+                    result = self[i++];
+                    break;
+                }
                     if (++i >= length) {
                         throw new TypeError("reduce of empty array with no initial value");
-                    }
+                }
                 } while (true);
             }
 
             for (; i < length; i++) {
                 if (i in self) {
                     result = fun.call(void 0, result, self[i], i, object);
-                }
+            }
             }
 
             return result;
@@ -6651,10 +6651,10 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 result = arguments[1];
             } else {
                 do {
-                    if (i in self) {
-                        result = self[i--];
-                        break;
-                    }
+                if (i in self) {
+                    result = self[i--];
+                    break;
+                }
                     if (--i < 0) {
                         throw new TypeError("reduceRight of empty array with no initial value");
                     }
@@ -6664,7 +6664,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             do {
                 if (i in this) {
                     result = fun.call(void 0, result, self[i], i, object);
-                }
+            }
             } while (i--);
 
             return result;
@@ -6689,7 +6689,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             for (; i < length; i++) {
                 if (i in self && self[i] === sought) {
                     return i;
-                }
+            }
             }
             return -1;
         };
@@ -6702,7 +6702,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 length = self.length >>> 0;
 
             if (!length) {
-                return -1;
+            return -1;
             }
             var i = length - 1;
             if (arguments.length > 1) {
@@ -6712,7 +6712,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             for (; i >= 0; i--) {
                 if (i in self && sought === self[i]) {
                     return i;
-                }
+            }
             }
             return -1;
         };
@@ -6749,7 +6749,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     if (getter) descriptor.get = getter;
                     if (setter) descriptor.set = setter;
                     return descriptor;
-                }
+            }
             }
             descriptor.value = object[property];
             return descriptor;
@@ -6765,7 +6765,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
         if (Object.prototype.__proto__ === null) {
             createEmpty = function () {
                 return {"__proto__": null};
-            };
+        };
         } else {
             createEmpty = function () {
                 var empty = {};
@@ -6781,13 +6781,13 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                                             empty.__proto__ = null;
                 return empty;
             }
-        }
+    }
 
         Object.create = function create(prototype, properties) {
             var object;
             if (prototype === null) {
                 object = createEmpty();
-            } else {
+        } else {
                 if (typeof prototype != "object")
                     throw new TypeError("typeof prototype[" + (typeof prototype) + "] != 'object'");
                 var Type = function () {
@@ -6795,7 +6795,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 Type.prototype = prototype;
                 object = new Type();
                 object.__proto__ = prototype;
-            }
+        }
             if (properties !== void 0)
                 Object.defineProperties(object, properties);
             return object;
@@ -6807,7 +6807,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             Object.defineProperty(object, "sentinel", {});
             return "sentinel" in object;
         } catch (exception) {
-        }
+    }
     }
 
     if (Object.defineProperty) {
@@ -6816,7 +6816,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             doesDefinePropertyWork(document.createElement("div"));
         if (!definePropertyWorksOnObject || !definePropertyWorksOnDom) {
             var definePropertyFallback = Object.defineProperty;
-        }
+    }
     }
 
     if (!Object.defineProperty || definePropertyFallback) {
@@ -6834,7 +6834,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 try {
                     return definePropertyFallback.call(Object, object, property, descriptor);
                 } catch (exception) {
-                }
+            }
             }
             if (owns(descriptor, "value")) {
 
@@ -6845,9 +6845,9 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     delete object[property];
                     object[property] = descriptor.value;
                     object.__proto__ = prototype;
-                } else {
+            } else {
                     object[property] = descriptor.value;
-                }
+            }
             } else {
                 if (!supportsAccessors)
                     throw new TypeError(ERR_ACCESSORS_NOT_SUPPORTED);
@@ -6889,8 +6889,8 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     return object;
                 } else {
                     return freezeObject(object);
-                }
-            };
+            }
+        };
         })(Object.freeze);
     }
     if (!Object.preventExtensions) {
@@ -6938,7 +6938,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
 
         for (var key in {"toString": null}) {
             hasDontEnumBug = false;
-        }
+    }
 
         Object.keys = function keys(object) {
 
@@ -6947,13 +6947,13 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 object === null
             ) {
                 throw new TypeError("Object.keys called on a non-object");
-            }
+        }
 
             var keys = [];
             for (var name in object) {
                 if (owns(object, name)) {
                     keys.push(name);
-                }
+            }
             }
 
             if (hasDontEnumBug) {
@@ -6961,8 +6961,8 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     var dontEnum = dontEnums[i];
                     if (owns(object, dontEnum)) {
                         keys.push(dontEnum);
-                    }
                 }
+            }
             }
             return keys;
         };
@@ -6991,7 +6991,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             n = 0;
         } else if (n !== 0 && n !== (1 / 0) && n !== -(1 / 0)) {
             n = (n > 0 || -1) * Math.floor(Math.abs(n));
-        }
+    }
         return n;
     }
 
@@ -7016,14 +7016,14 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             val = valueOf.call(input);
             if (isPrimitive(val)) {
                 return val;
-            }
         }
+    }
         toString = input.toString;
         if (typeof toString === "function") {
             val = toString.call(input);
             if (isPrimitive(val)) {
                 return val;
-            }
+        }
         }
         throw new TypeError();
     }

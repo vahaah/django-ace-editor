@@ -43,7 +43,7 @@
             while (moduleName.indexOf(".") !== -1 && previous != moduleName) {
                 var previous = moduleName;
                 moduleName = moduleName.replace(/^\.\//, "").replace(/\/\.\//, "/").replace(/[^\/]+\/\.\.\//, "");
-            }
+        }
         }
 
         return moduleName;
@@ -64,7 +64,7 @@
             if (!module.initialized) {
                 module.initialized = true;
                 module.exports = module.factory().exports;
-            }
+        }
             return module.exports;
         }
 
@@ -86,8 +86,8 @@
             factory = deps;
             if (typeof id != "string") {
                 deps = id;
-                id = window.require.id;
-            }
+            id = window.require.id;
+        }
         } else if (arguments.length == 1) {
             factory = id;
             deps = [];
@@ -109,7 +109,7 @@
 
         var req = function (childId) {
             return window.require(id, childId);
-        };
+    };
 
         window.require.modules[id] = {
             exports: {},
@@ -135,7 +135,7 @@
                     module.exports = returnExports;
                 return module;
             }
-        };
+    };
     };
     window.define.amd = {};
 
@@ -161,7 +161,7 @@
                     id: callbackId,
                     data: data
                 });
-            };
+        };
 
             this.emit = function (name, data) {
                 postMessage({
@@ -211,7 +211,7 @@ define("ace/lib/oop", ["require", "exports", "module"], function (require, expor
                 enumerable: false,
                 writable: true,
                 configurable: true
-            }
+        }
         });
     };
 
@@ -296,7 +296,7 @@ define("ace/lib/event_emitter", ["require", "exports", "module"], function (requ
 
         if (handlers[eventName]) {
             var old = handlers[eventName];
-            var disabled = handlers._disabled_[eventName];
+        var disabled = handlers._disabled_[eventName];
             if (!disabled)
                 handlers._disabled_[eventName] = disabled = [];
             disabled.push(old);
@@ -367,12 +367,12 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
         this.start = {
             row: startRow,
             column: startColumn
-        };
+    };
 
         this.end = {
             row: endRow,
             column: endColumn
-        };
+    };
     };
 
     (function () {
@@ -398,13 +398,13 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
             cmp = this.compare(end.row, end.column);
             if (cmp == 1) {
                 cmp = this.compare(start.row, start.column);
-                if (cmp == 1) {
-                    return 2;
-                } else if (cmp == 0) {
-                    return 1;
-                } else {
-                    return 0;
-                }
+            if (cmp == 1) {
+                return 2;
+            } else if (cmp == 0) {
+                return 1;
+            } else {
+                return 0;
+            }
             } else if (cmp == -1) {
                 return -2;
             } else {
@@ -413,9 +413,9 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                     return -1;
                 } else if (cmp == 1) {
                     return 42;
-                } else {
+            } else {
                     return 0;
-                }
+            }
             }
         };
         this.comparePoint = function (p) {
@@ -456,9 +456,9 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
             if (this.compare(row, column) == 0) {
                 if (this.isEnd(row, column) || this.isStart(row, column)) {
                     return false;
-                } else {
+            } else {
                     return true;
-                }
+            }
             }
             return false;
         };
@@ -468,7 +468,7 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                     return false;
                 } else {
                     return true;
-                }
+            }
             }
             return false;
         };
@@ -478,7 +478,7 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                     return false;
                 } else {
                     return true;
-                }
+            }
             }
             return false;
         };
@@ -555,7 +555,7 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
 
         this.isEmpty = function () {
             return (this.start.row === this.end.row && this.start.column === this.end.column);
-        };
+    };
         this.isMultiLine = function () {
             return (this.start.row !== this.end.row);
         };
@@ -576,7 +576,7 @@ define("ace/range", ["require", "exports", "module"], function (require, exports
                 screenPosStart.row, screenPosStart.column,
                 screenPosEnd.row, screenPosEnd.column
             );
-        };
+    };
         this.moveBy = function (row, column) {
             this.start.row += row;
             this.start.column += column;
@@ -649,8 +649,8 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
                         column += end.column - start.column;
                     } else {
                         column -= start.column;
-                        row += end.row - start.row;
-                    }
+                    row += end.row - start.row;
+                }
                 } else if (start.row !== end.row && start.row < row) {
                     row += end.row - start.row;
                 }
@@ -669,7 +669,7 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
 
                 } else if (start.row !== end.row && start.row < row) {
                     if (end.row === row)
-                        column = Math.max(0, column - end.column) + start.column;
+                    column = Math.max(0, column - end.column) + start.column;
                     row -= (end.row - start.row);
                 } else if (end.row === row) {
                     row -= end.row - start.row;
@@ -682,8 +682,8 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
                     else {
                         row = start.row;
                         column = 0;
-                    }
                 }
+            }
             }
 
             this.setPosition(row, column, true);
@@ -694,7 +694,7 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
                 pos = {
                     row: row,
                     column: column
-                };
+            };
             } else {
                 pos = this.$clipPositionToDocument(row, column);
             }
@@ -705,7 +705,7 @@ define("ace/anchor", ["require", "exports", "module", "ace/lib/oop", "ace/lib/ev
             var old = {
                 row: this.row,
                 column: this.column
-            };
+        };
 
             this.row = pos.row;
             this.column = pos.column;
@@ -783,11 +783,11 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
         if ("aaa".split(/a/).length === 0)
             this.$split = function (text) {
                 return text.replace(/\r\n|\r/g, "\n").split("\n");
-            };
+        };
         else
             this.$split = function (text) {
                 return text.split(/\r\n|\r|\n/);
-            };
+        };
 
 
         this.$detectNewLine = function (text) {
@@ -857,7 +857,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
         };
         this.insert = function (position, text) {
             if (!text || text.length === 0)
-                return position;
+            return position;
 
             position = this.$clipPosition(position);
             if (this.getLength() <= 1)
@@ -898,7 +898,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 action: "insertLines",
                 range: range,
                 lines: lines
-            };
+        };
             this._signal("change", {data: delta});
             return range.end;
         };
@@ -918,7 +918,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 action: "insertText",
                 range: Range.fromPoints(position, end),
                 text: this.getNewLineCharacter()
-            };
+        };
             this._signal("change", {data: delta});
 
             return end;
@@ -935,13 +935,13 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
             var end = {
                 row: position.row,
                 column: position.column + text.length
-            };
+        };
 
             var delta = {
                 action: "insertText",
                 range: Range.fromPoints(position, end),
                 text: text
-            };
+        };
             this._signal("change", {data: delta});
 
             return end;
@@ -953,7 +953,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
             range.end = this.$clipPosition(range.end);
 
             if (range.isEmpty())
-                return range.start;
+            return range.start;
 
             var firstRow = range.start.row;
             var lastRow = range.end.row;
@@ -971,7 +971,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 if (firstFullRow != firstRow) {
                     this.removeInLine(firstRow, range.start.column, this.getLine(firstRow).length);
                     this.removeNewLine(range.start.row);
-                }
+            }
             }
             else {
                 this.removeInLine(firstRow, range.start.column, range.end.column);
@@ -992,7 +992,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 action: "removeText",
                 range: range,
                 text: removed
-            };
+        };
             this._signal("change", {data: delta});
             return range.start;
         };
@@ -1011,7 +1011,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 range: range,
                 nl: this.getNewLineCharacter(),
                 lines: removed
-            };
+        };
             this._signal("change", {data: delta});
             return removed;
         };
@@ -1048,7 +1048,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
             }
 
             return end;
-        };
+    };
         this.applyDeltas = function (deltas) {
             for (var i = 0; i < deltas.length; i++) {
                 var delta = deltas[i];
@@ -1063,7 +1063,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 else if (delta.action == "removeText")
                     this.remove(range);
             }
-        };
+    };
         this.revertDeltas = function (deltas) {
             for (var i = deltas.length - 1; i >= 0; i--) {
                 var delta = deltas[i];
@@ -1078,8 +1078,8 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                     this._insertLines(range.start.row, delta.lines);
                 else if (delta.action == "removeText")
                     this.insert(range.start, delta.text);
-            }
-        };
+        }
+    };
         this.indexToPosition = function (index, startRow) {
             var lines = this.$lines || this.getAllLines();
             var newlineLength = this.getNewLineCharacter().length;
@@ -1087,9 +1087,9 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 index -= lines[i].length + newlineLength;
                 if (index < 0)
                     return {row: i, column: index + lines[i].length + newlineLength};
-            }
+        }
             return {row: l - 1, column: lines[l - 1].length};
-        };
+    };
         this.positionToIndex = function (pos, startRow) {
             var lines = this.$lines || this.getAllLines();
             var newlineLength = this.getNewLineCharacter().length;
@@ -1099,7 +1099,7 @@ define("ace/document", ["require", "exports", "module", "ace/lib/oop", "ace/lib/
                 index += lines[i].length + newlineLength;
 
             return index + pos.column;
-        };
+    };
 
     }).call(Document.prototype);
 
@@ -1240,7 +1240,7 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
             this.cancel();
             fcn();
             return deferred;
-        };
+    };
 
         deferred.cancel = function () {
             clearTimeout(timer);
@@ -1266,7 +1266,7 @@ define("ace/lib/lang", ["require", "exports", "module"], function (require, expo
         var _self = function (timeout) {
             if (timer == null)
                 timer = setTimeout(callback, timeout || defaultTimeout);
-        };
+    };
 
         _self.delay = function (timeout) {
             timer && clearTimeout(timer);
@@ -1656,7 +1656,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     );
                     if (Object(result) === result) {
                         return result;
-                    }
+                }
                     return this;
 
                 } else {
@@ -1665,9 +1665,9 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                         args.concat(slice.call(arguments))
                     );
 
-                }
+            }
 
-            };
+        };
             if (target.prototype) {
                 Empty.prototype = target.prototype;
                 bound.prototype = new Empty();
@@ -1747,7 +1747,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 if (pos === length) {
                     if (add) {
                         this.push.apply(this, insert);
-                    }
+                }
                 } else {
                     var remove = Math.min(removeCount, length - pos);
                     var tailOldPos = pos + remove;
@@ -1758,7 +1758,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     if (tailNewPos < tailOldPos) { // case A
                         for (var i = 0; i < tailCount; ++i) {
                             this[tailNewPos + i] = this[tailOldPos + i];
-                        }
+                    }
                     } else if (tailNewPos > tailOldPos) { // case B
                         for (i = tailCount; i--;) {
                             this[tailNewPos + i] = this[tailOldPos + i];
@@ -1772,12 +1772,12 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                         this.length = lengthAfterRemove + add; // reserves space
                         for (i = 0; i < add; ++i) {
                             this[pos + i] = insert[i];
-                        }
                     }
                 }
+                }
                 return removed;
-            };
-        }
+        };
+    }
     }
     if (!Array.isArray) {
         Array.isArray = function isArray(obj) {
@@ -1803,7 +1803,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             while (++i < length) {
                 if (i in self) {
                     fun.call(thisp, self[i], i, object);
-                }
+            }
             }
         };
     }
@@ -1846,8 +1846,8 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     value = self[i];
                     if (fun.call(thisp, value, i, object)) {
                         result.push(value);
-                    }
                 }
+            }
             }
             return result;
         };
@@ -1867,7 +1867,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             for (var i = 0; i < length; i++) {
                 if (i in self && !fun.call(thisp, self[i], i, object)) {
                     return false;
-                }
+            }
             }
             return true;
         };
@@ -1887,7 +1887,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             for (var i = 0; i < length; i++) {
                 if (i in self && fun.call(thisp, self[i], i, object)) {
                     return true;
-                }
+            }
             }
             return false;
         };
@@ -1912,10 +1912,10 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 result = arguments[1];
             } else {
                 do {
-                    if (i in self) {
-                        result = self[i++];
-                        break;
-                    }
+                if (i in self) {
+                    result = self[i++];
+                    break;
+                }
                     if (++i >= length) {
                         throw new TypeError("reduce of empty array with no initial value");
                     }
@@ -1925,7 +1925,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             for (; i < length; i++) {
                 if (i in self) {
                     result = fun.call(void 0, result, self[i], i, object);
-                }
+            }
             }
 
             return result;
@@ -1949,21 +1949,21 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             if (arguments.length >= 2) {
                 result = arguments[1];
             } else {
-                do {
-                    if (i in self) {
-                        result = self[i--];
-                        break;
-                    }
-                    if (--i < 0) {
-                        throw new TypeError("reduceRight of empty array with no initial value");
-                    }
-                } while (true);
+            do {
+                if (i in self) {
+                    result = self[i--];
+                    break;
+                }
+                if (--i < 0) {
+                    throw new TypeError("reduceRight of empty array with no initial value");
+                }
+            } while (true);
             }
 
             do {
                 if (i in this) {
                     result = fun.call(void 0, result, self[i], i, object);
-                }
+            }
             } while (i--);
 
             return result;
@@ -1977,7 +1977,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 length = self.length >>> 0;
 
             if (!length) {
-                return -1;
+            return -1;
             }
 
             var i = 0;
@@ -1988,7 +1988,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             for (; i < length; i++) {
                 if (i in self && self[i] === sought) {
                     return i;
-                }
+            }
             }
             return -1;
         };
@@ -2001,7 +2001,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 length = self.length >>> 0;
 
             if (!length) {
-                return -1;
+            return -1;
             }
             var i = length - 1;
             if (arguments.length > 1) {
@@ -2048,7 +2048,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     if (getter) descriptor.get = getter;
                     if (setter) descriptor.set = setter;
                     return descriptor;
-                }
+            }
             }
             descriptor.value = object[property];
             return descriptor;
@@ -2064,7 +2064,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
         if (Object.prototype.__proto__ === null) {
             createEmpty = function () {
                 return {"__proto__": null};
-            };
+        };
         } else {
             createEmpty = function () {
                 var empty = {};
@@ -2080,13 +2080,13 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                                             empty.__proto__ = null;
                 return empty;
             }
-        }
+    }
 
         Object.create = function create(prototype, properties) {
             var object;
             if (prototype === null) {
                 object = createEmpty();
-            } else {
+        } else {
                 if (typeof prototype != "object")
                     throw new TypeError("typeof prototype[" + (typeof prototype) + "] != 'object'");
                 var Type = function () {
@@ -2094,7 +2094,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 Type.prototype = prototype;
                 object = new Type();
                 object.__proto__ = prototype;
-            }
+        }
             if (properties !== void 0)
                 Object.defineProperties(object, properties);
             return object;
@@ -2106,7 +2106,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             Object.defineProperty(object, "sentinel", {});
             return "sentinel" in object;
         } catch (exception) {
-        }
+    }
     }
 
     if (Object.defineProperty) {
@@ -2115,7 +2115,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             doesDefinePropertyWork(document.createElement("div"));
         if (!definePropertyWorksOnObject || !definePropertyWorksOnDom) {
             var definePropertyFallback = Object.defineProperty;
-        }
+    }
     }
 
     if (!Object.defineProperty || definePropertyFallback) {
@@ -2133,7 +2133,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 try {
                     return definePropertyFallback.call(Object, object, property, descriptor);
                 } catch (exception) {
-                }
+            }
             }
             if (owns(descriptor, "value")) {
 
@@ -2144,9 +2144,9 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     delete object[property];
                     object[property] = descriptor.value;
                     object.__proto__ = prototype;
-                } else {
+            } else {
                     object[property] = descriptor.value;
-                }
+            }
             } else {
                 if (!supportsAccessors)
                     throw new TypeError(ERR_ACCESSORS_NOT_SUPPORTED);
@@ -2188,8 +2188,8 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     return object;
                 } else {
                     return freezeObject(object);
-                }
-            };
+            }
+        };
         })(Object.freeze);
     }
     if (!Object.preventExtensions) {
@@ -2237,7 +2237,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
 
         for (var key in {"toString": null}) {
             hasDontEnumBug = false;
-        }
+    }
 
         Object.keys = function keys(object) {
 
@@ -2246,13 +2246,13 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                 object === null
             ) {
                 throw new TypeError("Object.keys called on a non-object");
-            }
+        }
 
             var keys = [];
             for (var name in object) {
                 if (owns(object, name)) {
                     keys.push(name);
-                }
+            }
             }
 
             if (hasDontEnumBug) {
@@ -2260,8 +2260,8 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
                     var dontEnum = dontEnums[i];
                     if (owns(object, dontEnum)) {
                         keys.push(dontEnum);
-                    }
                 }
+            }
             }
             return keys;
         };
@@ -2290,7 +2290,7 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             n = 0;
         } else if (n !== 0 && n !== (1 / 0) && n !== -(1 / 0)) {
             n = (n > 0 || -1) * Math.floor(Math.abs(n));
-        }
+    }
         return n;
     }
 
@@ -2315,14 +2315,14 @@ define("ace/lib/es5-shim", ["require", "exports", "module"], function (require, 
             val = valueOf.call(input);
             if (isPrimitive(val)) {
                 return val;
-            }
         }
+    }
         toString = input.toString;
         if (typeof toString === "function") {
             val = toString.call(input);
             if (isPrimitive(val)) {
                 return val;
-            }
+        }
         }
         throw new TypeError();
     }

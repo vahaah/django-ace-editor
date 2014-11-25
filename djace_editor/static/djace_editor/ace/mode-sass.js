@@ -179,7 +179,7 @@ define("ace/mode/scss_highlight_rules", ["require", "exports", "module", "ace/li
                             return "variable.language";
                         else
                             return "text";
-                    },
+                },
                     regex: "\\-?[@a-z_][@a-z0-9_\\-]*"
                 }, {
                     token: "variable",
@@ -242,7 +242,7 @@ define("ace/mode/scss_highlight_rules", ["require", "exports", "module", "ace/li
                     regex: '.+'
                 }
             ]
-        };
+    };
     };
 
     oop.inherits(ScssHighlightRules, TextHighlightRules);
@@ -290,7 +290,7 @@ define("ace/mode/sass_highlight_rules", ["require", "exports", "module", "ace/li
                         return "text";
                     } else {
                         this.next = "";
-                        return "comment";
+                    return "comment";
                     }
                 }, next: "start"
                 },
@@ -374,8 +374,8 @@ define("ace/mode/folding/coffee", ["require", "exports", "module", "ace/lib/oop"
                 if (session.getLine(row - 2).search(/\S/) == -1) {
                     session.foldWidgets[row - 1] = "start";
                     session.foldWidgets[row + 1] = "";
-                    return "";
-                }
+                return "";
+            }
             }
 
             if (prevIndent != -1 && prevIndent < indent)

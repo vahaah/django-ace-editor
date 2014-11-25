@@ -11,13 +11,13 @@ define("ace/mode/vbscript_highlight_rules", ["require", "exports", "module", "ac
                 {
                     token: [
                         "meta.ending-space"
-                    ],
+            ],
                     regex: "$"
                 },
                 {
                     token: [
                         null
-                    ],
+            ],
                     regex: "^(?=\\t)",
                     next: "state_3"
                 },
@@ -36,7 +36,7 @@ define("ace/mode/vbscript_highlight_rules", ["require", "exports", "module", "ac
                         "punctuation.definition.parameters.asp",
                         "variable.parameter.function.asp",
                         "punctuation.definition.parameters.asp"
-                    ],
+            ],
                     regex: "^(\\s*)(Function|Sub)(\\s*)([a-zA-Z_]\\w*)(\\s*)(\\()([^)]*)(\\))"
                 },
                 {
@@ -47,7 +47,7 @@ define("ace/mode/vbscript_highlight_rules", ["require", "exports", "module", "ac
                 {
                     token: [
                         "keyword.control.asp"
-                    ],
+            ],
                     regex: "\\b(?:If|Then|Else|ElseIf|Else If|End If|While|Wend|For|To|Each|Case|Select|End Select|Return|Continue|Do|Until|Loop|Next|With|Exit Do|Exit For|Exit Function|Exit Property|Exit Sub|IIf)\\b"
                 },
                 {
@@ -122,7 +122,7 @@ define("ace/mode/vbscript_highlight_rules", ["require", "exports", "module", "ac
                         "keyword.operator.asp"
                     ],
                     regex: "\\-|\\+|\\*\\\/|\\>|\\<|\\=|\\&"
-                }
+        }
             ],
             "state_3": [
                 {
