@@ -11,7 +11,7 @@ Forked on `Bradley Ayers <https://github.com/bradleyayers/django-ace/>`_.
 Dependence
 ----------
 
-- `Django >= 1.3`
+- `Django >= 1.9`
 
 Getting started
 ---------------

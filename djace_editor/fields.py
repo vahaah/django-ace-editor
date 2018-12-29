@@ -30,9 +30,3 @@ class AceField(Field):
         defaults = {'widget': self.widget}
         defaults.update(kwargs)
         return super(AceField, self).formfield(**defaults)
-
-
-if 'south' in settings.INSTALLED_APPS:
-    from south.modelsinspector import add_introspection_rules
-
-    add_introspection_rules([], ["^djace_editor\.fields\.AceField"])

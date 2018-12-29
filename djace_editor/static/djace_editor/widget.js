@@ -53,8 +53,7 @@
             widget.style.height = window.ace_widget.height + 'px';
             widget.style.zIndex = 1;
             window.fullscreen = false;
-        }
-        else {
+        } else {
             window.ace_widget = {
                 'width': widget.offsetWidth,
                 'height': widget.offsetHeight,
@@ -85,8 +84,14 @@
 
         // Toolbar maximize/minimize button
         var min_max = toolbar.getElementsByClassName('django-ace-max_min');
-        min_max[0].onclick = function () {
+        min_max[0].onchange = function () {
             minimizeMaximize(widget, main_block, editor);
+            return false;
+        };
+
+        var mode_select = toolbar.getElementsByClassName('django-ace-mode_select');
+        mode_select[0].onclick = function () {
+            editor.getSession().setMode("ace/mode/" + this.value);
             return false;
         };
 
@@ -97,8 +102,7 @@
 
         // options
         if (mode) {
-            var Mode = require("ace/mode/" + mode).Mode;
-            editor.getSession().setMode(new Mode());
+            editor.getSession().setMode("ace/mode/" + mode);
         }
         if (theme) {
             editor.setTheme("ace/theme/" + theme);
